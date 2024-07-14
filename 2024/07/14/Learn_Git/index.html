@@ -20,31 +20,102 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Keep learning and sharing">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kik1&#39;s Blog">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="初始化以及配置在使用git之前首先使用git global 配置一下自己的邮箱和名字 123git config --global user.name &quot;github用户名&quot;git config --global user.email &quot;邮箱&quot;git config --global credential.helper store #保存用户名和密码   在g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn_Git">
+<meta property="og:url" content="http://example.com/2024/07/14/Learn_Git/index.html">
 <meta property="og:site_name" content="Kik1&#39;s Blog">
-<meta property="og:description" content="Keep learning and sharing">
+<meta property="og:description" content="初始化以及配置在使用git之前首先使用git global 配置一下自己的邮箱和名字 123git config --global user.name &quot;github用户名&quot;git config --global user.email &quot;邮箱&quot;git config --global credential.helper store #保存用户名和密码   在g">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712163702291.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712163757385.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712165706096.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712165856143.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712170103468.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712170447016.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712170849343.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712171147745.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712171301728.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712171354962.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712215953481.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712171740506.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712185045697.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712220149367.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712220258847.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712220523214.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712221617375.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712221656190.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712221726678.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712222216538.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712222407583.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712222900414.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712223145190.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712223206829.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712223530654.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712223748279.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712224620665.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712225445207.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712225651043.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712225730121.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712225849579.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712225920888.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712230137384.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712230240965.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712230258186.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712230554752.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712230945854.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712233123684.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712231229427.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712231617387.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712232003892.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712232658294.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712232739372.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712232851307.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713002235013.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713002918424.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713005039896.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713005534650.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713005701633.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713005817427.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713010502467.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713010515322.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713010628331.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713010926687.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713010952763.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713011241590.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713011526629.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713011754854.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713011852138.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713012415232.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713012520265.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713012610485.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713012741738.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713112244765.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713112503443.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713112523173.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713112539787.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713113215847.png">
+<meta property="article:published_time" content="2024-07-14T03:35:27.000Z">
+<meta property="article:modified_time" content="2024-07-14T03:39:29.748Z">
 <meta property="article:author" content="Kik1">
 <meta property="article:tag" content="blog, web development, programming,PenTest,">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712163702291.png">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2024/07/14/Learn_Git/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Kik1's Blog</title>
+  <title>Learn_Git | Kik1's Blog</title>
   
 
 
@@ -142,9 +213,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -160,10 +232,9 @@
       <meta itemprop="name" content="Kik1's Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/07/14/Learn_Git/" class="post-title-link" itemprop="url">Learn_Git</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Learn_Git
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -177,6 +248,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -187,7 +265,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="初始化以及配置"><a href="#初始化以及配置" class="headerlink" title="初始化以及配置"></a>初始化以及配置</h1><p>在使用git之前首先使用git global 配置一下自己的邮箱和名字</p>
+        <h1 id="初始化以及配置"><a href="#初始化以及配置" class="headerlink" title="初始化以及配置"></a>初始化以及配置</h1><p>在使用git之前首先使用git global 配置一下自己的邮箱和名字</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;github用户名&quot;</span><br><span class="line">git config --global user.email &quot;邮箱&quot;</span><br><span class="line">git config --global credential.helper store #保存用户名和密码</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240712163702291.png" alt="image-20240712163702291"></p>
@@ -407,383 +485,30 @@
 <h1 id="分支管理和工作流模型"><a href="#分支管理和工作流模型" class="headerlink" title="分支管理和工作流模型"></a>分支管理和工作流模型</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240713113215847.png" alt="image-20240713113215847"></p>
 <h1 id="练习平台"><a href="#练习平台" class="headerlink" title="练习平台"></a>练习平台</h1><p><a target="_blank" rel="noopener" href="https://learngitbranching.js.org/?locale=zh_CN">Learn Git Branching</a></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/01/Granting-Protection-Linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
-      <meta itemprop="name" content="Kik1">
-      <meta itemprop="description" content="Keep learning and sharing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kik1's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/07/01/Granting-Protection-Linux/" class="post-title-link" itemprop="url">Granting-Protection-Linux</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-07-01 11:53:30 / 修改时间：11:59:35" itemprop="dateCreated datePublished" datetime="2024-07-01T11:53:30+08:00">2024-07-01</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="0x00-账户信息"><a href="#0x00-账户信息" class="headerlink" title="0x00 账户信息"></a>0x00 账户信息</h1><blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">主机账号: root</span><br><span class="line">主机密码: dengbao123</span><br><span class="line">小皮账号: admin</span><br><span class="line">小皮密码: dengbao123</span><br><span class="line">备: 小皮登录地址:http:ip:9080/48D41A/</span><br><span class="line">MySQL账号: root  端口: 33060</span><br><span class="line">MySQL密码: dengbao123</span><br><span class="line">渗透WEB后台账号: admin</span><br><span class="line">渗透WEB后台密码: password</span><br><span class="line"></span><br><span class="line">系统版本: Ubuntu 22.04.4</span><br><span class="line">占用空间: 10G左右</span><br><span class="line">网络配置: NAT模式</span><br><span class="line">内存大小: 4G</span><br><span class="line">CPU个数: 4</span><br><span class="line">MYsql: 2个</span><br><span class="line">docker: 1个</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="主机测评"><a href="#主机测评" class="headerlink" title="主机测评"></a>主机测评</h1><h1 id="0X01-查看相应文件，账户xiaoming的密码设定多久过期"><a href="#0X01-查看相应文件，账户xiaoming的密码设定多久过期" class="headerlink" title="0X01  查看相应文件，账户xiaoming的密码设定多久过期"></a>0X01  查看相应文件，账户xiaoming的密码设定多久过期</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chage -l xiaoming</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701091429097.png" alt="image-20240701091429097"></p>
-<p>可也一查看文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/login.defs</span><br></pre></td></tr></table></figure>
-
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/whatday/article/details/105995339">linux 新建用户配置文件 &#x2F;etc&#x2F;login.defs 简介_login.defs作用-CSDN博客</a></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701093023387.png" alt="image-20240701093023387"></p>
-<p>或者是看shadow文件</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701092745488.png" alt="image-20240701092745488"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701092945313.png" alt="image-20240701092945313"></p>
-<blockquote>
-<p>7</p>
-</blockquote>
-<h1 id="0X02-查看相应文件，设置的密码到期规则是多少按照flag-提醒时间-最大时间-进行提交"><a href="#0X02-查看相应文件，设置的密码到期规则是多少按照flag-提醒时间-最大时间-进行提交" class="headerlink" title="0X02 查看相应文件，设置的密码到期规则是多少按照flag{提醒时间-最大时间}进行提交"></a>0X02 查看相应文件，设置的密码到期规则是多少按照flag{提醒时间-最大时间}进行提交</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701093127166.png" alt="image-20240701093127166"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;7-99999&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="0X03-已安装ssh，请提交当前SSH版本"><a href="#0X03-已安装ssh，请提交当前SSH版本" class="headerlink" title="0X03 已安装ssh，请提交当前SSH版本"></a>0X03 已安装ssh，请提交当前SSH版本</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701093246802.png" alt="image-20240701093246802"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;OpenSSH_8.9p1&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="0X04-对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644-true"><a href="#0X04-对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644-true" class="headerlink" title="0X04 对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644+true"></a>0X04 对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644+true</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094255688.png" alt="image-20240701094255688"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;755+flase&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094824834.png" alt="image-20240701094824834"></p>
-<h1 id="0x05-结合相关知识检查在系统中存在可疑用户，进行提交用户名-多个用户名以-号连接"><a href="#0x05-结合相关知识检查在系统中存在可疑用户，进行提交用户名-多个用户名以-号连接" class="headerlink" title="0x05 结合相关知识检查在系统中存在可疑用户，进行提交用户名,多个用户名以+号连接"></a>0x05 结合相关知识检查在系统中存在可疑用户，进行提交用户名,多个用户名以+号连接</h1><p>此处应急响应的时候也可以用到，主要查看在<strong>用户家目录</strong>，root家目录，以及<strong>passwd和shadow文件的可疑用户和字段</strong></p>
-<p>先看passwd目录可以登录的用户，发现了两个root用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd | grep /bin/sh</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094516197.png" alt="image-20240701094516197"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094457008.png" alt="image-20240701094457008"></p>
-<p>UID（User Identification）**中文用户ID,相当于身份证一样，在系统中是唯一的。</p>
-<p>一般来说：超级用户 UID&#x3D;0 root</p>
-<p>去root用户目录验证一下，发现没用两个用户的目录</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095021781.png" alt="image-20240701095021781"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;yunwei+wangwei&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="0x06-结合相关知识，对没有进行权限分离的用户进行提交"><a href="#0x06-结合相关知识，对没有进行权限分离的用户进行提交" class="headerlink" title="0x06 结合相关知识，对没有进行权限分离的用户进行提交"></a>0x06 结合相关知识，对没有进行权限分离的用户进行提交</h1><p>不太懂这个是什么意思？</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095234840.png" alt="image-20240701095234840"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095357106.png" alt="image-20240701095357106"></p>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gocuber/article/details/80418015">Linux下sudo命令及&#x2F;etc&#x2F;sudoers配置说明_sudo -s souer-CSDN博客</a></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095502680.png" alt="image-20240701095502680"></p>
-<h1 id="0x07-结合相关知识，提交审计日志功能状态"><a href="#0x07-结合相关知识，提交审计日志功能状态" class="headerlink" title="0x07 结合相关知识，提交审计日志功能状态"></a>0x07 结合相关知识，提交审计日志功能状态</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701100914317.png" alt="image-20240701100914317"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701100931826.png" alt="image-20240701100931826"></p>
-<h1 id="0x08-审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag-Jun-23-00-39-52"><a href="#0x08-审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag-Jun-23-00-39-52" class="headerlink" title="0x08 审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag{Jun 23 00:39:52}"></a>0x08 审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag{Jun 23 00:39:52}</h1><p>sudo的日志在auth.log下，发现有两个一个一个看就行</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701101722945.png" alt="image-20240701101722945"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat auth.log.1 | grep zhangsan</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701101542925.png" alt="image-20240701101542925"></p>
-<blockquote>
-<p>flag{Jun 23 01:38:20}</p>
-</blockquote>
-<h1 id="0x09-结合相关合规知识，提交相关系统内核版本"><a href="#0x09-结合相关合规知识，提交相关系统内核版本" class="headerlink" title="0x09 结合相关合规知识，提交相关系统内核版本"></a>0x09 结合相关合规知识，提交相关系统内核版本</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701101823988.png" alt="image-20240701101823988"></p>
-<blockquote>
-<p>flag{5.15.0-112-generic}</p>
-</blockquote>
-<p>是否存在漏洞自行搜集</p>
-<h1 id="0x10-对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交"><a href="#0x10-对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交" class="headerlink" title="0x10 对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交"></a>0x10 对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
-
-<p>发现开启了nacos</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103247634.png" alt="image-20240701103247634"></p>
-<p>看到了入侵工具</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103259866.png" alt="image-20240701103259866"></p>
-<p>看到了后门文件</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103340167.png" alt="image-20240701103340167"></p>
-<p>开启了小皮面板</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103745356.png" alt="image-20240701103745356"></p>
-<p>查看端口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anptl</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701102656792.png" alt="image-20240701102656792"></p>
-<p>看到开启了redis端口，redis服务经常容易出问题看一下</p>
-<p>发现是弱密码可能会被利用，进入排查一下</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105231212.png" alt="image-20240701105231212"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 127.0.0.1 -p 6379 -a 123456</span><br></pre></td></tr></table></figure>
-
-<p>发现里面没有启用的键</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105401663.png" alt="image-20240701105401663"></p>
-<p>看一下历史命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /root/.rediscli_history</span><br></pre></td></tr></table></figure>
-
-<p>参考：<a target="_blank" rel="noopener" href="https://www.dbs724.com/335991.html">深入理解Redis查看历史命令（redis 查看历史命令）-数据运维技术 (dbs724.com)</a></p>
-<p>发现都是我自己输的，可以排除</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105530677.png" alt="image-20240701105530677"></p>
-<p>打开xp看一下，发现了恶意的网站</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105826866.png" alt="image-20240701105826866"></p>
-<p>发现后门</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105744944.png" alt="image-20240701105744944"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105836901.png" alt="image-20240701105836901"></p>
-<blockquote>
-<p>5566</p>
-</blockquote>
-<h1 id="0x11-已知相应的WEB恶意端口，提交其隐藏文件中flag"><a href="#0x11-已知相应的WEB恶意端口，提交其隐藏文件中flag" class="headerlink" title="0x11 已知相应的WEB恶意端口，提交其隐藏文件中flag"></a>0x11 已知相应的WEB恶意端口，提交其隐藏文件中flag</h1><p> <img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701110003424.png" alt="image-20240701110003424"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105937384.png" alt="image-20240701105937384"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asd</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="MySQL安全测评"><a href="#MySQL安全测评" class="headerlink" title="MySQL安全测评"></a><strong>MySQL安全测评</strong></h1><p>测评之前先查看mysql的信息</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701112737899.png" alt="image-20240701112737899"></p>
-<p>参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkzMDE5OTQyNQ==&mid=2247484756&idx=1&sn=cd4436a0f114fee55edee95c812936af&chksm=c27ca7baf50b2eacb4e16a292be7e1833c94a5011d1e07f4f9856aa983bfa36ba1433a489b79&scene=21#wechat_redirect">学习干货|等保测评2.0技术自查阶段(中) (qq.com)</a></p>
-<h1 id="0x12-结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已-连接"><a href="#0x12-结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已-连接" class="headerlink" title="0x12 结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已+连接"></a>0x12 结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已+连接</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select user,host FROM mysql.user;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113035440.png" alt="image-20240701113035440"></p>
-<p>通过上面的版本号我们知道了mysql是8.x以上的版本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过输入以下命令查看是否有账户存在空口令</span><br><span class="line">mysql 5.7以下输入</span><br><span class="line">select * from mysql.user where length(password)= 0 or password is null</span><br><span class="line">mysql 5.7以上输入</span><br><span class="line">select user,authentication_string from mysql.user</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113218278.png" alt="image-20240701113218278"></p>
-<blockquote>
-<p>yunwei</p>
-</blockquote>
-<h1 id="0x13-结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交"><a href="#0x13-结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交" class="headerlink" title="0x13 结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交"></a>0x13 结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mysql输入以下口令查看密码复杂度配置</span><br><span class="line">show variables like &#x27;validate%&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113457082.png" alt="image-20240701113457082"></p>
-<blockquote>
-<p>8</p>
-</blockquote>
-<p>上面的参数都是全局变量，想要修改</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set global validate_password.length = x;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113757511.png" alt="image-20240701113757511"></p>
-<h1 id="0x14-结合相关知识，对MySQL登录最大失败次数查询并提交"><a href="#0x14-结合相关知识，对MySQL登录最大失败次数查询并提交" class="headerlink" title="0x14 结合相关知识，对MySQL登录最大失败次数查询并提交"></a>0x14 结合相关知识，对MySQL登录最大失败次数查询并提交</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;%connection_control%&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113843431.png" alt="image-20240701113843431"></p>
-<blockquote>
-<p>3</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connection_control_failed_connections_threshold    登录失败次数</span><br><span class="line">connection_control_max_connection_delay            响应延迟最大时间</span><br><span class="line">connection_control_min_connection_delay            登录失败后延迟最小时间</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="0x15-结合相关知识，对MySQL超时返回最大时常进行提交-秒为单位"><a href="#0x15-结合相关知识，对MySQL超时返回最大时常进行提交-秒为单位" class="headerlink" title="0x15 结合相关知识，对MySQL超时返回最大时常进行提交(秒为单位)"></a>0x15 结合相关知识，对MySQL超时返回最大时常进行提交(秒为单位)</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show variables like &quot;%timeout%&quot;;</span><br><span class="line">其中wait_timeout字段默认为8小时</span><br><span class="line">意为连接空闲时间不操作8小时后端口，默认不符合</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114156418.png" alt="image-20240701114156418"></p>
-<blockquote>
-<p>28800</p>
-</blockquote>
-<h1 id="0x16-结合相关知识，对MySQL锁定用户数量进行提交"><a href="#0x16-结合相关知识，对MySQL锁定用户数量进行提交" class="headerlink" title="0x16 结合相关知识，对MySQL锁定用户数量进行提交"></a>0x16 结合相关知识，对MySQL锁定用户数量进行提交</h1><p><strong>删除或禁用多余、共享、过期、锁定账户</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">执行以下命令查看用户状态</span><br><span class="line">select user,account_locked from mysql.user;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114653752.png" alt="image-20240701114653752"></p>
-<blockquote>
-<p>3</p>
-</blockquote>
-<h1 id="0x17-提交MySQL全局日志状态-OFF或ON"><a href="#0x17-提交MySQL全局日志状态-OFF或ON" class="headerlink" title="0x17 提交MySQL全局日志状态 OFF或ON"></a>0x17 提交MySQL全局日志状态 OFF或ON</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show global variables like &#x27;%general%&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114802690.png" alt="image-20240701114802690"></p>
-<blockquote>
-<p>OFF</p>
-</blockquote>
-<h1 id="0x18-提交当前MySQL数据库版本"><a href="#0x18-提交当前MySQL数据库版本" class="headerlink" title="0x18 提交当前MySQL数据库版本"></a>0x18 提交当前MySQL数据库版本</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114830322.png" alt="image-20240701114830322"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8.0.27</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><ol>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Q0x8cn1Apt68p7xX_oDjMw">学习干货|保姆式实战等保测评Linux镜像(邀请码+综合全流程+未公开漏洞) (qq.com)</a>****</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/14/My-first-post/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
-      <meta itemprop="name" content="Kik1">
-      <meta itemprop="description" content="Keep learning and sharing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kik1's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/06/14/My-first-post/" class="post-title-link" itemprop="url">My_first_post</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-06-14 18:13:25 / 修改时间：18:20:09" itemprop="dateCreated datePublished" datetime="2024-06-14T18:13:25+08:00">2024-06-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="这是一篇测试博客"><a href="#这是一篇测试博客" class="headerlink" title="这是一篇测试博客"></a>这是一篇测试博客</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello,world!</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/06/14/My-first-post/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/01/Granting-Protection-Linux/" rel="prev" title="Granting-Protection-Linux">
+      <i class="fa fa-chevron-left"></i> Granting-Protection-Linux
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/14/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
-      <meta itemprop="name" content="Kik1">
-      <meta itemprop="description" content="Keep learning and sharing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kik1's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/06/14/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-14 17:59:30" itemprop="dateCreated datePublished" datetime="2024-06-14T17:59:30+08:00">2024-06-14</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -836,6 +561,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%A5%E5%8F%8A%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">初始化以及配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">创建仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">3.</span> <span class="nav-text">Git的工作区域和文件的状态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%9F%9F"><span class="nav-number">3.1.</span> <span class="nav-text">工作区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81"><span class="nav-number">3.2.</span> <span class="nav-text">文件状态</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E5%92%8C%E6%8F%90%E4%BA%A4%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">添加和提交文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0"><span class="nav-number">4.1.</span> <span class="nav-text">添加</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E4%BA%A4"><span class="nav-number">4.2.</span> <span class="nav-text">提交</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-reset-%E5%9B%9E%E9%80%80%E7%89%88%E6%9C%AC"><span class="nav-number">5.</span> <span class="nav-text">git reset 回退版本</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git-diff-%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E7%89%88%E6%9C%AC%E5%B7%AE%E5%BC%82"><span class="nav-number">6.</span> <span class="nav-text">git diff 查看版本之间的版本差异</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E7%89%88%E6%9C%AC%E5%BA%93%E4%B8%AD%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">在版本库中删除文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEgitignore"><span class="nav-number">8.</span> <span class="nav-text">配置gitignore</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSH-%E9%85%8D%E7%BD%AE%E5%92%8C%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93"><span class="nav-number">9.</span> <span class="nav-text">SSH 配置和克隆仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E8%81%94%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E5%92%8C%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93"><span class="nav-number">10.</span> <span class="nav-text">关联本地仓库和远程仓库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Gitee%E5%92%8CGitLib%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">11.</span> <span class="nav-text">Gitee和GitLib的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT-GUI%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">12.</span> <span class="nav-text">GIT GUI工具的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vscode%E4%B8%AD%E4%BD%BF%E7%94%A8git"><span class="nav-number">13.</span> <span class="nav-text">vscode中使用git</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">14.</span> <span class="nav-text">分支简介和基本操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%90%88%E5%B9%B6%E5%86%B2%E7%AA%81"><span class="nav-number">15.</span> <span class="nav-text">解决合并冲突</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9E%E9%80%80%E5%92%8Crebase"><span class="nav-number">16.</span> <span class="nav-text">回退和rebase</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E5%92%8C%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%A8%A1%E5%9E%8B"><span class="nav-number">17.</span> <span class="nav-text">分支管理和工作流模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E5%B9%B3%E5%8F%B0"><span class="nav-number">18.</span> <span class="nav-text">练习平台</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
