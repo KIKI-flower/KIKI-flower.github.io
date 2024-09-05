@@ -148,6 +148,347 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/05/Forensics-LiJian-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+      <meta itemprop="name" content="Kik1">
+      <meta itemprop="description" content="Keep learning and sharing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kik1's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/09/05/Forensics-LiJian-3/" class="post-title-link" itemprop="url">Forensics_LiJian_3</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-05 16:42:55 / 修改时间：16:49:10" itemprop="dateCreated datePublished" datetime="2024-09-05T16:42:55+08:00">2024-09-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="手机"><a href="#手机" class="headerlink" title="手机"></a>手机</h1><p><strong>1手机镜像中MD5值为“2841918ee4fe8878af1a68ca09b82ff1”的excel 表格文件名为？【答题格式：远程.xlsx】</strong></p>
+<p>勾选哈希分析和哈希比对</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814211632679-17236419916931.png" alt="image-20240814211632679"></p>
+<p>本来想通过hash搜索，但是火眼好像不太给力，看到TG猜文件在tg里面。</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814213806466.png" alt="image-20240814213806466"></p>
+<p>刷题的直觉</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">优质客户.xlsx</span><br></pre></td></tr></table></figure>
+
+<p>2手机镜像中嫌疑人接收的名为“1027”的APK的SHA256值（只写后六位）为？【答题格式：abc123】</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814214337810.png" alt="image-20240814214337810"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814214421557.png" alt="image-20240814214421557"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">84b379</span><br></pre></td></tr></table></figure>
+
+<p>3手机镜像中名为“1027”的APK运行时提示“软件异常请重新登录”是否与设备安卓系统版本有关？【答题格式：是&#x2F;否】</p>
+<p>导出apk</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814215948559.png" alt="image-20240814215948559"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814220010570.png" alt="image-20240814220010570"></p>
+<p>模拟器运行一下，发现有题目提示的弹窗</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814221407805.png" alt="image-20240814221407805"></p>
+<p>直接在源码搜一下，定位关键代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">getTxl</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">JSONArray</span> <span class="variable">jSONArray</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JSONArray</span>();</span><br><span class="line">    <span class="type">Cursor</span> <span class="variable">query</span> <span class="operator">=</span> getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="string">&quot;display_name desc limit 0, 300&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (query.getCount() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">XPopup</span>.Builder(<span class="built_in">this</span>).dismissOnTouchOutside(<span class="literal">false</span>).dismissOnBackPressed(<span class="literal">false</span>).asConfirm(<span class="string">&quot;警告&quot;</span>, <span class="string">&quot;软件异常请重新登录&quot;</span>, <span class="string">&quot;取消&quot;</span>, <span class="string">&quot;确认&quot;</span>, <span class="keyword">new</span> <span class="title class_">OnConfirmListener</span>() &#123; <span class="comment">// from class: com.catchturtle.-$$Lambda$RegisterActivity$AO_zdPVXsDC1srcvjeY8Ea2OKeE</span></span><br><span class="line">            <span class="meta">@Override</span> <span class="comment">// com.lxj.xpopup.interfaces.OnConfirmListener</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">onConfirm</span><span class="params">()</span> &#123;</span><br><span class="line">                RegisterActivity.lambda$AO_zdPVXsDC1srcvjeY8Ea2OKeE(RegisterActivity.<span class="built_in">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, <span class="literal">null</span>, <span class="literal">true</span>).show();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (query.moveToNext()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">string</span> <span class="operator">=</span> query.getString(query.getColumnIndexOrThrow(<span class="string">&quot;data1&quot;</span>));</span><br><span class="line">            <span class="type">String</span> <span class="variable">string2</span> <span class="operator">=</span> query.getString(query.getColumnIndex(<span class="string">&quot;display_name&quot;</span>));</span><br><span class="line">            <span class="type">JSONObject</span> <span class="variable">jSONObject</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JSONObject</span>();</span><br><span class="line">            jSONObject.put(<span class="string">&quot;name&quot;</span>, (Object) string2);</span><br><span class="line">            jSONObject.put(<span class="string">&quot;number&quot;</span>, (Object) string);</span><br><span class="line">            jSONArray.add(jSONObject);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    query.close();</span><br><span class="line">    <span class="built_in">this</span>.txlJsonArray = jSONArray;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>问一下ai</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814221944818.png" alt="image-20240814221944818"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">否</span><br></pre></td></tr></table></figure>
+
+<p>4手机镜像中名为“1027”的APK将手机数据上传到的服务器地址为？【答题格式：<a target="_blank" rel="noopener" href="http://www.baidu.com】/">http://www.baidu.com】</a></p>
+<p>想着直接搜http，https 没有搜出来，传到在线平台看看能不能抓包分析出来</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814222510353.png" alt="image-20240814222510353"></p>
+<p>看来没有开服务器，应该就在代码里面写着，看看网络通信的文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814222659101.png" alt="image-20240814222659101"></p>
+<p>一眼丁针</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814222624054.png" alt="image-20240814222624054"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814223142986.png" alt="image-20240814223142986"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://upload.aojaukan.com/</span><br></pre></td></tr></table></figure>
+
+<p>5手机镜像中名为“1027”的APK会上传手机中最多多少张照片到服务器？【答题格式：123】</p>
+<p>看另一个文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814223301193.png" alt="image-20240814223301193"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814223245987.png" alt="image-20240814223245987"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814223426493.png" alt="image-20240814223426493"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">50</span><br></pre></td></tr></table></figure>
+
+<p>6手机镜像中VPN应用配置中订阅号地址的域名为？【答题格式：<a target="_blank" rel="noopener" href="http://www.baidu.com】/">www.baidu.com】</a><em>_</em></p>
+<p>电脑上配置文件在profiles文件夹中</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814223734864.png" alt="image-20240814223734864"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814223831456.png" alt="image-20240814223831456"></p>
+<p>手机应该差不多，找一下profiles文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814224459234.png" alt="image-20240814224459234"></p>
+<blockquote>
+<p>不能只导出profiels sqlite数据库这样会没有文件，要全部导出</p>
+</blockquote>
+<p>把datavbases文件夹全部导出，查看一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814224555306.png" alt="image-20240814224555306"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sub.wl-sub1.com</span><br></pre></td></tr></table></figure>
+
+<p>7手机镜像中嫌疑人要求绑定到新服务器“103.27.11.198”的域名数量为？【答题格式：123】</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814224743059.png" alt="image-20240814224743059"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814224808245.png" alt="image-20240814224808245"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10</span><br></pre></td></tr></table></figure>
+
+
+
+<p>8手机镜像中MetaMask钱包应用中名为“Account 1”的钱包地址后9位为？【答题格式：ABcd123】</p>
+<p>找到app安装包和&#x2F;data下的数据，用真机安装然后覆盖数据目录</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814225521215.png" alt="image-20240814225521215"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814225544565.png" alt="image-20240814225544565"></p>
+<p><strong>先把目录移动到&#x2F;data&#x2F;local&#x2F;tmp下，直接移动会因为权限问题报错</strong></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814230915281.png" alt="image-20240814230915281"></p>
+<p>然后再用mt管理器进行移动</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814230937664.png" alt="image-20240814230937664"></p>
+<p>成功移动之后在打开,但是需要密码，应该是存在数据库里去翻一翻</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240814232722729.png" alt="image-20240814232722729"></p>
+<p>这也是一种思路，看了解析发现是用Anytext直接在文件夹里面搜索关键字，太久不做取证了老本行忘了…………</p>
+<p>暴力搜索</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815210610855.png" alt="image-20240815210610855"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816085928399.png" alt="image-20240816085928399"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x28EC836A47D75FA3F78cDa4A41e5DE3C31Ba58Cd</span><br></pre></td></tr></table></figure>
+
+
+
+<p>9查找手机镜像中MetaMask钱包应用相关助记词信息，其中序号为2的单词为？【答题格式：abc】</p>
+<p>助记词一般都会在手机用加密软件或者是笔记存起来，注意到手机检材中存在有道云笔记</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815211438405.png" alt="image-20240815211438405"></p>
+<p>火眼分析不出来，平航的工具可以分析出来，美亚应该也行但是授权过期了</p>
+<p>贴一下wp</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815212126435.png" alt="image-20240815212126435"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">soup</span><br></pre></td></tr></table></figure>
+
+<p>10手机镜像中ToDesk登录的手机号为？【答题格式：13800000000】</p>
+<p><strong>一般</strong>手机中的数据都存在&#x2F;data&#x2F;data&#x2F;包名&#x2F;databases 或则是&#x2F;data&#x2F;data&#x2F;包名&#x2F;fiels文件夹中，去文件夹找一找</p>
+<p>根据设备代码确定就是题目要求的手机号，但是显示不全</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816090814879.png" alt="image-20240816090814879"></p>
+<p>用正则搜一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">177\d&#123;4&#125;8655</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816091148113.png" alt="image-20240816091148113"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">17769768655</span><br></pre></td></tr></table></figure>
+
+
+
+<p>11结合手机镜像TG聊天记录，对方通过ToDesk远程到嫌疑人手机时，对方客户端的IP地址为？【答题格式：127.0.0.1】</p>
+<p>TG聊天</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816091337827.png" alt="image-20240816091337827"></p>
+<p>根据发送的设备代码确定连接的信息（设备代码一般都是九位）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816091834518.png" alt="image-20240816091834518"></p>
+<p>打开关联的文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816092007909.png" alt="image-20240816092007909"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816092036268.png" alt="image-20240816092036268"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">221.223.198.249</span><br></pre></td></tr></table></figure>
+
+
+
+<p>12结合手机镜像TG聊天记录，嫌疑人观看“用户打开apk报错”相关视频的开始时间（LastWatchTime）为？</p>
+<p>直接全局搜LastWatchTime，发现在medias.db中出现过，导出来看一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816093652560.png" alt="image-20240816093652560"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816093720051.png" alt="image-20240816093720051"></p>
+<p>转化一下时间戳</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816093822594.png" alt="image-20240816093822594"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2023-11-06 18:14:09</span><br></pre></td></tr></table></figure>
+
+<p>wp做的比较好，考虑到了检材之间的关联，使用奶牛快传应该要从浏览器下载</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816093129812.png" alt="image-20240816093129812"></p>
+<p>去手机浏览器看看记录</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816093249070.png" alt="image-20240816093249070"></p>
+<p>分析发现了MX播放器，考虑使用MX播放器观看</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816093324299.png" alt="image-20240816093324299"></p>
+<p>导出文件直接搜LastWatchTime，同样定位到medias文件夹一样转化时间戳</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2023-11-06 18:14:09</span><br></pre></td></tr></table></figure>
+
+<p>13手机镜像中邮件主题为“资料”的附件的SHA256值（只写后六位）为？【答题格式：abc123】</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815151404122.png" alt="image-20240815151404122"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7D2D19</span><br></pre></td></tr></table></figure>
+
+<p>14手机镜像中邮件主题为“资料”的附件中文档（<strong>文档密码5位及以下纯数字</strong>）内记录的性别为女的用户数（不去重）为？【答题格式：123】</p>
+<p>找到了加密的文件11.enc，同时发现手机中有加密软件,导出apk进行揭秘</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816095215406.png" alt="image-20240816095215406"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install base.apk</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816095415527.png" alt="image-20240816095415527"></p>
+<p>入门印证了确实是使用这个加密的</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816095521705.png" alt="image-20240816095521705"></p>
+<p>文件移动到手机</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816095741889.png" alt="image-20240816095741889"></p>
+<p>这个app对有些目录没有权限，移动到有权限的目录</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816100308786.png" alt="image-20240816100308786"></p>
+<p>解密需要密码，邮件提到了密码不变</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816100348802.png" alt="image-20240816100348802"></p>
+<p>有道云也有叫资料的笔记，使用这个密码</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816100519440.png" alt="image-20240816100519440"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816100600027.png" alt="image-20240816100600027"></p>
+<p>用mt管理器重新移动到&#x2F;data&#x2F;local&#x2F;tmp目录，然后导出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb pull /data/local/tmp/数据.xlsx 数据.xlsx</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816101028339.png" alt="image-20240816101028339"></p>
+<p>打开发现了加密，<strong>密码规则是：文档密码5位及以下纯数字</strong>，用passware跑一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816101103876.png" alt="image-20240816101103876"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816101332392.png" alt="image-20240816101332392"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816101338394.png" alt="image-20240816101338394"></p>
+<p>学到使用wps会比office更加方便</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816101503063.png" alt="image-20240816101503063"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">952</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="计算机"><a href="#计算机" class="headerlink" title="计算机"></a>计算机</h1><p>15计算机镜像中嫌疑人通过向日葵软件接收的压缩文件数量为?【答题格式：123】*_*</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815161014756.png" alt="image-20240815161014756"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+
+<p>16计算机镜像中翻墙软件配置中的订阅号TOKEN值（只写后六位）为?【答题格式：abc123】</p>
+<p>没想到还有一个翻墙软件</p>
+<p>这个文件夹一般存着安装的软件的配置信息，也可以通过这个文件夹去看安装应用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\Administrator\AppData\Roaming</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816102715039.png" alt="image-20240816102715039"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816102806657.png" alt="image-20240816102806657"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816102829568.png" alt="image-20240816102829568"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">07f34d</span><br></pre></td></tr></table></figure>
+
+<p>17分析计算机镜像，嫌疑人记录的已配置的服务器IP数量为?【答题格式：123】*_*</p>
+<p>看到桌面加密容器，用vc挂一下但是文件加密了打不开</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815153803735.png" alt="image-20240815153803735"></p>
+<p>看到可访问用户是xiaohei，但是账户没有启用</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815154507048.png" alt="image-20240815154507048"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user xiaohei</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815154530560.png" alt="image-20240815154530560"></p>
+<p>先把文件复制到xiaohei用户的桌面，然后激活用户去登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net user xiaohei /active:yes</span><br><span class="line">xiaohei|qqww1233</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815155206743.png" alt="image-20240815155206743"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6</span><br></pre></td></tr></table></figure>
+
+<p>18windows计算机镜像中1号人员表文件（文档密码5位及以下纯数字）中序号为2386的手机号为？【答题格式：13800000000】*_*</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815155455119.png" alt="image-20240815155455119"></p>
+<p>看一看文件头，发现是xls</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815155658829.png" alt="image-20240815155658829"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815155737754.png" alt="image-20240815155737754"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815155755775.png" alt="image-20240815155755775"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815155845353.png" alt="image-20240815155845353"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13850622508</span><br></pre></td></tr></table></figure>
+
+<p>19分析计算机镜像存在APP打包软件其账号为？【答题格式：<a href="mailto:&#x31;&#x32;&#49;&#x33;&#49;&#x32;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#111;&#x6d;">&#x31;&#x32;&#49;&#x33;&#49;&#x32;&#x40;&#x31;&#54;&#x33;&#46;&#99;&#111;&#x6d;</a>】*</p>
+<p>找到了打包软件但是没有看到账号</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815160614436.png" alt="image-20240815160614436"></p>
+<p>还是在这个文件夹下找配置信息</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816103051953.png" alt="image-20240816103051953"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1070234459@qq.com</span><br></pre></td></tr></table></figure>
+
+
+
+<p>20分析计算机嫌疑人远程连接过IP为“47.97.18.32”服务器其密钥名称为？【答题格式：33.txt】*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816103145437.png" alt="image-20240816103145437"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key_47.97.18.32_22.pub</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="内存取证"><a href="#内存取证" class="headerlink" title="内存取证"></a>内存取证</h1><p>21解密windows镜像中“index.618sda64.js”文件，其中记录的appid为？【答题格式：__UNI__8A9A9AA】*</p>
+<p>过滤文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815161109511.png" alt="image-20240815161109511"></p>
+<p>js被混淆需要解混淆，自己做的时候不知道用什么解…………</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816103542282.png" alt="image-20240816103542282"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816103559898.png" alt="image-20240816103559898"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__UNI__99HD8AU</span><br></pre></td></tr></table></figure>
+
+<p>22内存镜像中进程PID为4932的程序回连的远程IP地址为？【答题格式：127.0.0.1】*</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815162621793.png" alt="image-20240815162621793"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility_2.6_win64_standalone.exe -f &quot;R:\计算机\memory.mem&quot; --profile Win10x64_14393 pslist &gt; ps.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815163120026.png" alt="image-20240815163120026"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility_2.6_win64_standalone.exe -f &quot;R:\计算机\memory.mem&quot; --profile Win10x64_14393 netscan</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240815163525515.png" alt="image-20240815163525515"></p>
+<p><strong>在使用vol2的时候发现导不出来，看到是win10的镜像应该使用vol3来进行解析</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -o ./ -f /root/Desktop/memory.mem windows.dumpfiles  --pid 4932</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816104914802.png" alt="image-20240816104914802"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -o ./ -f /root/Desktop/memory.mem windows.netscan &gt; /root/Desktop/net.txt | tee</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816111958091.png" alt="image-20240816111958091"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.5.214</span><br></pre></td></tr></table></figure>
+
+<p>23判断内存镜像中运行着的木马程序的类型为？【答题格式：Boqest ttrile】*_*</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240816112707230.png" alt="image-20240816112707230"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Cobalt Strike远程控制工具</span><br></pre></td></tr></table></figure>
+
+<p>24内存镜像中正编辑的Microsoft Word文档中服务器IP地址为？【答题格式：127.0.0.1】*</p>
+<p>找到word对应的pid，直接转储进程</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164417114.png" alt="image-20240905164417114"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vol.py -o /root/Desktop/out -f /root/Desktop/memory.mem</span><br><span class="line">windows.dumpfiles --pid 4900</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164441965.png" alt="image-20240905164441965"></p>
+<p>看到有自动恢复文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164521356.png" alt="image-20240905164521356"></p>
+<p>用wps打开</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164540218.png" alt="image-20240905164540218"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.110.110</span><br></pre></td></tr></table></figure>
+
+<p>25提取内存镜像加密容器中的压缩文件，分析记录的5月份C妹的绩效为？【答题格式：123】*</p>
+<p>使用vol2的truecryptsummary寻找加密容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vol.py -f memory.mem --profile=Win10x64_10586 truecryptsummary</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164629841.png" alt="image-20240905164629841">找到偏移地址0xe0002e8daf20</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164644811.png" alt="image-20240905164644811"></p>
+<p>尝试导出发现没有加密容器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python vol.py -o ./ -f /root/Desktop/memory.mem windows.dumpfiles --physaddr 0xe0002e8daf20</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164715011.png" alt="image-20240905164715011"></p>
+<p>题目说是加密容器中的压缩文件，<strong>直接导出所有zip结尾的压缩文件（</strong>直接搜没有发现rar文件）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">volatility_2.6_win64_standalone.exe -f &quot;R:\计算机\memory.mem&quot; --profile=Win10x64_10586 dumpfiles -r zip$ -i -D ./</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164813489.png" alt="image-20240905164813489"></p>
+<p>改后缀为zip两个压缩文件一个有加密一个没有加密</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164823962.png" alt="image-20240905164823962"></p>
+<p>存在加密的进行爆破失败，考虑可可是伪加密</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164833486.png" alt="image-20240905164833486"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164841040.png" alt="image-20240905164841040"></p>
+<p>两压缩包中提取到的文件都是一样的，随便选一个打开，只能用wps打开office打不开</p>
+<p><img src="/2024/09/05/Forensics-LiJian-3/image-20240905164852331.png" alt="image-20240905164852331"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">89000</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/05/Buuctf-Misc-Page2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -173,7 +514,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-09-05 15:29:29 / 修改时间：15:31:02" itemprop="dateCreated datePublished" datetime="2024-09-05T15:29:29+08:00">2024-09-05</time>
+              <time title="创建时间：2024-09-05 15:29:29 / 修改时间：15:39:34" itemprop="dateCreated datePublished" datetime="2024-09-05T15:29:29+08:00">2024-09-05</time>
             </span>
 
           
@@ -1668,7 +2009,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
