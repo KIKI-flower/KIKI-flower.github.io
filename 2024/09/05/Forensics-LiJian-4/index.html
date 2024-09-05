@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="介质取证1分析检材一，以下哪个不是嫌疑人远程连接服务器的时间?  看到一个远程连接  看到三个时间，其中有两个是一样的  解密对应着题目中的两个答案。剩下的bc思路就是将时间转化为字符串然后全局搜索看看是否匹配  1662294458425  -&gt;  2022-09-04 20:27:38 1662442031617  -&gt;  2022-09-06 13:27:11  再找一找发现了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forensics_LiJian_4">
+<meta property="og:url" content="http://example.com/2024/09/05/Forensics-LiJian-4/index.html">
+<meta property="og:site_name" content="Kik1&#39;s Blog">
+<meta property="og:description" content="介质取证1分析检材一，以下哪个不是嫌疑人远程连接服务器的时间?  看到一个远程连接  看到三个时间，其中有两个是一样的  解密对应着题目中的两个答案。剩下的bc思路就是将时间转化为字符串然后全局搜索看看是否匹配  1662294458425  -&gt;  2022-09-04 20:27:38 1662442031617  -&gt;  2022-09-06 13:27:11  再找一找发现了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822220408949.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821215502375.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821215801100.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821220315450.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822220738417.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822220836771.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822221401327.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821220555023.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821220634274.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821220702165.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821220822040.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821220950228.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821221058504.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821221259484.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821221500728.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821221547400.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821221754294.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821222044397.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821222055471.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821222409822.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821222605847.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821222649144.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821222817465.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821222724882.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230318766.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821223217357.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821223642407.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821223716350.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821223759280.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821224123209.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230123867.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821224239434.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821224422675.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821224544406.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821224759651.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821225407625.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821225824012.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821225427506.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822203037745.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230342382.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230420288.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230455089.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230524331.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230636281.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230703382.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821230819419.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821231113863.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821231048565.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821231151488.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821231257086.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821231340611.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821231433522.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821231456015.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822221834584.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822221920217.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822223612609.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822223658595.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821232156840.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821232212411.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822203317384.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821232412549.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821232707037.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821232807147.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240821232832100.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822212135402.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822224426452.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822224519142.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822224540791.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822224628608.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822224650968.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822232224571.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822232649482.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822234443782.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822205849539.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822210740232.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822210817510.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822205523061.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822213505124.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822213545257.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822213558998.png">
+<meta property="article:published_time" content="2024-09-05T08:52:29.000Z">
+<meta property="article:modified_time" content="2024-09-05T09:07:27.057Z">
+<meta property="article:author" content="Kik1">
+<meta property="article:tag" content="blog, web development, programming,PenTest,">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/09/05/Forensics-LiJian-4/image-20240822220408949.png">
+
+<link rel="canonical" href="http://example.com/2024/09/05/Forensics-LiJian-4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Forensics_LiJian_4 | Kik1's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kik1's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/05/Forensics-LiJian-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+      <meta itemprop="name" content="Kik1">
+      <meta itemprop="description" content="Keep learning and sharing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kik1's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Forensics_LiJian_4
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-05 16:52:29 / 修改时间：17:07:27" itemprop="dateCreated datePublished" datetime="2024-09-05T16:52:29+08:00">2024-09-05</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="介质取证"><a href="#介质取证" class="headerlink" title="介质取证"></a>介质取证</h1><p>1分析检材一，以下哪个不是嫌疑人远程连接服务器的时间?</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822220408949.png" alt="image-20240822220408949"></p>
+<p>看到一个远程连接</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821215502375.png" alt="image-20240821215502375"></p>
+<p>看到三个时间，其中有两个是一样的</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821215801100.png" alt="image-20240821215801100"></p>
+<p>解密对应着题目中的两个答案。剩下的bc思路就是将时间转化为字符串然后全局搜索看看是否匹配</p>
+<blockquote>
+<p>1662294458425  -&gt;  2022-09-04 20:27:38</p>
+<p>1662442031617  -&gt;  2022-09-06 13:27:11</p>
+</blockquote>
+<p>再找一找发现了</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821220315450.png" alt="image-20240821220315450"></p>
+<p><strong>看完直播知道了finalshell的连接记录都在backup目录下</strong>,之前自己的思路有问题</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822220738417.png" alt="image-20240822220738417"></p>
+<p>访问时间是access_time</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822220836771.png" alt="image-20240822220836771"></p>
+<p>三个json文件依次转化一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822221401327.png" alt="image-20240822221401327"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d</span><br></pre></td></tr></table></figure>
+
+<p>2检材一涉案计算机中，嫌疑人入侵公司服务器所使用的工具为（答案填写汉字，如冰蝎）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821220555023.png" alt="image-20240821220555023"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">蚁剑</span><br></pre></td></tr></table></figure>
+
+<p>3检材一涉案计算机中，嫌疑人入侵的公司服务器地址为（答案格式：65.52.54.62）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821220634274.png" alt="image-20240821220634274"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">222.2.2.200</span><br></pre></td></tr></table></figure>
+
+<p>4检材一涉案计算机中，有一流量数据包，分析流量数据，涉案电脑登录<a href="mailto:&#108;&#x69;&#97;&#110;&#x68;&#x6f;&#x6e;&#x67;&#x40;&#102;&#x6f;&#x72;&#x65;&#110;&#x73;&#x69;&#120;&#x2e;&#x63;&#x6e;">&#108;&#x69;&#97;&#110;&#x68;&#x6f;&#x6e;&#x67;&#x40;&#102;&#x6f;&#x72;&#x65;&#110;&#x73;&#x69;&#120;&#x2e;&#x63;&#x6e;</a>邮箱所使用的密码为？(答案格式：abc123)*_</p>
+<p>找一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821220702165.png" alt="image-20240821220702165"></p>
+<p>先用软件一把梭哈一下，没有看到</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821220822040.png" alt="image-20240821220822040"></p>
+<p>wireshark打开准备手搓，过滤<a href="mailto:&#108;&#x69;&#97;&#110;&#x68;&#111;&#x6e;&#103;&#64;&#102;&#x6f;&#x72;&#101;&#x6e;&#x73;&#x69;&#120;&#x2e;&#99;&#110;">&#108;&#x69;&#97;&#110;&#x68;&#111;&#x6e;&#103;&#64;&#102;&#x6f;&#x72;&#101;&#x6e;&#x73;&#x69;&#120;&#x2e;&#99;&#110;</a>，然后追踪流</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821220950228.png" alt="image-20240821220950228"></p>
+<p>看着像是base64，解密一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821221058504.png" alt="image-20240821221058504"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password123</span><br></pre></td></tr></table></figure>
+
+<p>5[流量分析]请分析，嫌疑人电脑的BitLocker密钥为（答案格式：123456-123456-123456-123456-123456-123456-123456-123456）*_</p>
+<p>打破惯性思维，bitlocker在流量中给出来了，一直在计算机里面找也没找到（没仔细看题目…………）</p>
+<p>直接搜索bitlocker过滤一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821221259484.png" alt="image-20240821221259484"></p>
+<p>追踪tcp流量</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821221500728.png" alt="image-20240821221500728"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821221547400.png" alt="image-20240821221547400"></p>
+<p>解压打开就行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">352858-251548-344355-218449-212718-048334-096107-116413</span><br></pre></td></tr></table></figure>
+
+<p>6分析检材一，加密磁盘内sql文件中，共有多少有效的公民手机号（不重复）？（答案格式：1000）*_</p>
+<p>解密E盘</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821221754294.png" alt="image-20240821221754294"></p>
+<p>都运行一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821222044397.png" alt="image-20240821222044397"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821222055471.png" alt="image-20240821222055471"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT count(DISTINCT phone) FROM `phome_enewsmemberadd`WHERE phone IS NOT NULL;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821222409822.png" alt="image-20240821222409822"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5020</span><br></pre></td></tr></table></figure>
+
+<p>7分析检材一，“密码本.rar”压缩包的密码为？（答案格式：849839）*_</p>
+<p>直接搜索没有发现密码本，但是在D盘发现了加密容器和密钥</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821222605847.png" alt="image-20240821222605847"></p>
+<p>直接查看密钥发现了疑似vc密码的字符，挂载失败，想了半天想起来了还可以直接<strong>用密钥文件进行挂载</strong></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821222649144.png" alt="image-20240821222649144"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821222817465.png" alt="image-20240821222817465"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821222724882.png" alt="image-20240821222724882"></p>
+<p>打开找到密码本，密码是六位数字passwarekit跑一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230318766.png" alt="image-20240821230318766"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821223217357.png" alt="image-20240821223217357"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821223642407.png" alt="image-20240821223642407"></p>
+<p>解压拿到了一个Bitlocker恢复密钥和一个qq密码</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821223716350.png" alt="image-20240821223716350"></p>
+<p>这个bitlocker是干什么的呢？</p>
+<p>发现D盘有一个vhd文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821223759280.png" alt="image-20240821223759280"></p>
+<ol>
+<li>方法一：磁盘管理直接添加</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821224123209.png" alt="image-20240821224123209"></p>
+<p>挂在上去发现有bitlocker加密，用上面的密钥解密，拿到一个flag但是没有在这里出题</p>
+<p>这个bitlocker和电脑里备忘中的一样</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230123867.png" alt="image-20240821230123867"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821224239434.png" alt="image-20240821224239434"></p>
+<ol start="2">
+<li>添加虚拟磁盘</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821224422675.png" alt="image-20240821224422675"></p>
+<p>后面就是一样解密拿flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">362547</span><br></pre></td></tr></table></figure>
+
+<p>8该计算机中桌面截图文件记录了<strong>多少人</strong>的上班年薪资？（答案格式：123）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821224544406.png" alt="image-20240821224544406"></p>
+<p>图片四显示不出来，16进制打开发现文件头少了几位</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821224759651.png" alt="image-20240821224759651"></p>
+<p>修改后缀为jpg，用工具修改文件头</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821225407625.png" alt="image-20240821225407625"></p>
+<p>或者winhex直接粘贴</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821225824012.png" alt="image-20240821225824012"></p>
+<p>得到修复后的是一个qq号码</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821225427506.png" alt="image-20240821225427506"></p>
+<p>但是还没有flag，显示详情发现图三特别大</p>
+<p>foremost分离</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822203037745.png" alt="image-20240822203037745"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>9嫌疑人F9oz结尾的钱包在在2024年6月27日有一笔交易，请问发送方地址为（答案格式：TJSZwqj7YvbGTjWmtbQ3udCSr51abHkYFM）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230342382.png" alt="image-20240821230342382"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TKSkbmBqKWAxhoRseqYqZfxreeuD8JB4NX</span><br></pre></td></tr></table></figure>
+
+<p>10[流量分析]请分析，嫌疑人使用自己FTP服务器下载文件时，所用的FTP登录用户名为：（答案格式：zhangfei）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230420288.png" alt="image-20240821230420288"></p>
+<p>软件也一把梭出来了</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230455089.png" alt="image-20240821230455089"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lianhong</span><br></pre></td></tr></table></figure>
+
+<p>11[流量分析] 请分析嫌疑人下载的文件中，二维码中的flag（答案格式：flag）*_</p>
+<p>分离所有文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230524331.png" alt="image-20240821230524331"></p>
+<p>先去识别一下二维码，16打开里面藏了一个zip文件，foremost分离</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230636281.png" alt="image-20240821230636281"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230703382.png" alt="image-20240821230703382"></p>
+<p>发现有密码</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821230819419.png" alt="image-20240821230819419"></p>
+<p>试了伪加密不行</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821231113863.png" alt="image-20240821231113863"></p>
+<p>看到名字4number想一想是不是提示密码是四个数字，进行爆破得到密码</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821231048565.png" alt="image-20240821231048565"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821231151488.png" alt="image-20240821231151488"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CTF&#123;vjpw_wnoei&#125;</span><br></pre></td></tr></table></figure>
+
+<p>12[流量分析] 请分析嫌疑人下载的文件中，压缩包中的flag（答案格式：flag{vkl@llicli}）*_</p>
+<p>伪加密一把梭</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821231257086.png" alt="image-20240821231257086"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821231340611.png" alt="image-20240821231340611"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Adm1N-B2G-kU-SZIP&#125;</span><br></pre></td></tr></table></figure>
+
+<p>13分析检材一，“DaiKuan6”项目工程中的FLAG对应的值为（标准格式：pinghang6666）*_</p>
+<p>全部拖出来文件暴力搜索</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821231433522.png" alt="image-20240821231433522"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821231456015.png" alt="image-20240821231456015"></p>
+<p>要是搜不到就尝试搜索base64编码之后或者其他编码的flag字符</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag:HongLian7006</span><br></pre></td></tr></table></figure>
+
+<p>14哈希值（MD5）为ce6fb6d8b671153b8ea39af71b9df029的文件名称为（答案格式：name.pdf）*_</p>
+<p>选中全部文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822221834584.png" alt="image-20240822221834584"></p>
+<p>计算hash</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822221920217.png" alt="image-20240822221920217"></p>
+<p>找到hash计算出来的列（找了半天也不知道怎么出现的），过滤一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822223612609.png" alt="image-20240822223612609"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822223658595.png" alt="image-20240822223658595"></p>
+<h1 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h1><p>15请分析检材一中的exe恶意程序，并计算其crc32的校验值（答案格式：695E8BEA）*_</p>
+<p>上传到微步</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821232156840.png" alt="image-20240821232156840"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821232212411.png" alt="image-20240821232212411"></p>
+<p>ida</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822203317384.png" alt="image-20240822203317384"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">375E9BEA</span><br></pre></td></tr></table></figure>
+
+<p>16Tetris.pdb文件在嫌疑人电脑中的绝对路径为（答案格式：E:\Users\TRBE\avc\edc\）*_</p>
+<p>查一下发现是32位的程序</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821232412549.png" alt="image-20240821232412549"></p>
+<p>用32位的ida打开，shift+f12查看字符串</p>
+<p>秒了</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821232707037.png" alt="image-20240821232707037"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\Users\MBRE\Tetris\Release\Tetris.pdb</span><br></pre></td></tr></table></figure>
+
+<p>17恶意程序“窗口2”的初始宽度是多少（答案格式：800）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821232807147.png" alt="image-20240821232807147"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240821232832100.png" alt="image-20240821232832100"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">600</span><br></pre></td></tr></table></figure>
+
+<p>18在tetris游戏中，在键盘上依次按下某些键可以进入窗口2，其中字母W对应的字母是哪个字母？（答案格式：a）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822212135402.png" alt="image-20240822212135402"></p>
+<p>A-》f</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822224426452.png" alt="image-20240822224426452"></p>
+<p>D-》p</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822224519142.png" alt="image-20240822224519142"></p>
+<p>S-&gt;q</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822224540791.png" alt="image-20240822224540791"></p>
+<p>w跟进函数里面 W-&gt;t</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822224628608.png" alt="image-20240822224628608"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822224650968.png" alt="image-20240822224650968"></p>
+<p>题目还说了按一些按键就可以进入窗口2，肯定提前存储了需要按的按键</p>
+<p>从main函数往下一个一个函数看</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822232224571.png" alt="image-20240822232224571"></p>
+<p>看到了qqfpttqtffppqq，正好和上面可以做对应</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssadwwswaaddss</span><br></pre></td></tr></table></figure>
+
+<p>这个应该是存储我们输入的键盘字符</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822232649482.png" alt="image-20240822232649482"></p>
+<p>输入进入窗口</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822234443782.png" alt="image-20240822234443782"></p>
+<p>19分析恶意程序，win2窗口类对应的窗口标题是？（答案格式：方块3）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822205849539.png" alt="image-20240822205849539"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">梲鉙1</span><br></pre></td></tr></table></figure>
+
+<p>20分析恶意程序，在窗口1中，TextOutW函数要绘制的字符数共几位？（答案格式：8）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822210740232.png" alt="image-20240822210740232"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p>21请分析检材一中嫌疑人用于作案的exe恶意程序，窗口1中显示的字符串第二笔画的长度为多少像素（答案格式：60）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822210817510.png" alt="image-20240822210817510"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">25</span><br></pre></td></tr></table></figure>
+
+<p>22请分析检材一中嫌疑人用于作案的exe恶意程序，“win3”窗口类中所显示的内容使用了什么字体？(答案格式：Sitka Banner)*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822205523061.png" alt="image-20240822205523061"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Microsoft YaHei Light</span><br></pre></td></tr></table></figure>
+
+<h1 id="手机取证"><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h1><p>23检材二涉案手机中，qq昵称为“小赵会讲故事”的人员，所使用的手机号码为(答案格式：18205462096)*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822213505124.png" alt="image-20240822213505124"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13712340343</span><br></pre></td></tr></table></figure>
+
+<p>24检材二涉案手机中，嫌疑人使用TG聊天时，所用的“翻墙”工具包名为（答案格式：com.baidu.www）*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822213545257.png" alt="image-20240822213545257"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.github.kr328.clash.foss</span><br></pre></td></tr></table></figure>
+
+<p>25检材二涉案手机中，上题“翻墙”工具所导入名为“魔戒.net”配置文件的链接为（答案格式<a target="_blank" rel="noopener" href="https://www.oklink.com/zh-hans/trx/address/TZ8Vvm5VB7oJPJQmdXAyZcYceborUoF9oz%EF%BC%89">https://www.oklink.com/zh-hans/trx/address/TZ8Vvm5VB7oJPJQmdXAyZcYceborUoF9oz）</a>*_</p>
+<p><img src="/2024/09/05/Forensics-LiJian-4/image-20240822213558998.png" alt="image-20240822213558998"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://mojie.online/api/v1/client/subscribe</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/05/Forensics-LiJian-2/" rel="prev" title="Forensics-LiJian-2">
+      <i class="fa fa-chevron-left"></i> Forensics-LiJian-2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/05/Forensics-LiJian-5/" rel="next" title="Forensics_LiJian_5">
+      Forensics_LiJian_5 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E8%B4%A8%E5%8F%96%E8%AF%81"><span class="nav-number">1.</span> <span class="nav-text">介质取证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%86%E5%90%91"><span class="nav-number">2.</span> <span class="nav-text">逆向</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="nav-number">3.</span> <span class="nav-text">手机取证</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kik1"
+      src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+  <p class="site-author-name" itemprop="name">Kik1</p>
+  <div class="site-description" itemprop="description">Keep learning and sharing</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kik1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

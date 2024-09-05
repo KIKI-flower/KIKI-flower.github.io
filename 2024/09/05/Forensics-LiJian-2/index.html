@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="手机1、分析嫌疑人手机检材，请确认嫌疑人“老大”的手机号为?（标准格式：15287006500）  119025057577  2、分析嫌疑人手机检材，请确认嫌疑人TG中好友个数为？（标准格式：15） 没想到要看数据库，取证软件取的不全（应该是没有聊天的就不显示）   尝试用x-ray和CSI挂在vmdk文件发现目录结构和FTK挂在的不一样，猜测可能镜像文件使用FTK做的或者是文件系统问题。  学">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forensics-LiJian-2">
+<meta property="og:url" content="http://example.com/2024/09/05/Forensics-LiJian-2/index.html">
+<meta property="og:site_name" content="Kik1&#39;s Blog">
+<meta property="og:description" content="手机1、分析嫌疑人手机检材，请确认嫌疑人“老大”的手机号为?（标准格式：15287006500）  119025057577  2、分析嫌疑人手机检材，请确认嫌疑人TG中好友个数为？（标准格式：15） 没想到要看数据库，取证软件取的不全（应该是没有聊天的就不显示）   尝试用x-ray和CSI挂在vmdk文件发现目录结构和FTK挂在的不一样，猜测可能镜像文件使用FTK做的或者是文件系统问题。  学">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809220701081.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809221128993.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809221152550.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809221620846.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809221830636.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809222020780.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809222609765.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809222712338.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809222834881.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809222948834.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809224052471.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809224308127.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810200828613.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810200815097.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201329758.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201333553.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201430210.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201735116.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201738188.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201852219.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201917691.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810201931149.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810202319579.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810202346009.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810202719887.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810203327738.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810203442752.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204344530.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204249958.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204449613.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204458447.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204544539.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204625783.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204717135.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204915538.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810204842281.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810205238966.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810205300436.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810205325910.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810205421896.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810205542720.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810205954246.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810210107949.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810210119519.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810210612374.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810210632965.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810212334716.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810213502323.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810213524401.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810213743707.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240810213621289.png">
+<meta property="article:published_time" content="2024-09-05T08:50:52.000Z">
+<meta property="article:modified_time" content="2024-09-05T08:51:45.226Z">
+<meta property="article:author" content="Kik1">
+<meta property="article:tag" content="blog, web development, programming,PenTest,">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/09/05/Forensics-LiJian-2/image-20240809220701081.png">
+
+<link rel="canonical" href="http://example.com/2024/09/05/Forensics-LiJian-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Forensics-LiJian-2 | Kik1's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kik1's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/05/Forensics-LiJian-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+      <meta itemprop="name" content="Kik1">
+      <meta itemprop="description" content="Keep learning and sharing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kik1's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Forensics-LiJian-2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-05 16:50:52 / 修改时间：16:51:45" itemprop="dateCreated datePublished" datetime="2024-09-05T16:50:52+08:00">2024-09-05</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="手机"><a href="#手机" class="headerlink" title="手机"></a>手机</h1><p>1、分析嫌疑人手机检材，请确认嫌疑人“老大”的手机号为?（标准格式：15287006500）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809220701081.png" alt="image-20240809220701081"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">19025057577</span><br></pre></td></tr></table></figure>
+
+<p>2、分析嫌疑人手机检材，请确认嫌疑人TG中好友个数为？（标准格式：15）</p>
+<p>没想到要看数据库，取证软件取的不全（应该是没有聊天的就不显示）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809221128993.png" alt="image-20240809221128993"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809221152550.png" alt="image-20240809221152550"></p>
+<p>尝试用x-ray和CSI挂在vmdk文件发现目录结构和FTK挂在的不一样，猜测可能镜像文件使用FTK做的或者是文件系统问题。</p>
+<blockquote>
+<p>学到了vmdk文件尽量使用FTK进行挂在</p>
+</blockquote>
+<p>3、分析嫌疑人手机检材，请确认嫌疑人虚拟币收款地址后4位为？（标准格式：4ab4）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809221620846.png" alt="image-20240809221620846"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1ec7</span><br></pre></td></tr></table></figure>
+
+<p>4、分析嫌疑人手机检材，请推测TG好友&ldquo;小开&rdquo;在该犯罪团伙的角色为？</p>
+<p>角色为体现也可能是财务，这个仅凭借聊天记录不好说</p>
+<p>5、分析嫌疑人手机检材，请确认嫌疑人2023-09-07 16:50:38可能计划到哪里去？（标准格式：江苏饭店）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809221830636.png" alt="image-20240809221830636"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">武汉拉美酒店</span><br></pre></td></tr></table></figure>
+
+<p>6、分析嫌疑人手机检材、请确认文件“账单.xls”的四位数字密码为？(标准格式：8821）</p>
+<p>需要使用FTK挂在才行，用x-ray或者其他开源取证软件都找不到</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809222020780.png" alt="image-20240809222020780"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809222609765.png" alt="image-20240809222609765"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2233</span><br></pre></td></tr></table></figure>
+
+<p>7、接上题，该表中记录的手机口总付款为？（标准格式：653btc）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809222712338.png" alt="image-20240809222712338"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5000usdt</span><br></pre></td></tr></table></figure>
+
+<h1 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h1><p>8、分析跳板机服务器，确认跳板机的build版本为？（标准答案：0000）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809222834881.png" alt="image-20240809222834881"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">9600</span><br></pre></td></tr></table></figure>
+
+<p>9、分析跳板机服务器，登录过美洽客服的账号为?(标准格式：<a href="mailto:&#49;&#x32;&#51;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;">&#49;&#x32;&#51;&#x40;&#49;&#x36;&#51;&#x2e;&#x63;&#x6f;&#x6d;</a>)</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809222948834.png" alt="image-20240809222948834"></p>
+<p>10、分析跳板机服务器，该跳板机连接的服务器IP为“174.137.53.148”的root账号密码为？（标准格式：abc）</p>
+<p>如果仿真出来的虚拟机特别小可以调一下分辨率</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809224052471.png" alt="image-20240809224052471"></p>
+<ol>
+<li>软件一把梭</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240809224308127.png" alt="image-20240809224308127"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USXmA3XvG28h</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>手搓</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://answer.uiucode.com/tools/finalshell">查看FinalShell已保存密码 | 在线工具 - 查看FinalShell密码 免费 (uiucode.com)</a></p>
+<p>找到配置文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810200828613.png" alt="image-20240810200828613"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810200815097.png" alt="image-20240810200815097"></p>
+<p>11、分析跳板机服务器，查询2023年8月15日 21:06:19爆破攻击该服务器的IP和端口为？（标准格式：192.168.打开1.1:11）</p>
+<p>win+r – eventvwr.msc打开事件查看器，筛选在2023年8月15日 21:06:19事件id为4625的日志</p>
+<blockquote>
+<ul>
+<li>4624 - 帐户已成功登录</li>
+<li>4625 - 帐户登录失败</li>
+<li>4634 - 帐户被注销</li>
+<li>4647 - 用户发起注销</li>
+<li>4648 - 试图使用明确的凭证登录（可以查看远程登陆的相关信息，比如IP地址等）</li>
+</ul>
+</blockquote>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201329758.png" alt="image-20240810201329758"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201333553.png" alt="image-20240810201333553"></p>
+<p>12、跳板机服务器中存在记录远程连接公钥信息的文件，其文件名为？（标准格式：11.txt）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201430210.png" alt="image-20240810201430210"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">known_hosts</span><br></pre></td></tr></table></figure>
+
+<p>13、接上题其公钥算法为？（标准格式：ase-34243)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-ed25519</span><br></pre></td></tr></table></figure>
+
+<p>14、分析业务服务器镜像，获取网站业务服务器的CentOS版本为？（标准格式：7.1.1111）</p>
+<p>分析：查看开放端口</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201735116.png" alt="image-20240810201735116"></p>
+<p>服务器一应该为业务服务器</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201738188.png" alt="image-20240810201738188"></p>
+<p>服务器二应该为数据库服务器</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201852219.png" alt="image-20240810201852219"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201917691.png" alt="image-20240810201917691"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7.5.1804</span><br></pre></td></tr></table></figure>
+
+
+
+<p>15、分析业务服务器镜像，确认业务服务器php环境的版本为？（标准格式：1.1.11）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810201931149.png" alt="image-20240810201931149"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.6.40</span><br></pre></td></tr></table></figure>
+
+<p>16、分析业务服务器镜像，查找数据库服务器数中的数据库定时备份为每周的哪一天？（标准格式：星期三）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810202319579.png" alt="image-20240810202319579"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810202346009.png" alt="image-20240810202346009"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">time=$(<span class="built_in">date</span> <span class="string">&quot;+%Y%m%d_%H%M%S&quot;</span>)</span><br><span class="line">mysqldump -uroot -pGtx172861028 --default-character-set=utf8 db&gt;/var/dbbackup/db_<span class="variable">$&#123;time&#125;</span>.sql</span><br><span class="line">zip -rP xisy12354 /var/dbbackup/db_<span class="variable">$&#123;time&#125;</span>.zip /var/dbbackup/db_<span class="variable">$&#123;time&#125;</span>.sql</span><br><span class="line"><span class="built_in">rm</span> /var/dbbackup/db_<span class="variable">$&#123;time&#125;</span>.sql</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">星期一</span><br></pre></td></tr></table></figure>
+
+
+
+<p>17、结合数据库备份文件分析，查询用户名“wy778899”被冻结金额为（）。（标准格式：1000）</p>
+<p>根据加密进行解密</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unzip -P xisy12354 db_20230814_095625.zip</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810202719887.png" alt="image-20240810202719887"></p>
+<p>导入到navicat，多导入几次</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810203327738.png" alt="image-20240810203327738"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810203442752.png" alt="image-20240810203442752"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">25000.00</span><br></pre></td></tr></table></figure>
+
+<p>18、分析业务服务器镜像，已知注册码为125779，查找业务服务器中涉案网站所使用的百度chat的siteId？（标准格式：12345678）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204344530.png" alt="image-20240810204344530"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204249958.png" alt="image-20240810204249958"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">16054922</span><br></pre></td></tr></table></figure>
+
+
+
+<p>19、分析业务服务器镜像，涉案网站源码有可能从哪里获取到？（标准格式：百度）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204449613.png" alt="image-20240810204449613"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204458447.png" alt="image-20240810204458447"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">刀客资源网</span><br></pre></td></tr></table></figure>
+
+<p>20、分析涉案服务器镜像，确认涉案网站管理后台的url路径为？（标准格式：&#x2F;abc&#x2F;abc&#x2F;abc.html）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204544539.png" alt="image-20240810204544539"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/admin/login/login.html</span><br></pre></td></tr></table></figure>
+
+<p>21、接上题其后台网站标题为？（标准格式：天美后台管理）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204625783.png" alt="image-20240810204625783"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">福汇后台系统</span><br></pre></td></tr></table></figure>
+
+
+
+<p>22、分析后台登录管理员登录模块，后台登录限制的白名单IP区间在47.243.172.x到47.243.172.x，IP区间为？（标准格式：1-5）</p>
+<p>发现加密了</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204717135.png" alt="image-20240810204717135"></p>
+<p>pgs见过这种加密，PC中也有提过</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204915538.png" alt="image-20240810204915538"></p>
+<p><a target="_blank" rel="noopener" href="https://tool.lu/php/">Php在线解美化、混淆、加密、解密 - 在线工具 (tool.lu)</a></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810204842281.png" alt="image-20240810204842281"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">97-100</span><br></pre></td></tr></table></figure>
+
+
+
+<p>23、分析后台管理员密码加密逻辑，倘若数据库中的”admin”管理员将明文密码设置为“abc123”，则经过md5加密前的密码密文upwd值为？（标准格式：e10adc3949ba59abbe56e057f20f883e）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810205238966.png" alt="image-20240810205238966"></p>
+<p>utime</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810205300436.png" alt="image-20240810205300436"></p>
+<p>admin_salt</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810205325910.png" alt="image-20240810205325910"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abc1231614135458dgm070229</span><br></pre></td></tr></table></figure>
+
+<p>24、以管理员账号“admin”登录后台，后台首页显示用户总余额为多少？（标准格式：234663.5）</p>
+<p>添加hosts</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810205421896.png" alt="image-20240810205421896"></p>
+<p>数据库连接报错，找一下文件</p>
+<p>fuhui\application\database.php</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810205542720.png" alt="image-20240810205542720"></p>
+<p>连接有问题</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810205954246.png" alt="image-20240810205954246"></p>
+<p>改一下</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810210107949.png" alt="image-20240810210107949"></p>
+<p>报错</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810210119519.png" alt="image-20240810210119519"></p>
+<p>配置免密登录，重启mysql服务</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810210612374.png" alt="image-20240810210612374"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810210632965.png" alt="image-20240810210632965"></p>
+<p>按照加密方式替换一个自己的密码，然后解密登录代码注释掉ip验证</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810212334716.png" alt="image-20240810212334716"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810213502323.png" alt="image-20240810213502323"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1234561480061674dgm070229</span><br><span class="line">md5：147b5c0a229449ab00a5f078c3757f31</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810213524401.png" alt="image-20240810213524401"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">566810.6</span><br></pre></td></tr></table></figure>
+
+<p>25、以管理员账号“admin”登录后台，USDT充币地址为？（标准格式：0x561434F2348e6DcB69C0a3C0d1f1086c5c5832ab）</p>
+<p>不重构网站直接找数据库也行</p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810213743707.png" alt="image-20240810213743707"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-2/image-20240810213621289.png" alt="image-20240810213621289"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x803084F2348e6DcB69C0a3C0d1f2086c5c5863ce</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/05/Forensics-LiJian-3/" rel="prev" title="Forensics_LiJian_3">
+      <i class="fa fa-chevron-left"></i> Forensics_LiJian_3
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/05/Forensics-LiJian-4/" rel="next" title="Forensics_LiJian_4">
+      Forensics_LiJian_4 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">手机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">服务器</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kik1"
+      src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+  <p class="site-author-name" itemprop="name">Kik1</p>
+  <div class="site-description" itemprop="description">Keep learning and sharing</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kik1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

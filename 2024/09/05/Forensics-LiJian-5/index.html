@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="案情简介在暗网某论坛上，有人匿名发布了出售某商业集团旗下所有商业数据的网帖，经追查，某涉案团伙有重大嫌疑，现已抓获其主犯之一秦瑞凯，并扣押其计算机、手机，同时通过前期摸排的线索，调取了相关涉案人员的话单数据，并通过系统接口获取了涉案时间段的物流数据及出入境数据。 请对以上检材进行取证分析、关联串并，完成对应考题。 介质取证1.通过对综合案例中计算机检材进行分析，该计算机有线网卡使用的MAC地址为？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Forensics_LiJian_5">
+<meta property="og:url" content="http://example.com/2024/09/05/Forensics-LiJian-5/index.html">
+<meta property="og:site_name" content="Kik1&#39;s Blog">
+<meta property="og:description" content="案情简介在暗网某论坛上，有人匿名发布了出售某商业集团旗下所有商业数据的网帖，经追查，某涉案团伙有重大嫌疑，现已抓获其主犯之一秦瑞凯，并扣押其计算机、手机，同时通过前期摸排的线索，调取了相关涉案人员的话单数据，并通过系统接口获取了涉案时间段的物流数据及出入境数据。 请对以上检材进行取证分析、关联串并，完成对应考题。 介质取证1.通过对综合案例中计算机检材进行分析，该计算机有线网卡使用的MAC地址为？">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828220814408.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828221830282.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828222340052.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828222317799.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828222529725.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828222428056.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828222556605.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828223522060.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828225839286.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828230414650.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828231306832.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901232520432.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828232120798.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828232240918.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828232724840.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828232907994.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828232927285.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828233825171.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828233219896.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828233931959.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828234307311.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828234452598.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828234350897.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901135701192.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901140832554.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901140841782.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901141156851.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901141445111.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901144158979.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901144311980.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901144337986.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901150810523.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901150831308.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901150857757.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901151150182.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901151230113.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901151316003.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901235915094.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901235956208.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901225404354.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902003205765.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901232031297.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240901232107200.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902012227649.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902200334754.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902200322781.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902202100331.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902202134561.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902202137268.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902202201555.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902203457151.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902205831749.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902205855756.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902210125013.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902210625807.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902210749421.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902211141806.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240902212432879.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240905171156267.png">
+<meta property="article:published_time" content="2024-09-05T09:09:37.000Z">
+<meta property="article:modified_time" content="2024-09-05T09:12:13.865Z">
+<meta property="article:author" content="Kik1">
+<meta property="article:tag" content="blog, web development, programming,PenTest,">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/09/05/Forensics-LiJian-5/image-20240828220814408.png">
+
+<link rel="canonical" href="http://example.com/2024/09/05/Forensics-LiJian-5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Forensics_LiJian_5 | Kik1's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kik1's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/05/Forensics-LiJian-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+      <meta itemprop="name" content="Kik1">
+      <meta itemprop="description" content="Keep learning and sharing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kik1's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Forensics_LiJian_5
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-05 17:09:37 / 修改时间：17:12:13" itemprop="dateCreated datePublished" datetime="2024-09-05T17:09:37+08:00">2024-09-05</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="案情简介"><a href="#案情简介" class="headerlink" title="案情简介"></a>案情简介</h1><p>在暗网某论坛上，有人匿名发布了出售某商业集团旗下所有<strong>商业数据的网帖</strong>，经追查，某涉案团伙有重大嫌疑，现已抓获其主犯之一秦瑞凯，并扣押其<strong>计算机、手机</strong>，同时通过前期摸排的线索，调取了相关涉案人员的<strong>话单数据</strong>，并通过系统接口获取了涉案时间段的<strong>物流数据</strong>及<strong>出入境数据</strong>。</p>
+<p>请对以上检材进行取证分析、关联串并，完成对应考题。</p>
+<h1 id="介质取证"><a href="#介质取证" class="headerlink" title="介质取证"></a>介质取证</h1><p>1.通过对综合案例中计算机检材进行分析，该计算机有线网卡使用的MAC地址为？*_（参考格式如：A1-B2-C3-D4-E5-F6）</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828220814408.png" alt="image-20240828220814408"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">00-0C-29-EF-2F-3B</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><p>通过对综合案例中计算机检材进行分析，其通过网络映射方式连接的共享文件夹名称为？*_（填写小写字母，参考格式如：abcd）</p>
+<p>分析出来了bitlocker，仿真的时候加上要不然无法仿真（手动仿真无所谓了）</p>
+</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828221830282.png" alt="image-20240828221830282"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">568755-442145-324401-147378-537537-344685-109230-272547</span><br></pre></td></tr></table></figure>
+
+<p>通过火眼看到了网络共享文件夹</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828222340052.png" alt="image-20240828222340052"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828222317799.png" alt="image-20240828222317799"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shares</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>通过对综合案例中计算机检材进行分析，用户访问过一虚拟磁盘文件，该文件的逻辑大小为多少字节？*_（填写数字格式，参考格式如：1234）</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828222529725.png" alt="image-20240828222529725"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828222428056.png" alt="image-20240828222428056"></p>
+<p>到原始目录</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828222556605.png" alt="image-20240828222556605"></p>
+<p>查看属性</p>
+<blockquote>
+<p>逻辑大小是指虚拟硬盘在虚拟机中<strong>可使用的总空间量</strong>，这通常是在创建VHD时指定的固定大小或动态扩展的最大值。</p>
+</blockquote>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828223522060.png" alt="image-20240828223522060"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15732736</span><br></pre></td></tr></table></figure>
+
+<p>4.通过对综合案例中计算机检材进行分析，用户运行次数第二多的应用程序名称为？*_（填写小写字母，参考格式如：abc.exe）</p>
+<p>参考这一篇文章</p>
+<p><a target="_blank" rel="noopener" href="https://3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-Windows%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C%E8%AE%B0%E5%BD%95%E7%9A%84%E8%8E%B7%E5%8F%96%E4%B8%8E%E6%B8%85%E9%99%A4">https://3gstudent.github.io/%E6%B8%97%E9%80%8F%E6%8A%80%E5%B7%A7-Windows%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C%E8%AE%B0%E5%BD%95%E7%9A%84%E8%8E%B7%E5%8F%96%E4%B8%8E%E6%B8%85%E9%99%A4</a></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828225839286.png" alt="image-20240828225839286"></p>
+<p>使用工具<a target="_blank" rel="noopener" href="https://www.nirsoft.net/utils/userassist_view.html">https://www.nirsoft.net/utils/userassist_view.html</a></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828230414650.png" alt="image-20240828230414650"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">notepad.exe</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>通过对综合案例中计算机检材进行分析，在不考虑格式化恢复和签名恢复的情况下，该镜像中不小于45KB的已删除文件有多少个？*_（参考格式如：12）</li>
+</ol>
+<p>挂在到本地然后使用diskfenius进行数据恢复扫描，然后进行过滤找到了一个</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828231306832.png" alt="image-20240828231306832"></p>
+<p>看了wp先解开bl锁直接在火眼里面过滤就行</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901232520432.png" alt="image-20240901232520432"></p>
+<ol start="6">
+<li>请对综合案例中计算机检材进行取证分析，获取被盗取数据中“沈楠”的邮箱账号*_（参考格式如：<a href="mailto:&#49;&#50;&#51;&#97;&#x62;&#99;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;">&#49;&#50;&#51;&#97;&#x62;&#99;&#x40;&#113;&#x71;&#x2e;&#99;&#111;&#x6d;</a>）</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828232120798.png" alt="image-20240828232120798"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alyce01@163.cou</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="7">
+<li>通过对综合案例中计算机检材进行分析，找出“Todesk”在2024-06-27 23:05:42远控时本机的设备代码为？*_（填写数字格式，参考如：1234）</li>
+</ol>
+<p>参考：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2309362">https://cloud.tencent.com/developer/article/2309362</a></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828232240918.png" alt="image-20240828232240918"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">556065092</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>通过对综合案例中计算机检材进行分析，找出保证通过自由门代理的网站域名为？(参考格式如：.baidu.com)*_</li>
+</ol>
+<p>刚开始没看懂题目是什么意思，搜了一下发现是一个代理软件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828232724840.png" alt="image-20240828232724840"></p>
+<p>下载一个看看</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828232907994.png" alt="image-20240828232907994"></p>
+<p>直接去电脑里面搜</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828232927285.png" alt="image-20240828232927285"></p>
+<p>打开软件点一点</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828233825171.png" alt="image-20240828233825171"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">google.cn</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="9">
+<li>通过对综合案例中计算机检材进行分析，找出自由门中设置的代理服务器IP地址。*_（参考格式如：127.0.0.1）</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828233219896.png" alt="image-20240828233219896"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">67.221.35.80</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>通过对综合案例中计算机检材进行分析，找出安装于本机的<strong>某压缩工具中密码管理器</strong>开启的主密码为？*_（参考格式如：ABCdef#123）</li>
+</ol>
+<p>桌面看到了密码本一个一个试</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828233931959.png" alt="image-20240828233931959"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Qrk@726386</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="11">
+<li>接上题，请找出该密码管理器中的密码信息为？*_（按实际值填写）</li>
+</ol>
+<p>找到文件并解压</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828234307311.png" alt="image-20240828234307311"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Qrk@99266553</span><br></pre></td></tr></table></figure>
+
+<ol start="12">
+<li>通过对综合案例中计算机检材进行分析，找出qrk  ying4.png文件中显示的文字内容为？*_（参考格式如：汉字）</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828234452598.png" alt="image-20240828234452598"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240828234350897.png" alt="image-20240828234350897"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">秦瑞凯印</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h1><ol start="13">
+<li>请对综合案例中分析中出入境人员表检材进行分析，找出从拱北岸进入的人员数量*_（不去重，按实际值填写）</li>
+</ol>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901135701192.png" alt="image-20240901135701192"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1261</span><br></pre></td></tr></table></figure>
+
+<p>14 通过对综合案例中话单数据检材进行分析，请找出每次叶飞与秦瑞凯通话时，前后30分钟且前后通话记录3条以内的通话对象。*_（填写人名，答案格式如：李四）*</p>
+<p>确认双方进行了三次通话</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901140832554.png" alt="image-20240901140832554"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901140841782.png" alt="image-20240901140841782"></p>
+<p>按照要求进行过滤，因为一共通话的人也不多所以比较好确定，先过滤秦xx</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901141156851.png" alt="image-20240901141156851"></p>
+<p>再过滤叶x</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901141445111.png" alt="image-20240901141445111"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">李晶</span><br></pre></td></tr></table></figure>
+
+<p>15请根据李晶的话单，找出在2020-05-01 01:59:58后，其新增的联系人有几个？*_（填写数字格式，答案如：8）*</p>
+<p>过滤找出2020-05-01 01:59:58之后和之前通话的电话号码，并去重</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901144158979.png" alt="image-20240901144158979"></p>
+<p>然后找出5月之后没有在5月之前出现过的电话号码，这个可能就是新增的联系人</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">=IF(COUNTIF($B$2:$B$26,A2)=0,&quot;未出现&quot;,&quot;出现&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901144311980.png" alt="image-20240901144311980"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901144337986.png" alt="image-20240901144337986"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">14</span><br></pre></td></tr></table></figure>
+
+<p>22通过检材-数据分析的第1小题分析：办案人员从赌博数据库中导出了多份投注记录csv文档，请统计出投注总金额最少的彩种的ip地址一共有多少个？*_（填写数字格式，如：10）*</p>
+<p>数据格式都一样，先把scv文件合并成为一个，然后在导入到excel中</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40649503/article/details/127187372">CSV文件批量合并&#x2F;转XLSX（无需任何软件，傻瓜式操作）_csv批量转换为xlsx-CSDN博客</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy *.csv all.csv</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901150810523.png" alt="image-20240901150810523"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901150831308.png" alt="image-20240901150831308"></p>
+<p>创建数据透视表</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901150857757.png" alt="image-20240901150857757"></p>
+<p>设置金额位求和</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901151150182.png" alt="image-20240901151150182"></p>
+<p>降序排序，发现六合彩是投注金额最小的</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901151230113.png" alt="image-20240901151230113"></p>
+<p>调整筛选模式，但是这个没有去重</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901151316003.png" alt="image-20240901151316003"></p>
+<p>根据彩种筛选ip，手动去重</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901235915094.png" alt="image-20240901235915094"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">100</span><br></pre></td></tr></table></figure>
+
+<p>或者用wp的脚本也行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line">file_dic = <span class="string">&#x27;./&#x27;</span></span><br><span class="line">kind_money = &#123;&#125;</span><br><span class="line">min_kind_ip = []</span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(file_dic):</span><br><span class="line"><span class="keyword">if</span> filename.endswith(<span class="string">&quot;.csv&quot;</span>):</span><br><span class="line">df = pd.read_csv(os.path.join(file_dic, filename))</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> df.iterrows():</span><br><span class="line">kind = row[<span class="number">1</span>]</span><br><span class="line">money = row[<span class="number">3</span>]</span><br><span class="line">ip = row[<span class="number">5</span>]</span><br><span class="line"><span class="keyword">if</span> kind <span class="keyword">in</span> kind_money:</span><br><span class="line">kind_money[kind] += money</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">kind_money[kind] = money</span><br><span class="line">min_kind = <span class="built_in">min</span>(kind_money, key=kind_money.get)</span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(file_dic):</span><br><span class="line"><span class="keyword">if</span> filename.endswith(<span class="string">&quot;.csv&quot;</span>):</span><br><span class="line">df = pd.read_csv(os.path.join(file_dic, filename))</span><br><span class="line"><span class="keyword">for</span> index, row <span class="keyword">in</span> df.iterrows():</span><br><span class="line">kind = row[<span class="number">1</span>]</span><br><span class="line">ip = row[<span class="number">5</span>]</span><br><span class="line"><span class="keyword">if</span> kind == min_kind <span class="keyword">and</span> ip <span class="keyword">not</span> <span class="keyword">in</span> min_kind_ip:</span><br><span class="line">min_kind_ip.append(ip)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;投注总金额最少的彩种是：<span class="subst">&#123;min_kind&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;投注总金额最少的彩种的ip地址数量是：<span class="subst">&#123;<span class="built_in">len</span>(min_kind_ip)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901235956208.png" alt="image-20240901235956208"></p>
+<p>23通过检材-数据分析的第2小题分析：在赌博平台的站点数据库中找到了生成赌博房间信息的表格数据赌博房间信息.csv，其中的属性字段采用json进行编码， 请统计出第一季度创建并且房间编号以200为开头的房间数量有多少个？*（填写数字格式，如：10）</p>
+<p>根据题意写脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">conut = <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_room</span>(<span class="params">room_id,room_info,date_time</span>):</span><br><span class="line">    <span class="keyword">if</span> room_id[<span class="number">0</span>:<span class="number">3</span>] == <span class="string">&#x27;200&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_date</span>(<span class="params">date_time</span>):</span><br><span class="line">    <span class="comment"># 定义2022年第一季度的起始日期和结束日期</span></span><br><span class="line">    start_date = datetime.datetime(<span class="number">2022</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">    end_date = datetime.datetime(<span class="number">2022</span>, <span class="number">3</span>, <span class="number">31</span>, <span class="number">23</span>, <span class="number">59</span>, <span class="number">59</span>)  <span class="comment"># 包括3月31日的最后一秒</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 判断传入的日期是否在2022年第一季度范围内</span></span><br><span class="line">    <span class="keyword">if</span> start_date &lt;= date_time &lt;= end_date:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">excel = pd.read_excel(<span class="string">&quot;E:\\vscode\\取证\\砺剑行动5\\info.xlsx&quot;</span>,engine=<span class="string">&#x27;openpyxl&#x27;</span>,sheet_name=<span class="string">&#x27;Sheet1&#x27;</span>,header=<span class="literal">None</span>)</span><br><span class="line"><span class="keyword">for</span> index,row <span class="keyword">in</span> excel.iloc[<span class="number">1</span>:,:].iterrows():</span><br><span class="line">    row_list =row.tolist()</span><br><span class="line">    room_info = json.loads(row_list[<span class="number">3</span>])</span><br><span class="line">    date_time = row_list[<span class="number">1</span>]</span><br><span class="line">    room_id = room_info[<span class="string">&#x27;name&#x27;</span>].replace(<span class="string">&#x27;room&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="comment"># check_room(room_id,room_info,date_time)</span></span><br><span class="line">    <span class="keyword">if</span> check_room(room_id,room_info,date_time) <span class="keyword">and</span> check_date(date_time):</span><br><span class="line">        room_info_str = json.dumps(room_info,ensure_ascii=<span class="literal">False</span>)</span><br><span class="line">        <span class="built_in">print</span>(room_info_str +<span class="string">&#x27;  创建时间为:&#x27;</span>+ <span class="built_in">str</span>(date_time))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901225404354.png" alt="image-20240901225404354"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>wp的脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取CSV文件</span></span><br><span class="line">df = pd.read_csv(<span class="string">&#x27;./赌博房间信息.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保&#x27;房间信息&#x27;和&#x27;创建时间&#x27;列存在</span></span><br><span class="line"><span class="keyword">if</span> <span class="string">&#x27;房间信息&#x27;</span> <span class="keyword">in</span> df.columns <span class="keyword">and</span> <span class="string">&#x27;创建时间&#x27;</span> <span class="keyword">in</span> df.columns:</span><br><span class="line">    <span class="comment"># 将&#x27;房间信息&#x27;列的字符串转换为字典</span></span><br><span class="line">    df[<span class="string">&#x27;dic&#x27;</span>] = df[<span class="string">&#x27;房间信息&#x27;</span>].apply(json.loads)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化总计数</span></span><br><span class="line">    total = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 遍历DataFrame中的每一行</span></span><br><span class="line">    <span class="keyword">for</span> index, row <span class="keyword">in</span> df.iterrows():</span><br><span class="line">        <span class="comment"># 获取房间名称和创建时间</span></span><br><span class="line">        room_value = row[<span class="string">&#x27;dic&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]</span><br><span class="line">        date_str = row[<span class="string">&#x27;创建时间&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将字符串转换为datetime对象</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            date_obj = datetime.strptime(date_str, <span class="string">&#x27;%Y-%m-%d %H:%M&#x27;</span>)</span><br><span class="line">        <span class="keyword">except</span> ValueError:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&quot;日期格式错误: <span class="subst">&#123;date_str&#125;</span>&quot;</span>)</span><br><span class="line">            <span class="keyword">continue</span>  <span class="comment"># 如果日期格式不正确，跳过当前循环</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 获取月份</span></span><br><span class="line">        month = date_obj.month</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 检查房间名称和月份</span></span><br><span class="line">        <span class="keyword">if</span> room_value.startswith(<span class="string">&#x27;room200&#x27;</span>) <span class="keyword">and</span> month <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]:</span><br><span class="line">            total += <span class="number">1</span></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">f&#x27;创建时间为 <span class="subst">&#123;date_obj&#125;</span> 房间编号为 <span class="subst">&#123;room_value&#125;</span>&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印总计数</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;符合条件的房间总数为: <span class="subst">&#123;total&#125;</span>&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;CSV文件中缺少必要的列&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902003205765.png" alt="image-20240902003205765"></p>
+<p>24通过检材-数据分析的第3小题分析：办案人员获取到一些eml邮件，找出通过伪装方式发送的邮件数据量？*_（填写数字格式，如：10）*</p>
+<p>使用emlparser进行解析</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901232031297.png" alt="image-20240901232031297"></p>
+<p>一个一个看</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240901232107200.png" alt="image-20240901232107200"></p>
+<p>看完wp，没想到要用工具去解析<a target="_blank" rel="noopener" href="https://github.com/a232319779/mmpi?tab=readme-ov-file">https://github.com/a232319779/mmpi?tab=readme-ov-file</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mmpi <span class="keyword">import</span> mmpi</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">file_dic = <span class="string">&#x27;./&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">handle_eml</span>():</span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    emp = mmpi()</span><br><span class="line">    <span class="keyword">for</span> filename <span class="keyword">in</span> os.listdir(file_dic):</span><br><span class="line">        filename = os.path.join(file_dic, filename)</span><br><span class="line">        emp.parse(filename)</span><br><span class="line">        report = emp.get_report()</span><br><span class="line">        signature = report.get(<span class="string">&#x27;signatures&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(signature) &gt; <span class="number">0</span>:</span><br><span class="line">            count += <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(signature)):</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;邮件名为：&quot;</span>+filename+<span class="string">&quot;，检测出的恶意行为是：&quot;</span>+signature[index][<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;恶意邮件的数量是&quot;</span>+<span class="built_in">str</span>(count))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    handle_eml()</span><br></pre></td></tr></table></figure>
+
+<p>没有找到打包好的只能自己写脚本了</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902012227649.png" alt="image-20240902012227649"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">12</span><br></pre></td></tr></table></figure>
+
+<p>25通过检材-数据分析的第4小题分析：犯罪团伙内部使用的财务软件会定期备份数据，请根据已获取到的备份文件4144,根据文件特征，找出其他已被删除的备份文件，并统计其他被删除备份文件的数量是多少？*_（填写数字格式，如：125）</p>
+<p>挂在到本地打开，发现备份文件</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902200334754.png" alt="image-20240902200334754"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902200322781.png" alt="image-20240902200322781"></p>
+<p>16进制打开，特征应该就是文件头</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902202100331.png" alt="image-20240902202100331"></p>
+<p>使用R-studio进行恢复</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902202134561.png" alt="image-20240902202134561"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902202137268.png" alt="image-20240902202137268"></p>
+<p>随便打开一个恢复好的文件，发现符合特征</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902202201555.png" alt="image-20240902202201555"></p>
+<p>写脚本跑一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">folder_path = <span class="string">&quot;./&quot;</span>  <span class="comment"># 文件夹路径</span></span><br><span class="line">target_header = <span class="string">b&quot;\x6B\x6B\x64\x61&quot;</span>  <span class="comment"># 目标文件头</span></span><br><span class="line"></span><br><span class="line">count = <span class="number">0</span>  <span class="comment"># 计数器</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历文件夹下的文件</span></span><br><span class="line"><span class="keyword">for</span> file_name <span class="keyword">in</span> os.listdir(folder_path):</span><br><span class="line">    file_path = os.path.join(folder_path, file_name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 打开文件并读取前4个字节</span></span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&quot;rb&quot;</span>) <span class="keyword">as</span> file:</span><br><span class="line">            header = file.read(<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;file_path&#125;</span>文件打开失败&quot;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 检查文件头是否匹配目标头</span></span><br><span class="line">    <span class="keyword">if</span> header == target_header:</span><br><span class="line">        count += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;文件夹中文件头为 <span class="subst">&#123;target_header.<span class="built_in">hex</span>().upper()&#125;</span> 的文件数量为: <span class="subst">&#123;count&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902203457151.png" alt="image-20240902203457151"></p>
+<p>感觉wp有些问题，没有考虑到文件特征</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">84</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="手机取证"><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h1><p>16请对综合案例中手机检材进行取证分析，其微信ID为wxid_37rkqq0nwl7f12的好友的微信头像图片的SHA-256值后八位为？*（参考格式如：abcd1234）</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://blog.greycode.top/posts/android-wechat-bak/">https://blog.greycode.top/posts/android-wechat-bak/</a></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902205831749.png" alt="image-20240902205831749"></p>
+<p>计算hash，然后全局进行搜索</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902205855756.png" alt="image-20240902205855756"></p>
+<p>图片的名字应该是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user_269792710d58b6df6e461fec91e25d60.png</span><br></pre></td></tr></table></figure>
+
+<p>进行过滤</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902210125013.png" alt="image-20240902210125013"></p>
+<p>右键计算hash</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902210625807.png" alt="image-20240902210625807"></p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902210749421.png" alt="image-20240902210749421"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0B323E32</span><br></pre></td></tr></table></figure>
+
+<p>17请对综合案例中分析中所有检材进行关联分析，找出涉案人员叶飞的新住所的地址纬度为？（参考格式如：27.12312312312312)<em>_</em></p>
+<p>没有软件不会了，直接贴wp</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902211141806.png" alt="image-20240902211141806"></p>
+<p>18请对综合案例中分析中所有检材进行关联分析，找出涉案人员秦瑞凯的身份证号码为<em>（参考格式如：350203199001010011）</em></p>
+<p>用FTK挂载，用正则表达式搜索</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^[1-9]\d&#123;5&#125;(18|19|([23]\d))\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;3&#125;[0-9Xx]$</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240902212432879.png" alt="image-20240902212432879"></p>
+<p>应该是取证软件解析了聊天工具，从里面找的，没有软件很难做</p>
+<p>直接看答案搜了</p>
+<p><img src="/2024/09/05/Forensics-LiJian-5/image-20240905171156267.png" alt="image-20240905171156267"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">431021198507179871</span><br></pre></td></tr></table></figure>
+
+<p>19请对综合案例中手机检材进行取证分析，找出“有度”APP应用程序”聊天记录数据库密码的加解密算法。*_（参考格式如：ABC#123）</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/WXjzc/p/18335226">https://www.cnblogs.com/WXjzc/p/18335226</a></p>
+<p><em>20请对综合案例中手机检材进行取证分析，找出“有度”APP应用程序”聊天记录数据库解密算法使用的某固定字符串后六位值为？</em>（参考格式如：123456）</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/WXjzc/p/18335226">https://www.cnblogs.com/WXjzc/p/18335226</a></p>
+<p>21请对综合案例中手机检材进行取证分析，找出“如某家”被泄密的2000万条数据交易过程中开价要多少门罗币？*<em>（填写数字格式，参考如：1234）</em></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/WXjzc/p/18335226">https://www.cnblogs.com/WXjzc/p/18335226</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/05/Forensics-LiJian-4/" rel="prev" title="Forensics_LiJian_4">
+      <i class="fa fa-chevron-left"></i> Forensics_LiJian_4
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A1%88%E6%83%85%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">案情简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E8%B4%A8%E5%8F%96%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">介质取证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">数据分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="nav-number">4.</span> <span class="nav-text">手机取证</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kik1"
+      src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+  <p class="site-author-name" itemprop="name">Kik1</p>
+  <div class="site-description" itemprop="description">Keep learning and sharing</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kik1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
