@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="被劫持的神秘礼物某天小明收到了一件很特别的礼物，有奇怪的后缀，奇怪的名字和格式。小明找到了知心姐姐度娘，度娘好像知道这是啥，但是度娘也不知道里面是啥。。。你帮帮小明？找到帐号密码，串在一起，用32位小写MD5哈希一下得到的就是答案。 链接: https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1pwVVpA5_WWY8Og6dhCcWRw 提取码: 31vk 注意：得到的 flag 请包上 flag{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Buuctf_Misc_Page2">
+<meta property="og:url" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/index.html">
+<meta property="og:site_name" content="Kik1&#39;s Blog">
+<meta property="og:description" content="被劫持的神秘礼物某天小明收到了一件很特别的礼物，有奇怪的后缀，奇怪的名字和格式。小明找到了知心姐姐度娘，度娘好像知道这是啥，但是度娘也不知道里面是啥。。。你帮帮小明？找到帐号密码，串在一起，用32位小写MD5哈希一下得到的就是答案。 链接: https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1pwVVpA5_WWY8Og6dhCcWRw 提取码: 31vk 注意：得到的 flag 请包上 flag{">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829131414618.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829131638074.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829132153176.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829132204058.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829132253058.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829132707837.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829133126409.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829133137079.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829133715256.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829133724926.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829134056556.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829134118683.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829134231545.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829134350423.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829135014588.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829135028009.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829135152473.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829141952114.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829142946012.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829141936151.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829143200353.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829143211008.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829143340615.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829143421682.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829144638623.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829144806350.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829150123533.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829150241937.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829160633549.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829160654889.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829160946245.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161026336.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161125918.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161419616.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161605165.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161631476.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161713278.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161834760.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829161915286.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829162046603.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829162643659.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829162858893.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163142817.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163505952.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163453789.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163556944.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163811212.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163753237.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163824302.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829163854982.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904211736282.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904211906425.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904211707190.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904212218434.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904212138502.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904212858692.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904213334240.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904213515961.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904213531386.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904213712767.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904213840730.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904213810492.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904214142758.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904214345095.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904214415094.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904215125543.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904215226683.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904222705104.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904215406193.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904215604421.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904220029063.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904221033118.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904220525995.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904222956037.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904223112179.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904223237781.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904223346790.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/1.gif">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904223959000.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904223920546.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904224848147.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904225124872.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904225230843.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904225350359.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904225502355.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904225718225.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904225731407.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904225815417.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904230847557.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904231107683.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904232014712.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904231255256.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904232144628.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904232227331.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904232303068.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240904232338059.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905102247485.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905102053187.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905102355084.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905102420397.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905103240614.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905104109512.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905104156952.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905104530325.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905104649541.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905104823236.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905105225894.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905105437681.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905105656052.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905110030105.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905110342800.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905110518850.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905110634390.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905111113516.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905111125633.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905111502791.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905111437823.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905112636390.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113051196.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113037627.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113225402.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113414425.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113612564.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113638107.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113826884.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905113914580.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905114221384.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905115857885.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905144031127.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905144156133.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905144715558.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905144934675.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905145141652.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905145414127.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905145513046.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905145620220.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905145751306.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905145903473.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905145922595.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905151131965.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905151308478.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905151432097.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905151504176.png">
+<meta property="og:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240905151528420.png">
+<meta property="article:published_time" content="2024-09-05T07:29:29.000Z">
+<meta property="article:modified_time" content="2024-09-05T07:31:02.827Z">
+<meta property="article:author" content="Kik1">
+<meta property="article:tag" content="blog, web development, programming,PenTest,">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/09/05/Buuctf-Misc-Page2/image-20240829131414618.png">
+
+<link rel="canonical" href="http://example.com/2024/09/05/Buuctf-Misc-Page2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Buuctf_Misc_Page2 | Kik1's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kik1's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/09/05/Buuctf-Misc-Page2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+      <meta itemprop="name" content="Kik1">
+      <meta itemprop="description" content="Keep learning and sharing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kik1's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Buuctf_Misc_Page2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-09-05 15:29:29 / 修改时间：15:31:02" itemprop="dateCreated datePublished" datetime="2024-09-05T15:29:29+08:00">2024-09-05</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="被劫持的神秘礼物"><a href="#被劫持的神秘礼物" class="headerlink" title="被劫持的神秘礼物"></a>被劫持的神秘礼物</h1><p>某天小明收到了一件很特别的礼物，有奇怪的后缀，奇怪的名字和格式。小明找到了知心姐姐度娘，度娘好像知道这是啥，但是度娘也不知道里面是啥。。。你帮帮小明？找到帐号密码，串在一起，用32位小写MD5哈希一下得到的就是答案。 链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1pwVVpA5_WWY8Og6dhCcWRw">https://pan.baidu.com/s/1pwVVpA5_WWY8Og6dhCcWRw</a> 提取码: 31vk 注意：得到的 flag 请包上 flag{} 提交</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829131414618.png" alt="image-20240829131414618"></p>
+<p>看到了用户名和密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829131638074.png" alt="image-20240829131638074"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;21232f297a57a5a743894a0e4a801fc3&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="BJDCTF2020-认真你就输了"><a href="#BJDCTF2020-认真你就输了" class="headerlink" title="[BJDCTF2020]认真你就输了"></a>[BJDCTF2020]认真你就输了</h1><p>解压</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829132153176.png" alt="image-20240829132153176"></p>
+<p>发现是个压缩包</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829132204058.png" alt="image-20240829132204058"></p>
+<p>改后缀解压，发现解压之后符合word的格式</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829132253058.png" alt="image-20240829132253058"></p>
+<p>直接开搜</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829132707837.png" alt="image-20240829132707837"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;M9eVfi2Pcs#&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="被偷走的文件"><a href="#被偷走的文件" class="headerlink" title="被偷走的文件"></a>被偷走的文件</h1><p>一黑客入侵了某公司盗取了重要的<strong>机密文件</strong>，还好管理员记录了文件被盗走时的流量，请分析该流量，分析出该黑客盗走了什么文件。 注意：得到的 flag 请包上 flag{} 提交</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829133126409.png" alt="image-20240829133126409"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829133137079.png" alt="image-20240829133137079"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829133715256.png" alt="image-20240829133715256"></p>
+<p>导出</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829133724926.png" alt="image-20240829133724926"></p>
+<p>解压发现加密了，去流量包里找了找没有发现密码，直接爆破</p>
+<p><strong>爆破了半天没想到是四位数的爆破</strong></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829134056556.png" alt="image-20240829134056556"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829134118683.png" alt="image-20240829134118683"></p>
+<h1 id="BJDCTF2020-藏藏藏"><a href="#BJDCTF2020-藏藏藏" class="headerlink" title="[BJDCTF2020]藏藏藏"></a>[BJDCTF2020]藏藏藏</h1><p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829134231545.png" alt="image-20240829134231545"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829134350423.png" alt="image-20240829134350423"></p>
+<p>解压拿到</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829135014588.png" alt="image-20240829135014588"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829135028009.png" alt="image-20240829135028009"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829135152473.png" alt="image-20240829135152473"></p>
+<h1 id="GXYCTF2019-佛系青年1"><a href="#GXYCTF2019-佛系青年1" class="headerlink" title="[GXYCTF2019]佛系青年1"></a>[GXYCTF2019]佛系青年1</h1><p>直接解压需要密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829141952114.png" alt="image-20240829141952114"></p>
+<p>看看是不是伪加密，注意压缩文件中还有压缩文件的工具不太好自动化识别zip文件数据区的加密标志位</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829142946012.png" alt="image-20240829142946012"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829141936151.png" alt="image-20240829141936151"></p>
+<p>查看fo.txt</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829143200353.png" alt="image-20240829143200353"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829143211008.png" alt="image-20240829143211008"></p>
+<h1 id="BJDCTF2020-你猜我是个啥"><a href="#BJDCTF2020-你猜我是个啥" class="headerlink" title="[BJDCTF2020]你猜我是个啥"></a>[BJDCTF2020]你猜我是个啥</h1><p>拿到zip压缩文件，16进制查看发现是png</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829143340615.png" alt="image-20240829143340615"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829143421682.png" alt="image-20240829143421682"></p>
+<h1 id="刷新过的图片"><a href="#刷新过的图片" class="headerlink" title="刷新过的图片"></a>刷新过的图片</h1><p>浏览图片的时候刷新键有没有用呢 注意：得到的 flag 请包上 flag{} 提交</p>
+<p>没看懂什么意思，直接看WP了</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829144638623.png" alt="image-20240829144638623"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829144806350.png" alt="image-20240829144806350"></p>
+<p>工具需要在jdk8的版本下运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java Extract D:\Downloads\a05ed035-b476-49d6-9b32-462ff13c5944\Misc.jpg</span><br></pre></td></tr></table></figure>
+
+<p>i<img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829150123533.png" alt="image-20240829150123533"></p>
+<p>拿到txt文件，打开发现是zip文件，伪加密修复解压</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829150241937.png" alt="image-20240829150241937"></p>
+<h1 id="秘密文件"><a href="#秘密文件" class="headerlink" title="秘密文件"></a>秘密文件</h1><p>深夜里，Hack偷偷的潜入了某公司的内网，趁着深夜偷走了公司的秘密文件，公司的网络管理员通过通过监控工具成功的截取Hack入侵时数据流量，但是却无法分析出Hack到底偷走了什么机密文件，你能帮帮管理员分析出Hack到底偷走了什么机密文件吗？ 注意：得到的 flag 请包上 flag{} 提交</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829160633549.png" alt="image-20240829160633549"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829160654889.png" alt="image-20240829160654889"></p>
+<p>foremost分离，或者是自己一点一点找</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829160946245.png" alt="image-20240829160946245"></p>
+<p>需要密码，尝试使用4位数字爆破</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161026336.png" alt="image-20240829161026336"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161125918.png" alt="image-20240829161125918"></p>
+<h1 id="snake"><a href="#snake" class="headerlink" title="snake"></a>snake</h1><p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161419616.png" alt="image-20240829161419616"></p>
+<p>分离一下</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161605165.png" alt="image-20240829161605165"></p>
+<p>解压拿到一个cipher一个key</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161631476.png" alt="image-20240829161631476"></p>
+<p>key：</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161713278.png" alt="image-20240829161713278"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161834760.png" alt="image-20240829161834760"></p>
+<p>应该是一个密钥</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Anaconda</span><br></pre></td></tr></table></figure>
+
+<p>但是不知道是什么加密算法，看wp了</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829161915286.png" alt="image-20240829161915286"></p>
+<p><a target="_blank" rel="noopener" href="http://serpent.online-domain-tools.com/">Serpent Encryption – Easily encrypt or decrypt strings or files (online-domain-tools.com)</a></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829162046603.png" alt="image-20240829162046603"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;who_knew_serpent_cipher_existed&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="BJDCTF2020-鸡你太美"><a href="#BJDCTF2020-鸡你太美" class="headerlink" title="[BJDCTF2020]鸡你太美"></a>[BJDCTF2020]鸡你太美</h1><p>解压</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829162643659.png" alt="image-20240829162643659"></p>
+<p>分帧篮球没有看到信息</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829162858893.png" alt="image-20240829162858893"></p>
+<p>发现副本文件少了文件头</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163142817.png" alt="image-20240829163142817"></p>
+<p>修复一下</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163505952.png" alt="image-20240829163505952"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163453789.png" alt="image-20240829163453789"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163556944.png" alt="image-20240829163556944"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;zhi_yin_you_are_beautiful&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="BJDCTF2020-just-a-rar"><a href="#BJDCTF2020-just-a-rar" class="headerlink" title="[BJDCTF2020]just_a_rar"></a>[BJDCTF2020]just_a_rar</h1><p>解压得到</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163811212.png" alt="image-20240829163811212"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163753237.png" alt="image-20240829163753237"></p>
+<p>解压</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163824302.png" alt="image-20240829163824302"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240829163854982.png" alt="image-20240829163854982"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Wadf_123&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="菜刀666"><a href="#菜刀666" class="headerlink" title="菜刀666"></a>菜刀<strong>666</strong></h1><p>流7，看到了上传文件提取一下</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904211736282.png" alt="image-20240904211736282"></p>
+<p>JPEG (jpg)文件头：FFD8FF  文件尾：FF D9 ,数据正好符合流量</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904211906425.png" alt="image-20240904211906425"></p>
+<p>可以看到上传成功了</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904211707190.png" alt="image-20240904211707190"></p>
+<p>复制16进制输入到txt文件，使用010导入</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904212218434.png" alt="image-20240904212218434"></p>
+<p>拿到一个密码尝试提交失败，很有可能上面看到压缩包的密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904212138502.png" alt="image-20240904212138502"></p>
+<blockquote>
+<p>Th1s_1s_p4sswd_!!!</p>
+</blockquote>
+<p>流量九下载了压缩包</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904212858692.png" alt="image-20240904212858692"></p>
+<p>提取压缩包，用上面密码解压</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904213334240.png" alt="image-20240904213334240"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;3OpWdJ-JP6FzK-koCMAK-VkfWBq-75Un2z&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="BJDCTF2020-一叶障目"><a href="#BJDCTF2020-一叶障目" class="headerlink" title="[BJDCTF2020]一叶障目"></a>[BJDCTF2020]一叶障目</h1><p>宽高有问题，一把梭</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904213515961.png" alt="image-20240904213515961"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904213531386.png" alt="image-20240904213531386"></p>
+<h1 id="SWPU2019-神奇的二维码"><a href="#SWPU2019-神奇的二维码" class="headerlink" title="[SWPU2019]神奇的二维码"></a>[SWPU2019]神奇的二维码</h1><p>拿到一张二维码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904213712767.png" alt="image-20240904213712767"></p>
+<p>直接扫码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904213840730.png" alt="image-20240904213840730"></p>
+<p>好像藏了东西</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904213810492.png" alt="image-20240904213810492"></p>
+<p>手动分离一下</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904214142758.png" alt="image-20240904214142758"></p>
+<p>提取压缩包解压拿到了一个txt文件，base64解码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904214345095.png" alt="image-20240904214345095"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904214415094.png" alt="image-20240904214415094"></p>
+<blockquote>
+<p>asdfghjkl1234567890</p>
+</blockquote>
+<p>想起来binwalk分析出了三个压缩包</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904215125543.png" alt="image-20240904215125543"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwalk -e BitcoinPay.png --run-as=root</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904215226683.png" alt="image-20240904215226683"></p>
+<p>用密码解压，看看flag在不在里面^_^压缩包，得到一个图片</p>
+<p>这里面什么都没有，就是单纯的图片，什么都没有隐写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">stegdetect.exe -t jopi flag.jpg</span><br><span class="line">−t tests</span><br><span class="line">Sets the tests that are being run on the image. The following characters are understood:</span><br><span class="line">j Tests if information has been embedded with jsteg.</span><br><span class="line">o Tests if information has been embedded with outguess.</span><br><span class="line">p Tests if information has been embedded with jphide.</span><br><span class="line">i Tests if information has been hidden with invisible secrets.</span><br><span class="line">The default value is jopi.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904222705104.png" alt="image-20240904222705104"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904215406193.png" alt="image-20240904215406193"></p>
+<p>解压其他的看到一个word文件，打开</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904215604421.png" alt="image-20240904215604421"></p>
+<p>一大段看着像是base64编码的，解码一次发现还是base64编码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904220029063.png" alt="image-20240904220029063"></p>
+<p>又试了几次发现应该是base64编码了很多次，写脚本跑一下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line">s=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;easybase-4-现代.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;UTF-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    s=<span class="string">&quot;&quot;</span>.join(f.readlines()).encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">src=s</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        src=s</span><br><span class="line">        s=base64.b16decode(s)</span><br><span class="line">        <span class="built_in">str</span>(s,<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        src=s</span><br><span class="line">        s=base64.b32decode(s)</span><br><span class="line">        <span class="built_in">str</span>(s,<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        src=s</span><br><span class="line">        s=base64.b64decode(s)</span><br><span class="line">        <span class="built_in">str</span>(s,<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;321.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file:</span><br><span class="line">    file.write(<span class="built_in">str</span>(src,<span class="string">&#x27;utf-8&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;ok!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>或者用basecrack</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python basecrack.py -m base编码的字符</span><br><span class="line">可以实现多重解码</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904221033118.png" alt="image-20240904221033118"></p>
+<p>拿到密码<code>comEON_YOuAreSOSoS0great</code></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904220525995.png" alt="image-20240904220525995"></p>
+<p>解压18394.rar，解压得到<code>good.mp3</code>，一听很明显就是摩斯电码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904222956037.png" alt="image-20240904222956037"></p>
+<p>粗线条是<code>-</code><br>细线条是<code>.</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-- --- .-. ... . .. ... ...- . .-. -.-- ...- . .-. -.-- . .- ... -.--</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904223112179.png" alt="image-20240904223112179"></p>
+<p>PS：这里有个坑，也不是第一次碰到了，搞不懂为什么摩斯码最后得到的字符都要<code>转小写</code>才能提交正确</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;morseisveryveryeasy&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="BJDCTF2020-纳尼"><a href="#BJDCTF2020-纳尼" class="headerlink" title="[BJDCTF2020]纳尼"></a>[BJDCTF2020]纳尼</h1><p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904223237781.png" alt="image-20240904223237781"></p>
+<p>补齐文件头</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904223346790.png" alt="image-20240904223346790"></p>
+<p>打开</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/1.gif" alt="1"></p>
+<p>stegsolve看一下挨个提取</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904223959000.png" alt="image-20240904223959000"></p>
+<blockquote>
+<p>Q1RGe3dhbmdfYmFvX3FpYW5nX2lzX3NhZH0&#x3D;</p>
+</blockquote>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904223920546.png" alt="image-20240904223920546"></p>
+<h1 id="HBNIS2018-excel破解"><a href="#HBNIS2018-excel破解" class="headerlink" title="[HBNIS2018]excel破解"></a>[HBNIS2018]excel破解</h1><p>直接passware跑一下，发现VBA Password，想起来自己装了一个插件可以破解VBA 密码</p>
+<p>尝试失败，010开搜</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904224848147.png" alt="image-20240904224848147"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CTF&#123;office_easy_cracked&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="HBNIS2018-来题中等的吧"><a href="#HBNIS2018-来题中等的吧" class="headerlink" title="[HBNIS2018]来题中等的吧"></a>[HBNIS2018]来题中等的吧</h1><p>看着可能是莫斯密码或者是二进制转换</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904225124872.png" alt="image-20240904225124872"></p>
+<blockquote>
+<p>.- .-.. .–. …. .- .-.. .- -…</p>
+</blockquote>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904225230843.png" alt="image-20240904225230843"></p>
+<p>转化为小写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;alphalab&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="梅花香之苦寒来"><a href="#梅花香之苦寒来" class="headerlink" title="梅花香之苦寒来"></a>梅花香之苦寒来</h1><p>拿到一张图片</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904225350359.png" alt="image-20240904225350359"></p>
+<p>16进制打开发现后面有一些奇怪的填充</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904225502355.png" alt="image-20240904225502355"></p>
+<p>看到提示</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904225718225.png" alt="image-20240904225718225"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904225731407.png" alt="image-20240904225731407"></p>
+<p>提取除了一个全是坐标的txt文件，结合提示应该是要画图</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904225815417.png" alt="image-20240904225815417"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 处理如下坐标到gnuplot坐标的转换：</span></span><br><span class="line"><span class="comment"># (7, 7)</span></span><br><span class="line"><span class="comment"># (7, 8)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;ascii.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)<span class="keyword">as</span> a:</span><br><span class="line">    a = a.read()</span><br><span class="line">a = a.split()</span><br><span class="line">tem = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(a)):</span><br><span class="line">    tem = a[i]</span><br><span class="line">    tem = tem.lstrip(<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">    tem = tem.rstrip(<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(tem)):</span><br><span class="line">        <span class="keyword">if</span> tem[j] == <span class="string">&#x27;,&#x27;</span>:</span><br><span class="line">            tem = tem[:j]+<span class="string">&#x27; &#x27;</span>+tem[j+<span class="number">1</span>:]</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;gnuplot.txt&#x27;</span>, <span class="string">&#x27;a&#x27;</span>)<span class="keyword">as</span> g:</span><br><span class="line">        g.write(tem+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">    <span class="built_in">print</span>(tem)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904230847557.png" alt="image-20240904230847557"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904231107683.png" alt="image-20240904231107683"></p>
+<h1 id="ACTF新生赛2020-outguess"><a href="#ACTF新生赛2020-outguess" class="headerlink" title="[ACTF新生赛2020]outguess"></a>[ACTF新生赛2020]outguess</h1><p>解压拿到了一个压缩包，解密需要密码尝试伪加密成功解压</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904232014712.png" alt="image-20240904232014712"></p>
+<p>拿到了txt和一个jpg，根据题目提示使用outguess</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904231255256.png" alt="image-20240904231255256"></p>
+<p>安装一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/crorvick/outguess</span><br><span class="line">/configure &amp;&amp; make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>猜测密码是mmm</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k mmm -r mmm.jpg -t 22.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904232144628.png" alt="image-20240904232144628"></p>
+<p>查看一下图片，发现社会主义核心价值观编码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904232227331.png" alt="image-20240904232227331"></p>
+<p>解码得到密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904232303068.png" alt="image-20240904232303068"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k abc -r mmm.jpg  -t 22.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240904232338059.png" alt="image-20240904232338059"></p>
+<h1 id="谁赢了比赛？"><a href="#谁赢了比赛？" class="headerlink" title="谁赢了比赛？"></a>谁赢了比赛？</h1><p>小光非常喜欢下围棋。一天，他找到了一张棋谱，但是看不出到底是谁赢了。你能帮他看看到底是谁赢了么？ 注意：得到的 flag 请包上 flag{} 提交</p>
+<p>发现png里面有压缩包</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905102247485.png" alt="image-20240905102247485"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905102053187.png" alt="image-20240905102053187"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">binwalk -e who_won_the_game.png --run-as=root</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905102355084.png" alt="image-20240905102355084"></p>
+<p>解压需要密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905102420397.png" alt="image-20240905102420397"></p>
+<p><code>flag.txt</code>没有加密，<code>hehe.gif</code>被加密了</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905103240614.png" alt="image-20240905103240614"></p>
+<p>题目提示谁赢了比赛？，尝试解压密码为black和white，解压失败，直接爆破</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905104109512.png" alt="image-20240905104109512"></p>
+<p>得到gif图片，分帧看一下</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905104156952.png" alt="image-20240905104156952"></p>
+<p>一点一点看，保存这一帧</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905104530325.png" alt="image-20240905104530325"></p>
+<p>再用stegsolve打开发现二维码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905104649541.png" alt="image-20240905104649541"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905104823236.png" alt="image-20240905104823236"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;shanxiajingwu_won_the_game&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="穿越时空的思念"><a href="#穿越时空的思念" class="headerlink" title="穿越时空的思念"></a>穿越时空的思念</h1><p>嫦娥当年奔月后，非常后悔，因为月宫太冷清，她想：早知道让后羿自己上来了，带了只兔子真是不理智。于是她就写了一首曲子，诉说的是怀念后羿在的日子。无数年后，小明听到了这首曲子，毅然决定冒充后羿。然而小明从曲子中听不出啥来，咋办。。（该题目为小写的32位字符，提交即可） 注意：得到的 flag 请包上 flag{} 提交</p>
+<p>直接听，听到了莫斯密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905105225894.png" alt="image-20240905105225894"></p>
+<p>第一段 提取一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">..-. ----- ..--- ----. -... -.. -.... ..-. ..... ..... .---- .---- ...-- ----. . . -.. . -... ---.. . ....- ..... .- .---- --... ..... -... ----- --... ---.. -....</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905105437681.png" alt="image-20240905105437681"></p>
+<blockquote>
+<p>F029BD6F551139EEDEB8E45A175B0786</p>
+</blockquote>
+<p>第二段</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">..-. ----- ..--- ----. -... -.. -.... ..-. .....</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905105656052.png" alt="image-20240905105656052"></p>
+<blockquote>
+<p>F029BD6F5</p>
+</blockquote>
+<p>尝试16进制-》2进制 -》 ascii ，但是失败了，直接提交flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &quot;var_dump(strtolower(&#x27;F029BD6F551139EEDEB8E45A175B0786&#x27;));&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905110030105.png" alt="image-20240905110030105"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f029bd6f551139eedeb8e45a175b0786&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WUSTCTF2020-find-me"><a href="#WUSTCTF2020-find-me" class="headerlink" title="[WUSTCTF2020]find_me"></a>[WUSTCTF2020]find_me</h1><p>盲文解密一下</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905110342800.png" alt="image-20240905110342800"></p>
+<p><a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/wenbenjiami.php?s=mangwen">文本加密为盲文,可自设密码|文本在线加密解密工具 (qqxiuzi.cn)</a></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905110518850.png" alt="image-20240905110518850"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wctf2020&#123;y$0$u_f$1$n$d$_M$e$e$e$e$e&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="SWPU2019-我有一只马里奥"><a href="#SWPU2019-我有一只马里奥" class="headerlink" title="[SWPU2019]我有一只马里奥"></a>[SWPU2019]我有一只马里奥</h1><p>得到一个exe，运行拿到了一个txt</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905110634390.png" alt="image-20240905110634390"></p>
+<p>想到了ntfs隐写，直接用NtfsStreamsEditor2扫描所在文件夹</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905111113516.png" alt="image-20240905111113516"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905111125633.png" alt="image-20240905111125633"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;ddg_is_cute&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="GUET-CTF2019-KO"><a href="#GUET-CTF2019-KO" class="headerlink" title="[GUET-CTF2019]KO"></a>[GUET-CTF2019]KO</h1><p>OK解码</p>
+<p>[Brainfuck&#x2F;Ook! Obfuscation&#x2F;Encoding <a target="_blank" rel="noopener" href="https://www.splitbrain.org/services/ook">splitbrain.org]</a></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905111502791.png" alt="image-20240905111502791"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905111437823.png" alt="image-20240905111437823"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;welcome to CTF&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="ACTF新生赛2020-base64隐写"><a href="#ACTF新生赛2020-base64隐写" class="headerlink" title="[ACTF新生赛2020]base64隐写"></a>[ACTF新生赛2020]base64隐写</h1><p>直接用b神的工具，一把梭了</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905112636390.png" alt="image-20240905112636390"></p>
+<p>跑脚本也行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br></pre></td><td class="code"><pre><span class="line">d = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">STJsdVkyeDFaR1U4YVc5emRISmxZVzArQ2c9PQ1=</span></span><br><span class="line"><span class="string">STJsdVkyeDFaR1U4YzNSeWFXNW5QZ289DQ==</span></span><br><span class="line"><span class="string">STJsdVkyeDFaR1U4WTNOMGNtbHVaejRLDV==</span></span><br><span class="line"><span class="string">STJsdVkyeDFaR1U4WTNOMFpHbHZQZ289DQ==</span></span><br><span class="line"><span class="string">STJSbFptbHVaU0J0WVhodUlEazVPUW89Dd==</span></span><br><span class="line"><span class="string">Q2c9PQ1=</span></span><br><span class="line"><span class="string">ZFhOcGJtY2dibUZ1WlhOd1lXTmxJSE4wWkRzSw1=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">WTJoaGNpUmpZVnR0WVhodVhTd2dZMkpiYldGNGJsMDdDZz09DU==</span></span><br><span class="line"><span class="string">Q2c9PQ1=</span></span><br><span class="line"><span class="string">YVc1MElHTnRjQ2h6ZEhKcGJtY2dZU3dnYzNSeWFXNW5JR2lwQ2c9PQ2=</span></span><br><span class="line"><span class="string">ZXdvPQ1=</span></span><br><span class="line"><span class="string">SUNBZ3lHbG1LR3V1YzJsNlpTZ3BJRDRnWWk1emFYcGxLQ2twQ2c9PQ3=</span></span><br><span class="line"><span class="string">SUNBZ0lDbWdJb0J5WlhSMWNtNGdNVHNLDb==</span></span><br><span class="line"><span class="string">SUNBZ0lHVnNjMlVnYVdZb1lTNXphWHBsS0NrZ1BDQmlMbk5wZW1Vb0tTa0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0J5WlhSMWNtNGdMVEU3Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHVnNjMlVLDd==</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JtYjNJb2FXNTBJR2tnUFNBd095QnBJRHdnWVM1emFYcGxLQ2s3SUdrckt5a0sN</span></span><br><span class="line"><span class="string">SUNBZ2lDQWdJQ2I3Q2c9PQ2=</span></span><br><span class="line"><span class="string">SUNBZ1lDQWdJQ1FnSUNBZ2FXWW9ZVnRwWFNBOElHSmJhVjBwQ2c9PQ1=</span></span><br><span class="line"><span class="string">SUNBZ0lDYWdJY0FnSUNBZ0lDYWdJSEpsZEhWeWJpYXRNVHNLDY==</span></span><br><span class="line"><span class="string">SUNBZ1lDQWdJQ1FnSUNBZ2FXWW9ZVnRwWFNBK1lHSmJhVjBwQ2c9PQ1=</span></span><br><span class="line"><span class="string">SUNBZ0lDXWdJX0FnSUNBZ0lDXWdJSEpsZEhWeWJpXXhPd289DX==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0I5Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lDdWdJd0J5WlhSMWNtNGdNRHNLDd==</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">ZlFvPQ2=</span></span><br><span class="line"><span class="string">Q2c9PQ1=</span></span><br><span class="line"><span class="string">ZG05cFpDQnlaWE5sZEdFb2MzUnlhVzVuSUdFcENnPT0N</span></span><br><span class="line"><span class="string">ZXdvPQ1=</span></span><br><span class="line"><span class="string">SUNBZ1lHMWxiWE5sZENoallTd3dMSE5wZW1WdlppaGpZU2twT3dvPQ1=</span></span><br><span class="line"><span class="string">SUNBZ2lHWnZjaWhwYm5RZ2FTQTlJREE3SUdrZ1BDQmhMbk5wZW1Vb2tUc2dhU3NyS1FvPQ2=</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JqWVZ0cFhTQTlJR0ZiWVM1emFYcGxLQ2t0TVMxcFhTQXRJQ2N3SnpzSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">ZlFvPQ2=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">ZG05cFpDQnlaWE5sZEdJb2MzUnlhVzVuSUdJcENnPT0N</span></span><br><span class="line"><span class="string">ZXdvPQ3=</span></span><br><span class="line"><span class="string">SUNBZ1lHMWxiWE5sZENoallpd3dMSE5wZW1WdlppaGpZaWtwT3dvPQ1=</span></span><br><span class="line"><span class="string">SUNBZ0lHWnZjaWhwYm5RZ2FTQTlJREE3SUdrZ1BDQmlMbk5wZW1Vb0tUc2dhU3NyS1FvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ1lDQWdJQ1JqWWx1cFhTQTlJR1piWWk1emFYcGxLQ2t1TVMxcFhTQXRJQ2N3SnpzSw1=</span></span><br><span class="line"><span class="string">SUNBZ1lDQWdJQ1F2TDNCeWFXNTBaaWdpSldRaUxHTmlXMmxkS1RzSw1=</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">ZlFvPQ3=</span></span><br><span class="line"><span class="string">Q2c9PQ3=</span></span><br><span class="line"><span class="string">YzNSeWFXNW5JR1ZrWkNoemRISnBibWNnWVN3Z2MzUnlhVzVuSUdJcEx5L2xpcURtczVVSw1=</span></span><br><span class="line"><span class="string">ZXdvPQ2=</span></span><br><span class="line"><span class="string">SUNBZ0lISmxjMlYwWVNoaEtUc3ZMK2FLaXVhdmorUzRnT1M5amVXdG1PZWFoT1d0bCtlc3B1V1BtT2FJa09hVnNPV3RseXpsdWJia3VKVG1pb3JtbGJEbnU0VGxqNDNvdjRmbW5hWGt2ci9rdW83bGtJN3BuYUxrdUkzbGtJemt2WTNtbGJEbm03amxpcUFLDW==</span></span><br><span class="line"><span class="string">SUNBZ0lISmxjMlYwWWloaUtUc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lHWnZjaWhwYm5RZ2FTTTlJREE3SUdrZ1BDTnRZWGh1T3lCcEt5c3BDZz09DT==</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JqWVZ0cFhTQTlJR05oVzJsZElDc2dZMkpiYVYwN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JwWmloallWdHBYU0ErUFNBeUtYc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDTWdJT0FnSUNBZ1kyRmJhU3N4WFNBclBTTXhPd289DT==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ1kyRmJhVjBnTFQwZ01qc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0I5Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">SUNBZ0lHSnZiMndnWm14aFp5QTlJSFJ5ZFdVN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ3lITjBjbWx1WnlCaklEMGdJaUk3Q2c9PQ3=</span></span><br><span class="line"><span class="string">SUNBZ0lHWnZjaWhwYm5RZ2FTQTlJRzFoZUc0Z0xTQXhPeUJwSUQ0OUlEQTdJR2t0TFNrSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JwWmlobWJHRm5JQ1ltSUdOaFcybGRJRDA5SURBcENnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ1kyOXVkR2x1ZFdVN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JwWmloallWdHBYU0FoUFNBd0tRbz0N</span></span><br><span class="line"><span class="string">SUNBZ0lDcWdJc0FnSUNBZ1pteGhaeUE5SUdaaGJITmxPd289Dc==</span></span><br><span class="line"><span class="string">SUNBZ2lDQWdJQ2JqSUNzOUlDaGpZVnRwWFNBcklDY3dKeWs3Q2c9PQ2=</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0F2TDNCeWFXNTBaaWdpSldRaUxHTmhXMmxkS1RzSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">SUNBZ0lHbG1LR1pzWVdjcENnPT0N</span></span><br><span class="line"><span class="string">SUNBZ1lDQWdJQ1J5WlhSMWNtNGdJakFpT3dvPQ1=</span></span><br><span class="line"><span class="string">SUNBZ0lHVnNjMlVLDX==</span></span><br><span class="line"><span class="string">SUNBZ0lDdWdJd0J5WlhSMWNtNGdZenNLDd==</span></span><br><span class="line"><span class="string">ZlFvPQ0=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">YzNSeWFXNW5JRzFwYm5Vb2MzUnlhVzVuSUdFc0lITjBjbWx1WnlCaUtTOHY1WWVQNXJPVkNnPT0N</span></span><br><span class="line"><span class="string">ZXdvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHbHVkQ0J6YVdkdUlEMGdNRHNLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lHbG1LR050Y0NoaExDQmlLU0E5UFNBdE1Ta3ZMMkhrdUszbHVwVG9yNlhsclpqb3ZvUGxwS2ZubW9UcGdxUGt1S3JtbGJBSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0J6YVdkdUlEMGdNVHNLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0J6ZEhKcGJtY2dkR1Z0Y0NBOUlHRTdDZz09DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JoSUQwZ1lqc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JpSUQwZ2RHVnRjRHNLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">SUNBZ0lISmxjMlYwWVNoaEtUc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lISmxjMlYwWWloaUtUc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lHWnZjaWhwYm5RZ2FTQTlJREE3SUdrZ1BDQnRZWGh1T3lCcEt5c3BDZz09DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JwWmloallWdHBYU0E4SUdOaVcybGRLWHNLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ1kyRmJhU3N4WFNBdFBTQXhPd289DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ1kyRmJhVjBnS3owZ01qc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0I5Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JqWVZ0cFhTQTlJR05oVzJsZElDMGdZMkpiYVYwN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">SUNBZ0lHSnZiMndnWm14aFp5QTlJSFJ5ZFdVN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCa0lEMGdJaUk3Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHWnZjaWhwYm5RZ2FTQTlJRzFoZUc0Z0xTQXhPeUJwSUQ0OUlEQTdJR2t0TFNrSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JwWmlobWJHRm5JQ1ltSUdOaFcybGRJRDA5SURBcENnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ1kyOXVkR2x1ZFdVN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JwWmloallWdHBYU0FoUFNBd0tRbz0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ1pteGhaeUE5SUdaaGJITmxPd289DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JrSUNzOUlDaGpZVnRwWFNBcklDY3dKeWs3Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0F2TDNCeWFXNTBaaWdpSldRaUxHTmhXMmxkS1RzSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">SUNBZ0lHbG1LR1pzWVdjcENnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0J5WlhSMWNtNGdJakFpT3dvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHVnNjMlVLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0J5WlhSMWNtNGdaRHNLDQ==</span></span><br><span class="line"><span class="string">ZlFvPQ0=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">YzNSeWFXNW5JRzExYkNoemRISnBibWNnZUN3Z2MzUnlhVzVuSUhrcEx5OXo1TGk2NTZ5bTVZKzM1TDJOQ2c9PQ0=</span></span><br><span class="line"><span class="string">ZXdvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHbHVkQ0JzWlc1NElEMGdlQzV6YVhwbEtDazdDZz09DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lHbHVkQ0JzWlc1NUlEMGdlUzV6YVhwbEtDazdDZz09DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lHbG1LR3hsYm5nZ1BUMGdNU2tLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lIc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0F2TDJOdmRYUThQSGc4UENJZ0lDQWlQRHg1UER4bGJtUnNPd289DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JwWmloNElEMDlJQ0l4SWlBbUppQjVJRDA5SUNJeElpa0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ2NtVjBkWEp1SUNJeElqc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JsYkhObENnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0FnSUNBZ2NtVjBkWEp1SUNJd0lpQTdDZz09DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lIMEsN</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lDOHZjSEpwYm5SbUtDSWxaQzB0SldSY2JpSXNiR1Z1ZUN4c1pXNTVLVHNLDQ==</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCaExDQmlMQ0JqTEdRN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lHRWdQU0I0TG5OMVluTjBjaWd3TENCc1pXNTRMeklwT3dvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHSWdQU0I0TG5OMVluTjBjaWhzWlc1NEx6SXNJR3hsYm5ndk1pazdDZz09DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lHTWdQU0I1TG5OMVluTjBjaWd3TENCc1pXNTVMeklwT3dvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHUWdQU0I1TG5OMVluTjBjaWhzWlc1NUx6SXNJR3hsYm5rdk1pazdDZz09DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lIQnlhVzUwWmlnaUpXUXRMU1ZrTFMwbFpDMHRKV1F0TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFMwdExTMHRMUzB0TFMwdExTMHRMU1ZrTFNWa1hHNGlMR0V1YzJsNlpTZ3BMQ0JpTG5OcGVtVW9LU3dnWXk1emFYcGxLQ2tzSUdRdWMybDZaU2dwTENCNExuTnBlbVVvS1N3Z2VTNXphWHBsS0NrcE93bz0N</span></span><br><span class="line"><span class="string">SUNBZ0lDOHZZMjkxZER3OGVEdzhJam9pUER4aFBEd2lJQ0k4UEdJOFBDSWdJanc4WXp3OElpQWlQRHhrUER4bGJtUnNPd289DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCaFl5QTlJRzExYkNoaExDQmpLVHNLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCaVpDQTlJRzExYkNoaUxDQmtLVHNLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDOHZZMjkxZER3OGVEdzhJam9pUER4aFl6dzhJaUFpUER4aVpEdzhaVzVrYkRzSw0=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCaFlpQTlJRzFwYm5Vb1lTd2dZaWs3THk5aExXSUsN</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCalpDQTlJRzFwYm5Vb1pDd2dZeWs3Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lDOHZZMjkxZER3OGVEdzhJam9pUER4aFlqdzhJaUFpUER4alpEdzhaVzVrYkRzSw0=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCaFltTmtJRDBnYlhWc0tHRmlMQ0JqWkNrN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDOHZZMjkxZER3OGVEdzhJam9pUER4aFltTmtQRHhsYm1Sc093bz0N</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCbWFYSnpkQ0E5SUdGak93bz0N</span></span><br><span class="line"><span class="string">SUNBZ0lHWnZjaWhwYm5RZ2FTQTlJREE3SUdrZ1BDQW9iR1Z1ZUNrN0lHa3JLeWtLDQ==</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0JtYVhKemRDQXJQU0FpTUNJN0NnPT0N</span></span><br><span class="line"><span class="string">SUNBZ0lDOHZZMjkxZER3OFlXTThQQ0lnTFMwdExTMWhZeTB0TFMwZ0lqdzhabWx5YzNROFBHVnVaR3c3Q2c9PQ0=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCelpXTnZibVFnUFNCaFpHUW9ZV0pqWkN3Z1lXTXBPd289DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lITmxZMjl1WkNBOUlHRmtaQ2h6WldOdmJtUXNJR0prS1RzSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lHWnZjaWhwYm5RZ2FTQTlJREE3SUdrZ1BDQW9iR1Z1ZUM4eUtUc2dhU3NyS1FvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lDQWdJQ0J6WldOdmJtUWdLejBnSWpBaU93bz0N</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCbWFXNGdQU0JoWkdRb1ptbHljM1FzSUhObFkyOXVaQ2s3Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lISmxkSFZ5YmlCaFpHUW9abWx1TENCaVpDazdDZz09DQ==</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">ZlFvPQ0=</span></span><br><span class="line"><span class="string">Q2c9PQ0=</span></span><br><span class="line"><span class="string">YVc1MElHMWhhVzRvZG05cFpDa0sN</span></span><br><span class="line"><span class="string">ZXdvPQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCNExDQjVPd289DQ==</span></span><br><span class="line"><span class="string">SUNBZ0lIQnlhVzUwWmlnaTZLKzM2TDZUNVlXbDVMaWs1TGlxNUxxTTZMK2I1WWkyNXBXdzVhMlhPaUFpS1RzSw0=</span></span><br><span class="line"><span class="string">SUNBZ0lHTnBiajQrZUQ0K2VUc0sN</span></span><br><span class="line"><span class="string">SUNBZ0lITjBjbWx1WnlCaGJuTWdQU0J0ZFd3b2VDd2dlU2s3Q2c9PQ0=</span></span><br><span class="line"><span class="string">SUNBZ0lHTnZkWFE4UEdGdWN6c0sN</span></span><br><span class="line"><span class="string">ZlFvPQ0=</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">e = d.splitlines()  <span class="comment"># splitlines按照行(&#x27;\r&#x27;, &#x27;\r\n&#x27;, \n&#x27;)分隔，返回一个包含各行作为元素的列表</span></span><br><span class="line">binstr = <span class="string">&quot;&quot;</span></span><br><span class="line">base64 = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> e:</span><br><span class="line">    <span class="keyword">if</span> i.find(<span class="string">&quot;==&quot;</span>) &gt; <span class="number">0</span>:</span><br><span class="line">        temp = <span class="built_in">bin</span>((base64.find(i[-<span class="number">3</span>]) &amp; <span class="number">15</span>))[<span class="number">2</span>:]</span><br><span class="line">    <span class="comment"># 取倒数第3个字符，在base64找到对应的索引数（就是编码数），取低4位，再转换为二进制字符</span></span><br><span class="line">        binstr = binstr + <span class="string">&quot;0&quot;</span>*(<span class="number">4</span>-<span class="built_in">len</span>(temp))+temp  <span class="comment"># 二进制字符补高位0后，连接字符到binstr</span></span><br><span class="line">    <span class="keyword">elif</span> i.find(<span class="string">&quot;=&quot;</span>) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="comment"># 取倒数第2个字符，在base64找到对应的索引数（就是编码数），取低2位，再转换为二进制字符</span></span><br><span class="line">        temp = <span class="built_in">bin</span>((base64.find(i[-<span class="number">2</span>]) &amp; <span class="number">3</span>))[<span class="number">2</span>:]</span><br><span class="line">        binstr = binstr + <span class="string">&quot;0&quot;</span>*(<span class="number">2</span>-<span class="built_in">len</span>(temp))+temp  <span class="comment"># 二进制字符补高位0后，连接字符到binstr</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(binstr), <span class="number">8</span>):</span><br><span class="line">    <span class="built_in">str</span> = <span class="built_in">str</span>+<span class="built_in">chr</span>(<span class="built_in">int</span>(binstr[i:i+<span class="number">8</span>], <span class="number">2</span>))  <span class="comment"># 从左到右，每取8位转换为ascii字符，连接字符到字符串</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>)  <span class="comment"># 结果是 Base_sixty_four_point_five转换为</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="GXYCTF2019-gakki"><a href="#GXYCTF2019-gakki" class="headerlink" title="[GXYCTF2019]gakki"></a>[GXYCTF2019]gakki</h1><p>拿到一张图片</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113051196.png" alt="image-20240905113051196"></p>
+<p>提取一下rar</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113037627.png" alt="image-20240905113037627"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113225402.png" alt="image-20240905113225402"></p>
+<p>解压需要密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113414425.png" alt="image-20240905113414425"></p>
+<p>没有提示直接爆破</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113612564.png" alt="image-20240905113612564"></p>
+<p>拿到一个txt，看到了全是乱码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113638107.png" alt="image-20240905113638107"></p>
+<p>没思路了，看一下wp</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113826884.png" alt="image-20240905113826884"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905113914580.png" alt="image-20240905113914580"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GXY&#123;gaki_IsMyw1fe&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="MRCTF2020-ezmisc"><a href="#MRCTF2020-ezmisc" class="headerlink" title="[MRCTF2020]ezmisc"></a>[MRCTF2020]ezmisc</h1><p>宽高有问题</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905114221384.png" alt="image-20240905114221384"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MRCTF&#123;1ts_vEryyyyyy_ez!&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="SUCTF2018-single-dog"><a href="#SUCTF2018-single-dog" class="headerlink" title="[SUCTF2018]single dog"></a>[SUCTF2018]single dog</h1><p>分析一下</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905115857885.png" alt="image-20240905115857885"></p>
+<p>拿到了一个压缩包，解压出一个txt</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905144031127.png" alt="image-20240905144031127"></p>
+<p>颜文字解码<a target="_blank" rel="noopener" href="https://www.a.tools/Tool.php?Id=174">AAEncode - A.Tools</a></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905144156133.png" alt="image-20240905144156133"></p>
+<blockquote>
+<p>function a()<br>{<br>var a&#x3D;”SUCTF{happy double eleven}”;<br>alert(“双十一快乐”);<br>}<br>a();</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SUCTF&#123;happy double eleven&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="HBNIS2018-caesar"><a href="#HBNIS2018-caesar" class="headerlink" title="[HBNIS2018]caesar"></a>[HBNIS2018]caesar</h1><blockquote>
+<p>题目：caesar</p>
+<p>描述：gmbhjtdbftbs</p>
+<p>flag格式：XXX 明文</p>
+<p>提交：直接提交明文 （小写）</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt</span>(<span class="params">ciphertext, shift</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;移位解密函数&quot;&quot;&quot;</span></span><br><span class="line">    plaintext = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> ciphertext:</span><br><span class="line">        <span class="keyword">if</span> char.isalpha():  <span class="comment"># 如果是字母，进行移位解密</span></span><br><span class="line">            <span class="keyword">if</span> char.isupper():</span><br><span class="line">                plaintext += <span class="built_in">chr</span>((<span class="built_in">ord</span>(char) - shift - <span class="number">65</span>) %</span><br><span class="line">                                 <span class="number">26</span> + <span class="number">65</span>)  <span class="comment"># 大写字母移位解密</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                plaintext += <span class="built_in">chr</span>((<span class="built_in">ord</span>(char) - shift - <span class="number">97</span>) %</span><br><span class="line">                                 <span class="number">26</span> + <span class="number">97</span>)  <span class="comment"># 小写字母移位解密</span></span><br><span class="line">        <span class="keyword">else</span>:  <span class="comment"># 如果不是字母，直接输出</span></span><br><span class="line">            plaintext += char</span><br><span class="line">    <span class="keyword">return</span> plaintext</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加密密文和移位数</span></span><br><span class="line">ciphertext = <span class="string">&#x27;gmbhjtdbftbs&#x27;</span></span><br><span class="line">shift = <span class="number">3</span></span><br><span class="line">ciphertext = ciphertext.lower()</span><br><span class="line"><span class="comment"># 小写易于观察</span></span><br><span class="line"><span class="comment"># 枚举所有可能的移位数，输出所有解密结果</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">26</span>):</span><br><span class="line">    plaintext = decrypt(ciphertext, i)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;%d %s&quot;</span> % (i, plaintext))</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905144715558.png" alt="image-20240905144715558"></p>
+<h1 id="HBNIS2018-低个头"><a href="#HBNIS2018-低个头" class="headerlink" title="[HBNIS2018]低个头"></a>[HBNIS2018]低个头</h1><p>描述：EWAZX RTY TGB IJN IO KL 请破解该密文 </p>
+<p>flag格式：XXX 明文</p>
+<p>提交：直接提交明文（大写）</p>
+<p>看不懂，太抽象了，看wp吧</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905144934675.png" alt="image-20240905144934675"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;CTF&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="黑客帝国"><a href="#黑客帝国" class="headerlink" title="黑客帝国"></a>黑客帝国</h1><p>Jack很喜欢看黑客帝国电影，一天他正在上网时突然发现屏幕不受控制，出现了很多数据再滚屏，结束后留下了一份神秘的数据文件，难道这是另一个世界给Jack留下的信息？聪明的你能帮Jack破解这份数据的意义吗？ 注意：得到的 flag 请包上 flag{} 提交</p>
+<p>导入010，解压需要密码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905145141652.png" alt="image-20240905145141652"></p>
+<p>没有密码提示直接爆破</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905145414127.png" alt="image-20240905145414127"></p>
+<p>解压得到一张图片，16进制打开</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905145513046.png" alt="image-20240905145513046"></p>
+<p>查看文件尾发现是jpg，修改文件头打开</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905145620220.png" alt="image-20240905145620220"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905145751306.png" alt="image-20240905145751306"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;57cd4cfd4e07505b98048ca106132125&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="SWPU2019-伟大的侦探"><a href="#SWPU2019-伟大的侦探" class="headerlink" title="[SWPU2019]伟大的侦探"></a>[SWPU2019]伟大的侦探</h1><p>解压密码没有加密，misc文件夹加密了</p>
+<h3 id><a href="#" class="headerlink" title></a><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905145903473.png" alt="image-20240905145903473"></h3><p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905145922595.png" alt="image-20240905145922595"></p>
+<p>不知道用什么编码打开，看一下wp</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905151131965.png" alt="image-20240905151131965"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905151308478.png" alt="image-20240905151308478"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905151432097.png" alt="image-20240905151432097"></p>
+<blockquote>
+<p>wllm_is_the_best_team!</p>
+</blockquote>
+<p>跳舞小人解码</p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905151504176.png" alt="image-20240905151504176"></p>
+<p><img src="/2024/09/05/Buuctf-Misc-Page2/image-20240905151528420.png" alt="image-20240905151528420"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;iloveholmesandwllm&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/05/Buuctf-Misc-Page1/" rel="prev" title="Buuctf_Misc_Page1">
+      <i class="fa fa-chevron-left"></i> Buuctf_Misc_Page1
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A2%AB%E5%8A%AB%E6%8C%81%E7%9A%84%E7%A5%9E%E7%A7%98%E7%A4%BC%E7%89%A9"><span class="nav-number">1.</span> <span class="nav-text">被劫持的神秘礼物</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF2020-%E8%AE%A4%E7%9C%9F%E4%BD%A0%E5%B0%B1%E8%BE%93%E4%BA%86"><span class="nav-number">2.</span> <span class="nav-text">[BJDCTF2020]认真你就输了</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A2%AB%E5%81%B7%E8%B5%B0%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">被偷走的文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF2020-%E8%97%8F%E8%97%8F%E8%97%8F"><span class="nav-number">4.</span> <span class="nav-text">[BJDCTF2020]藏藏藏</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GXYCTF2019-%E4%BD%9B%E7%B3%BB%E9%9D%92%E5%B9%B41"><span class="nav-number">5.</span> <span class="nav-text">[GXYCTF2019]佛系青年1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF2020-%E4%BD%A0%E7%8C%9C%E6%88%91%E6%98%AF%E4%B8%AA%E5%95%A5"><span class="nav-number">6.</span> <span class="nav-text">[BJDCTF2020]你猜我是个啥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E8%BF%87%E7%9A%84%E5%9B%BE%E7%89%87"><span class="nav-number">7.</span> <span class="nav-text">刷新过的图片</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A7%98%E5%AF%86%E6%96%87%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">秘密文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#snake"><span class="nav-number">9.</span> <span class="nav-text">snake</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF2020-%E9%B8%A1%E4%BD%A0%E5%A4%AA%E7%BE%8E"><span class="nav-number">10.</span> <span class="nav-text">[BJDCTF2020]鸡你太美</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF2020-just-a-rar"><span class="nav-number">11.</span> <span class="nav-text">[BJDCTF2020]just_a_rar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8F%9C%E5%88%80666"><span class="nav-number">12.</span> <span class="nav-text">菜刀666</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF2020-%E4%B8%80%E5%8F%B6%E9%9A%9C%E7%9B%AE"><span class="nav-number">13.</span> <span class="nav-text">[BJDCTF2020]一叶障目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SWPU2019-%E7%A5%9E%E5%A5%87%E7%9A%84%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="nav-number">14.</span> <span class="nav-text">[SWPU2019]神奇的二维码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BJDCTF2020-%E7%BA%B3%E5%B0%BC"><span class="nav-number">15.</span> <span class="nav-text">[BJDCTF2020]纳尼</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HBNIS2018-excel%E7%A0%B4%E8%A7%A3"><span class="nav-number">16.</span> <span class="nav-text">[HBNIS2018]excel破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HBNIS2018-%E6%9D%A5%E9%A2%98%E4%B8%AD%E7%AD%89%E7%9A%84%E5%90%A7"><span class="nav-number">17.</span> <span class="nav-text">[HBNIS2018]来题中等的吧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A2%85%E8%8A%B1%E9%A6%99%E4%B9%8B%E8%8B%A6%E5%AF%92%E6%9D%A5"><span class="nav-number">18.</span> <span class="nav-text">梅花香之苦寒来</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-outguess"><span class="nav-number">19.</span> <span class="nav-text">[ACTF新生赛2020]outguess</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%81%E8%B5%A2%E4%BA%86%E6%AF%94%E8%B5%9B%EF%BC%9F"><span class="nav-number">20.</span> <span class="nav-text">谁赢了比赛？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A9%BF%E8%B6%8A%E6%97%B6%E7%A9%BA%E7%9A%84%E6%80%9D%E5%BF%B5"><span class="nav-number">21.</span> <span class="nav-text">穿越时空的思念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WUSTCTF2020-find-me"><span class="nav-number">22.</span> <span class="nav-text">[WUSTCTF2020]find_me</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SWPU2019-%E6%88%91%E6%9C%89%E4%B8%80%E5%8F%AA%E9%A9%AC%E9%87%8C%E5%A5%A5"><span class="nav-number">23.</span> <span class="nav-text">[SWPU2019]我有一只马里奥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GUET-CTF2019-KO"><span class="nav-number">24.</span> <span class="nav-text">[GUET-CTF2019]KO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ACTF%E6%96%B0%E7%94%9F%E8%B5%9B2020-base64%E9%9A%90%E5%86%99"><span class="nav-number">25.</span> <span class="nav-text">[ACTF新生赛2020]base64隐写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GXYCTF2019-gakki"><span class="nav-number">26.</span> <span class="nav-text">[GXYCTF2019]gakki</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MRCTF2020-ezmisc"><span class="nav-number">27.</span> <span class="nav-text">[MRCTF2020]ezmisc</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SUCTF2018-single-dog"><span class="nav-number">28.</span> <span class="nav-text">[SUCTF2018]single dog</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HBNIS2018-caesar"><span class="nav-number">29.</span> <span class="nav-text">[HBNIS2018]caesar</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HBNIS2018-%E4%BD%8E%E4%B8%AA%E5%A4%B4"><span class="nav-number">30.</span> <span class="nav-text">[HBNIS2018]低个头</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%BB%91%E5%AE%A2%E5%B8%9D%E5%9B%BD"><span class="nav-number">31.</span> <span class="nav-text">黑客帝国</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SWPU2019-%E4%BC%9F%E5%A4%A7%E7%9A%84%E4%BE%A6%E6%8E%A2"><span class="nav-number">32.</span> <span class="nav-text">[SWPU2019]伟大的侦探</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">32.0.1.</span> <span class="nav-text"></span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kik1"
+      src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+  <p class="site-author-name" itemprop="name">Kik1</p>
+  <div class="site-description" itemprop="description">Keep learning and sharing</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kik1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
