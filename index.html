@@ -148,6 +148,544 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+      <meta itemprop="name" content="Kik1">
+      <meta itemprop="description" content="Keep learning and sharing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kik1's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/" class="post-title-link" itemprop="url">2024FIC总决赛wp(不完整版)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-10-12 22:08:38 / 修改时间：22:09:31" itemprop="dateCreated datePublished" datetime="2024-10-12T22:08:38+08:00">2024-10-12</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h1><p>wp不全，部分答案可能不正确，只是个人比赛复盘使用</p>
+<p>如需更加详细的wp可以参考—<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/wW-aMUwtI6rHn0OnqBD3iQ%EF%BC%8C%E6%96%87%E7%AB%A0%E5%86%99%E7%9A%84%E9%9D%9E%E5%B8%B8%E8%AF%A6%E7%BB%86%EF%BC%81">https://mp.weixin.qq.com/s/wW-aMUwtI6rHn0OnqBD3iQ，文章写的非常详细！</a></p>
+<h1 id="案情简介"><a href="#案情简介" class="headerlink" title="案情简介"></a>案情简介</h1><p>案件背景: 2024年3月15日凌晨,受害人短视频平台上看到一段近期火爆的交通事故视频，留言后有人通过私信联系，称有一个赚大钱的机会，该人自称<strong>李某</strong>，提议让他到他们<strong>平台充值做代理</strong>；最终受害人发现自己被卷入了一个复杂的网络<strong>传销犯罪活动</strong>中，从而报案。 经过一段时间的侦查，2023年3月25日，警方最终锁定了”lalala李”网络水军团伙的<strong>技术人员卢某</strong>，一举拿下了卢某的住所；当天 上午,警方开始对卢某某的个人计算机进行现场勘验。在管理工具历史记录中,发现了<strong>大量访问某个PVE云服务器</strong>控制台的记录。初步判断该云服务器可能为该团伙<strong>网络引流的主要平台</strong>。 经过进一步追查,警方发现该PVE云服务器租用于某知名云服务商,服务器上运行着数个不同的虚拟机实例；平台通过虚拟软件<strong>模拟多部手机</strong>,利用网络水军的力量在各大平台发布伪造的图片传播负面新闻,引流受害者加入平台。 在深入分析虚拟机镜像后，警方终于发现这些虚拟机背后运行着一个<strong>复杂的网络传销平台</strong>！最终,警方展开了一场声势浩大的收网行动,成功捣毁了该犯罪团伙。案件中的主要成员李安弘、卢某某等人均被依法逮捕。 接下来,我们将深入分析关键证据镜像文件,揭开这个庞大网络传销窝点的犯罪事实。 </p>
+<p>检材情况：</p>
+<p> 1、卢某个人计算机—PersonalPC.E01， MD5:6ee6056aaf226c019426c468c0d3bc7b </p>
+<p>2、PVE服务器调证镜像1—sys.E01， MD5:a801b084c6e71ed59fbcfcdc9694bed4 </p>
+<p>3、PVE服务器调证镜像2—data.E01， MD5:2eaef3b6304e4fd1eeefb84d69609126</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vc容器挂载密码：2024Fic~Competition~Finals@杭州&amp;Powered~By~HL!</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="PC"><a href="#PC" class="headerlink" title="PC"></a>PC</h1><p>1 请分析卢某的计算机，并计算原始检材的SHA256值。</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810223618297.png" alt="image-20240810223618297"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">524c3e14cbe6f1880f2a8115643a0c7d1f6463f052f6bcd23d572c54b664e49c</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 2 嫌疑人回收站中的”备忘录.txt”文件SHA1 值为？ </p>
+<p>仿真找到密码一个</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810223407681.png" alt="image-20240810223407681"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810224203004.png" alt="image-20240810224203004"></p>
+<p>拿到主密码</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810224251701.png" alt="image-20240810224251701"></p>
+<blockquote>
+<p>mobapass00</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0b55b55a2722cb6c509c40511e62af9f</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3 嫌疑人使用ssh连接工具，该工具的名称为？【答案格式:fic123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810224501521.png" alt="image-20240810224501521"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MobaXterm</span><br></pre></td></tr></table></figure>
+
+<p>4 嫌疑人使用ssh连接工具，其中连接名为node的连接记录，连接的端口为？【答案格式:123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810224551980.png" alt="image-20240810224551980"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">122</span><br></pre></td></tr></table></figure>
+
+<p>5 在2024-03-12 17:13左右，嫌疑人计算机最少连接了__台安卓虚拟机。【答案格式:1】__</p>
+<p>下面提示安装了QtScrcpy，扔个everything搜索一下，但是这个好像没有日志</p>
+<p>时间线发现这个时候访问了这个图片，题目也没有具体问应该至少五台</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810225434724.png" alt="image-20240810225434724"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<p> 6 软件“QtScrcpy”的配置文件显示，嫌疑人配置了__台安卓虚拟机（以连接端口计数）。【答案格式:123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810225623411.png" alt="image-20240810225623411"></p>
+<p>整理一下</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810225814561.png" alt="image-20240810225814561"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15</span><br></pre></td></tr></table></figure>
+
+<p> 7 嫌疑人桌面文件”老婆.png”的SHA256哈希值为？【答案格式:abc123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810225840126.png" alt="image-20240810225840126"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">02139bf305630ceffadd6926c202bae655c79d25a64f5c7a1c62bc4c91c9ccf1</span><br></pre></td></tr></table></figure>
+
+<p> 8 嫌疑人把xls文件藏入老婆.png中，该xls的密码为？【答案格式:Abc123】</p>
+<p>找一下</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810230124351.png" alt="image-20240810230124351"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810230109815.png" alt="image-20240810230109815"></p>
+<p>删除前面的数据，修改后缀打卡发现有密码</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810230324155.png" alt="image-20240810230324155"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240810230357444.png" alt="image-20240810230357444"></p>
+<p>passware跑一下，自定义爆破</p>
+<p> 9 嫌疑人桌面”2024年3月13日星期三 日报.docx”文档密码为？【答案格式:Abc123】</p>
+<p> 10 嫌疑人使用的AI软件名称为？【答案格式:abc-df-abc】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811084638545.png" alt="image-20240811084638545"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stable-diffusion-webui</span><br></pre></td></tr></table></figure>
+
+<p>11 嫌疑人使用的AI软件监听端口为？【答案格式:1】</p>
+<p>我本地的监听为7860</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811085703234.png" alt="image-20240811085703234"></p>
+<p>在Edge浏览器的历史记录中可以找到访问webui的记录</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811101909516.png" alt="image-20240811101909516"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7860</span><br></pre></td></tr></table></figure>
+
+<p> 12 AI软件安装目录下的“2024-03-13”目录，其中由AI生成的图片有多少张?【答案格式:1】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811090822191.png" alt="image-20240811090822191"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">41</span><br></pre></td></tr></table></figure>
+
+<p>13 嫌疑人使用Ai软件生成燃烧的汽车图片使用的模型SHA256哈希值为？</p>
+<p>发现两个模型·</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811091052597.png" alt="image-20240811091052597"></p>
+<p>找到了一个cache.json文件里面只提到了v1-5，应该只用了这一个模型</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811091318179.png" alt="image-20240811091318179"></p>
+<p>计算一下hash</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">22e8515aa5985b776afc1e48647f23f5651a317d2497a91232d03a1c4feeae2c</span><br></pre></td></tr></table></figure>
+
+<p>14 嫌疑人使用Ai软件生成燃烧的汽车图片(00036-957419862.png)使用的正向提示词，包含哪些？</p>
+<p> A.china	 B.high way	 C.fast speed	 D.car on fire	 E.no people</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811091557200.png" alt="image-20240811091557200"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811091611757.png" alt="image-20240811091611757"></p>
+<p>看了wp知道在元数据里面</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811103928431.png" alt="image-20240811103928431"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abd</span><br></pre></td></tr></table></figure>
+
+<p>15 嫌疑人桌面文件”老婆.png”的图像生成种子是__。【答案格式:123】</p>
+<p>没找到</p>
+<h1 id="PVE虚拟化平台部分"><a href="#PVE虚拟化平台部分" class="headerlink" title="PVE虚拟化平台部分"></a>PVE虚拟化平台部分</h1><p>1 PVE虚拟化平台版本号为？【答案格式：1.1.1】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811105605686.png" alt="image-20240811105605686"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8.1.4</span><br></pre></td></tr></table></figure>
+
+<p>2 PVE虚拟化平台的web管理地址为？【答案格式：192.168.1.1:22】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811092455273.png" alt="image-20240811092455273"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.71.133:8006</span><br></pre></td></tr></table></figure>
+
+<p> 3 在PVE虚拟化平台中，当前共有多少个虚拟机？【答案格式：1】</p>
+<p>重新添加一个71的网卡给虚拟机配上</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811092857458.png" alt="image-20240811092857458"></p>
+<p>访问UI管理界面，使用root 123456进行登录</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093431477.png" alt="image-20240811093431477"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
+
+<p>4 PVE虚拟化平台的“vmbr1”网卡所使用的网段为？【答案格式：192.168.1.0&#x2F;11】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093124920.png" alt="image-20240811093124920"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.100.0/24</span><br></pre></td></tr></table></figure>
+
+<p> 5 PVE虚拟化平台中”120(Luck)”虚拟机的smbios uuid为？【答案格式：123abc-123ba-123ad-23ab-12345abczc 】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093519403.png" alt="image-20240811093519403"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e9990cd6-6e60-476c-bd37-1a524422a9a8</span><br></pre></td></tr></table></figure>
+
+<p> 6 在PVE虚拟化平台中，用户“Lu2k”被授予了多少个虚拟机的使用权限？【答案格式：1】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093650005.png" alt="image-20240811093650005"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093653211-17233402137361.png" alt="image-20240811093653211"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093659974.png" alt="image-20240811093659974"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093705781.png" alt="image-20240811093705781"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<p> 7 在PVE虚拟化平台中，shell历史命令中最后一条命令为？【答案格式：hello world】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093826503.png" alt="image-20240811093826503"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811093841139.png" alt="image-20240811093841139"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lxc-attach 110</span><br></pre></td></tr></table></figure>
+
+<p>8 请分析嫌疑人最近一次销毁虚拟机的时间为 </p>
+<p>A.2024-03-13 10:34:20</p>
+<p> B.2024-03-22 18:06:15 </p>
+<p>C.2024-03-22 18:15:17</p>
+<p> D.2024-03-22 18:20:55</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811095345910.png" alt="image-20240811095345910"></p>
+<img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811095454671.png" alt="image-20240811095454671" style="zoom:200%;">
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a</span><br></pre></td></tr></table></figure>
+
+<p>9 PVE虚拟化平台的openEuler系统镜像下载的开始时间为？ </p>
+<p>A.2024-03-12 12:03:12</p>
+<p> B.2024-03-12 12:04:19 </p>
+<p>C.2024-03-12 12:10:09 </p>
+<p>D.2024-03-12 12:11:02</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811105858018.png" alt="image-20240811105858018"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b</span><br></pre></td></tr></table></figure>
+
+<p>10 根据嫌犯供述，可通过快照启动PVE虚拟化平台中的云手机。请根据该条线索找到对应虚拟机，其快照的时间 为</p>
+<p> A.2024-03-12 11:02:32 </p>
+<p>B.2024-03-12 11:24:11</p>
+<p> C.2024-03-13 10:34:20 </p>
+<p>D.2024-03-13 9:43:23</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811095818068.png" alt="image-20240811095818068"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="软路由部分"><a href="#软路由部分" class="headerlink" title="软路由部分"></a>软路由部分</h1><p>1 软路由root用户的密码是？【答题格式：abc123】</p>
+<p>查看PC的记录</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811100211973.png" alt="image-20240811100211973"></p>
+<p>应该是这个，但是直接打开一直报错，应该是虚拟化的问题</p>
+<p>我的电脑安装了wsl和docker产生了冲突，解决如下：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Djx_hmbb/article/details/130996629">VM 不支持虚拟化性能计数器的解决方案_vmware workstation 不支持在此主机上使用虚拟化性能计数器。有关更多详细信息,请-CSDN博客</a></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811104541475.png" alt="image-20240811104541475"></p>
+<p>看一下哪个端口</p>
+<p>登录</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811105034282.png" alt="image-20240811105034282"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811104956207.png" alt="image-20240811104956207"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OP2024fic</span><br></pre></td></tr></table></figure>
+
+<p> 2 软路由管理面板所用http协议监听的端口为？【答案格式：7001】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811105141351.png" alt="image-20240811105141351"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8080</span><br></pre></td></tr></table></figure>
+
+<p> 3 软路由的系统版本号为？【答案格式：1.1.1】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811105209748.png" alt="image-20240811105209748"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">23.05.2</span><br></pre></td></tr></table></figure>
+
+<p>4 软路由的WAN口所配置的网关为？【答案格式：1.1.1.1】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811105239818.png" alt="image-20240811105239818"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.71.2</span><br></pre></td></tr></table></figure>
+
+<p> 5 软路由防火墙端口转发规则有多少条记录【答案格式：1】</p>
+<p>一个一个数</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811110022848.png" alt="image-20240811110022848"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">17</span><br></pre></td></tr></table></figure>
+
+<p> 6 OpenClash控制面板登录密钥为？【答案格式:Abc123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811110118246.png" alt="image-20240811110118246"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MCoYZFwg</span><br></pre></td></tr></table></figure>
+
+<p> 7 OpenClash的局域网代理密码(SOCKS5&#x2F;HTTP认证信息)为？【答题格式：Abc123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811110351889.png" alt="image-20240811110351889"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Clash/WAMqotI9</span><br></pre></td></tr></table></figure>
+
+<p> 8 OpenClash的订阅地址为？【答案格式：<a target="_blank" rel="noopener" href="https://www.forensix.cn】/">https://www.forensix.cn】</a></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811110423722.png" alt="image-20240811110423722"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://www.amrth.cloud/s/FnT83dutLWlF5via?clash=2</span><br></pre></td></tr></table></figure>
+
+<p> 9 代理节点”香港501 中继 动态”的服务端口为？【答案格式:123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811110722262.png" alt="image-20240811110722262"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">42001</span><br></pre></td></tr></table></figure>
+
+<p> 10 OpenWrt的包管理软件的系统镜像源配置文件的绝对路径是？【答案格式：&#x2F;root&#x2F;hl&#x2F;abc.conf】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811110939943.png" alt="image-20240811110939943"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/opkg/distfeeds.conf</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="云手机部分"><a href="#云手机部分" class="headerlink" title="云手机部分"></a>云手机部分</h1><p>1 PVE虚拟化平台的虚拟机”101(node1)”的droid用户登录密码为？【答案格式:Abc123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811111006075.png" alt="image-20240811111006075"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">droid2024fic</span><br></pre></td></tr></table></figure>
+
+<p> 2 PVE虚拟化平台的虚拟机”101(node1)”中Docker容器的镜像ID的前六位为？【答案格式：abc123】</p>
+<p>发现只有是100网段的，再给pve加一张网卡</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811111623680.png" alt="image-20240811111623680"></p>
+<p>连接注意端口</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811111744663.png" alt="image-20240811111744663"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811112402244.png" alt="image-20240811112402244"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d1d4bf</span><br></pre></td></tr></table></figure>
+
+<p> 3 在PVE虚拟化平台的node1虚拟机中，容器手机的数量为？【答案格式：1】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811112455965.png" alt="image-20240811112455965"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+
+<p>4 在PVE虚拟化平台的node1虚拟机中,若要启动手机容器，有几条前置命令（docker命令不纳入计算）? 【答案格 式：1】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811112531141.png" alt="image-20240811112531141"></p>
+<p>看不出来，pve里面有</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811112653735.png" alt="image-20240811112653735"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>5 在PVE虚拟化平台的”101(node1)”虚拟机中启动“priceless_knuth”手机容器后，该安卓手机的蓝牙MAC地址是多 少？【答案格式:12:34:ab:cd:a1:b2】</p>
+<p>启动手机</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811113920994.png" alt="image-20240811113920994"></p>
+<p>发现连接不上给node1加一张100的网卡</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811114153753.png" alt="image-20240811114153753"></p>
+<p>但是发现还是ping不通，给pve加一张网卡，并且绑定了ens36上（因为一共有两个网络接口，ens160已经被vmbr0虚拟网桥进行了绑定，以便虚拟机通过虚拟网桥与外部网络进行通信）</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811151733780.png" alt="image-20240811151733780"></p>
+<p>成功连接</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811151924656.png" alt="image-20240811151924656"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3c:5a:b4:01:02:03</span><br></pre></td></tr></table></figure>
+
+<p>6 警方现场勘验过程中，曾使用雷电手机取证软件通过嫌疑人软路由对云手机进行了远程取证，请问以下哪个端口可以明确是取证时使用过的端口？【多选题】</p>
+<p> A.11111 B.12222 C.13333 D.23333 E.24444 F.35555</p>
+<p>没看懂</p>
+<p>7 在PVE虚拟化平台的node2中名为loving_shtern的手机映射至软路由中，所占用的端口号为？【答案格式:123】 </p>
+<p>给node2加一个网卡，ssh连接，发现启动不了，前面提到了有快照回滚一下</p>
+<p>8 在PVE虚拟化平台的node2中loving_shtern手机容器中安装的名为“抖音”安装包的MD5值为？【答案格 式:abc123】</p>
+<p> 9 根据集群中手机内容分析，传销人员在评论区引流使用的qq号为？【答案格式:123】</p>
+<p>连接上的抖音打不开</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811153511605.png" alt="image-20240811153511605"></p>
+<p>添加一下检材</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811154116285.png" alt="image-20240811154116285"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811154932006.png" alt="image-20240811154932006"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1765541414</span><br></pre></td></tr></table></figure>
+
+<p> 10 通过云手机聊天记录可以得知，涉案传销网站域名为？【答案格式：<a target="_blank" rel="noopener" href="http://www.forensix.cn】/">www.forensix.cn】</a></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811153312610.png" alt="image-20240811153312610"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shop.jshcloud.cn</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="传销网站部分"><a href="#传销网站部分" class="headerlink" title="传销网站部分"></a>传销网站部分</h1><p>1 涉案服务器集群中，sql数据库服务器112（sqlserver）对应的虚拟磁盘的SHA256值为？</p>
+<p>启动一下</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811155140586.png" alt="image-20240811155140586"></p>
+<p>发现对应的硬盘</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811155207669.png" alt="image-20240811155207669"></p>
+<p>x-way算一下，不应该在虚拟机里直接算，仿真会造成读写不是原始镜像</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811160419818.png" alt="image-20240811160419818"></p>
+<p>发现了hl的软件好像把这些通过网络挂在到了本地，导出来很快</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811160712291.png" alt="image-20240811160712291"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F4F9A47507DBDD5704712A7640B251639D452080B7831D8B41CF727885A3EB92</span><br></pre></td></tr></table></figure>
+
+<p>2 涉案服务器集群中，数据库服务器的root用户密码加密方式为？ </p>
+<p>A.SM3 B.SHA256 C.MD5 D.Bcrypt</p>
+<p><strong>直接添加检材发现失败，把这个服务器镜像导出来然后取证一下</strong></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811172000557.png" alt="image-20240811172000557"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A</span><br></pre></td></tr></table></figure>
+
+<p>3 涉案服务器集群中，数据库服务器的内核版本？【答案格式：1.1.1】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811172113180.png" alt="image-20240811172113180"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.10.0</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4 涉案服务器集群中，Java服务器web服务监听的端口为？【多选题】 A.9030 B.9031 C.9032 D.9033</p>
+<p>有两个jar包</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811163816924.png" alt="image-20240811163816924"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811163935807.png" alt="image-20240811163935807"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bc</span><br></pre></td></tr></table></figure>
+
+<p>5 涉案服务器集群中，数据库服务器中Docker容器的数量为？【答案格式：1】 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>6 涉案服务器集群中，数据库服务器有一个mysql容器节点，该容器的ID前六位为?【答案格式：abc123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811172230558.png" alt="image-20240811172230558"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">510733</span><br></pre></td></tr></table></figure>
+
+<p>7 涉案服务器集群中，数据库服务器mysql容器节点的数据库版本号为?【答案格式：1.1.1】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811172321913.png" alt="image-20240811172321913"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5.7.44</span><br></pre></td></tr></table></figure>
+
+<p>8 从外部访问涉案网站”鲸易元MALL管理系统”管理后台所使用的域名为？【多选】</p>
+<p> A.jy.proxy2.jshcloud.cn </p>
+<p>B.master.jy.proxy2.jshcloud.cn </p>
+<p>C.jy.proxy.jshcloud.cn</p>
+<p> D.master.jy.proxy.jshcloud.cn</p>
+<p>看到有nginx，启动一下，但是不知道密码，添加成为检材直接看配置文件就行，看到了引入了配置文件</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811170853097.png" alt="image-20240811170853097"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811170559969.png" alt="image-20240811170559969"></p>
+<p>看配置文件都出现了</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811171510201.png" alt="image-20240811171510201"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811171524344.png" alt="image-20240811171524344"></p>
+<p>编码问题中文乱码了，看了wp发现可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lxc-attach 110</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811171739505.png" alt="image-20240811171739505"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811171828597.png" alt="image-20240811171828597"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b，d</span><br></pre></td></tr></table></figure>
+
+<p>9 “鲸易元MALL管理系统”管理后台所使用的网站框架为？ A.TOMCAT B.SPRING_BOOT C.Struts D.THINKPHP </p>
+<p>网站服务器用的是vm-111-disk-0.vmdk，添加为检材</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811161931174.png" alt="image-20240811161931174"></p>
+<p>看看历史命令发现是java站，找一下jar包反编译</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811162602290.png" alt="image-20240811162602290"></p>
+<p>找到maven包管理，</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811162740948.png" alt="image-20240811162740948"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b</span><br></pre></td></tr></table></figure>
+
+<p>10 “鲸易元MALL管理系统”管理后台运行时，依赖了几种不同的数据库？【答案格式:123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811162937828.png" alt="image-20240811162937828"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>11 “鲸易元MALL管理系统”管理后台运行时，在生产环境(prod)下所连接的mysql服务器密码为？【答案格式:123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811164612762.png" alt="image-20240811164612762"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">honglian7001</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>12 “鲸易元MALL管理系统”管理后台中Aliyun OSS对应的密钥KEY是为？【答案格式:Abc123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811164639615.png" alt="image-20240811164639615"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LfA2sPaJiVW3Th32YeCN0bsD8NIjF7</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p> 13 “鲸易元MALL管理系统”管理后台中，管理员（admin）的账号密码采用了什么样的加密方式？【答案格式：rc4 】(不区分大小写)</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811172712457.png" alt="image-20240811172712457"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bcrypt</span><br></pre></td></tr></table></figure>
+
+<p> 14 “鲸易元MALL管理系统”管理后台中,管理员(admin)账号绑定的手机号码为？【答案格式:18818881888】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811172851768.png" alt="image-20240811172851768"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">15888888888</span><br></pre></td></tr></table></figure>
+
+<p>15 “鲸易元MALL管理系统”管理后台中,会员的数量为?【答案格式:123】</p>
+<p>需要对网站进行仿真，分别下载下来进行仿真</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811173956728.png" alt="image-20240811173956728"></p>
+<p>然后还原网络环境</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811174100367.png" alt="image-20240811174100367"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811174106353-17233692669401.png" alt="image-20240811174106353"></p>
+<p>发现两个都是使用的100网段的，给网卡配上</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811174308942.png" alt="image-20240811174308942"></p>
+<p>配置数据库服务器</p>
+<p>sqlserver也是没有配置网卡的</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811174734391.png" alt="image-20240811174734391"></p>
+<p>查看&#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;，发现一张网卡</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811174842662.png" alt="image-20240811174842662"></p>
+<p><strong>修改NAME和DEVICE为ens33</strong></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811174952495.png" alt="image-20240811174952495"></p>
+<p>重启网络服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart NetworkManager</span><br></pre></td></tr></table></figure>
+
+
+
+<p>javaserver</p>
+<p>这个时候是没有配置网卡的，网卡的altname是enp2s1，后面修改的时候改成这个就行。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000006078381">Linux网卡命名enp3s0说明 - bevar - SegmentFault 思否</a></p>
+<blockquote>
+<p>ubuntu在16.0以后对网卡的命名有了新的规范，不再是ensxx，改成了ensp_s_</p>
+</blockquote>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811175443740.png" alt="image-20240811175443740"></p>
+<p>看&#x2F;etc&#x2F;netplan&#x2F;00-installer-config.yaml，可以看到设置的网卡是enp6s18</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811175539204.png" alt="image-20240811175539204"></p>
+<p><strong>修改成上面看到的网卡名字enp2s1</strong></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811175645307.png" alt="image-20240811175645307"></p>
+<p>保存后应用一下配置，就有IP了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netplan apply</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811180218780.png" alt="image-20240811180218780"></p>
+<p>sqlserver服务器的数据库服务在docker中,启动服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start id</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811180334448.png" alt="image-20240811180334448"></p>
+<p>将javaserver中的jar包启动，用历史命令中的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -jar /home/service/jinyi/api/jinyi.api.api-1.0.0.jar  --spring.profiles.active=prod</span><br><span class="line">java -jar /home/service/jinyi/web/jinyi.web.web.jar  --spring.profiles.active=prod</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811180640062.png" alt="image-20240811180640062"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811180650248.png" alt="image-20240811180650248"></p>
+<p>因为之前给PVE服务器新增了一张IP在192.168.100.x网段的网卡，此时的nginx容器是可以和单独仿真的javaserver、sqlserver服务器联通的</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811180744035.png" alt="image-20240811180744035"></p>
+<p><strong>修改本机hosts，将nginx配置文件中的server_name与容器的IP绑定</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">192.168.100.110 jy.proxy2.jshcloud.cn</span><br><span class="line">192.168.100.110 api.jy.proxy2.jshcloud.cn</span><br><span class="line">192.168.100.110 jy.proxy.jshcloud.cn</span><br><span class="line">192.168.100.110 api.jy.proxy.jshcloud.cn</span><br><span class="line">192.168.100.110 jy.jshcloud.cn</span><br><span class="line">192.168.100.110 api.jy.jshcloud.cn</span><br><span class="line">192.168.100.110info.jy.proxy2.jshcloud.cn</span><br><span class="line">192.168.100.110 info.jy.proxy.jshcloud.cn</span><br><span class="line">192.168.100.110info.jy.jshcloud.cn</span><br><span class="line">192.168.100.110 master.jy.proxy2.jshcloud.cn</span><br><span class="line">192.168.100.110master.jy.proxy.jshcloud.cn</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811180846978.png" alt="image-20240811180846978"></p>
+<p>访问后台</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811180911210.png" alt="image-20240811180911210"></p>
+<p>因为知道了是Bcrypt加密的密码进行替换，先连接数据库，数据库在docker中注意端口换一下</p>
+<blockquote>
+<p>用户名：root</p>
+<p>密码：honglian7001</p>
+</blockquote>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811181202174.png" alt="image-20240811181202174"></p>
+<p>替换密码登录</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811181320651.png" alt="image-20240811181320651"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811181347181.png" alt="image-20240811181347181"></p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811181502506.png" alt="image-20240811181502506"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">52908</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="数据分析部分"><a href="#数据分析部分" class="headerlink" title="数据分析部分"></a>数据分析部分</h1><p>16 “鲸易元MALL管理系统”管理后台中,会员级别为“总代”的数量为?【答案格式:123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811181551575.png" alt="image-20240811181551575"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">248</span><br></pre></td></tr></table></figure>
+
+<p>17 “鲸易元MALL管理系统”管理后台中,以“推荐人id”做为上级id对会员进行层级分析，总层级为多少层？(最高层级 视为1层)【答案格式:123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811182846893.png" alt="image-20240811182846893"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">53</span><br></pre></td></tr></table></figure>
+
+<p> 18 “鲸易元MALL管理系统”管理后台中，会员编号为sgl01的下游人数(伞下会员)数量为？【答案格式:123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811182929816.png" alt="image-20240811182929816"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">18001</span><br></pre></td></tr></table></figure>
+
+<p> 19 “鲸易元MALL管理系统”管理后台中，会员编号为sgl01的下游人数(伞下会员)充值总金额合计为多少元&#x2F;RMB【答 案格式:123】</p>
+<p>会员信息表为member</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811184551852.png" alt="image-20240811184551852"></p>
+<p>其中字段如下</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811184916563.png" alt="image-20240811184916563"></p>
+<p>可以看到member表中有推荐关系，可以用于确定组织架构</p>
+<p>会员余额总表为member_money_total</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811185032840.png" alt="image-20240811185032840"></p>
+<p>其中字段如下</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811185038715.png" alt="image-20240811185038715"></p>
+<p>可以看到充值总金额是recharge_sum_money字段</p>
+<p>将这两个表导出为xlsx文件</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811185452770.png" alt="image-20240811185452770"></p>
+<p>作为组织架构数据导入到网钜进行分析</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811185441240.png" alt="image-20240811185441240"></p>
+<p>导入后会自动分析组织关系以及资金交易关系</p>
+<p>筛选出invite_code为sgl01的统计数据，可以看到伞下会员交易总额为870411900，对照数据库表中的记录和后台显示的记录可知数据库中的记录是不计小数点的，所以需要将后两位作为小数部分，换算成RMB为8704119.00元</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811185737650.png" alt="image-20240811185737650"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">87</span><br></pre></td></tr></table></figure>
+
+<p> 20 “鲸易元MALL管理系统”管理后台中，已支付订单的数量为？【答案格式:123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811183354348.png" alt="image-20240811183354348"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">31760</span><br></pre></td></tr></table></figure>
+
+<p>21 “鲸易元MALL管理系统”管理后台中，已支付订单的支付总金额总计为多少元&#x2F;RMB？【答案格式:123】 </p>
+<p>导出excel</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811183800242.png" alt="image-20240811183800242"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">71979976.00 </span><br></pre></td></tr></table></figure>
+
+<p>22 “鲸易元MALL管理系统”管理后台中，在提现账号管理页面中银行卡的记录数为？【答案格式:123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811183857280.png" alt="image-20240811183857280"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6701 </span><br></pre></td></tr></table></figure>
+
+<p> 23 “鲸易元MALL管理系统”管理后台中，打款成功的提现记录数量为？【答案格式:123】 </p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811183942586.png" alt="image-20240811183942586"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8403</span><br></pre></td></tr></table></figure>
+
+<p>24 “鲸易元MALL管理系统”管理后台中，打款成功的提现应打款金额总计为多少元&#x2F;RMB？【答案格式:123】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811184101774.png" alt="image-20240811184101774"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10067655</span><br></pre></td></tr></table></figure>
+
+<p> 25 “鲸易元MALL管理系统”管理后台中，拼券活动D仓位的收益率为？【答案格式:100%】</p>
+<p><img src="/2024/10/12/2024FIC%E6%80%BB%E5%86%B3%E8%B5%9Bwp-%E4%B8%8D%E5%AE%8C%E6%95%B4%E7%89%88/image-20240811184345483.png" alt="image-20240811184345483"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%8</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/12/Forensics-LiJian-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2710,232 +3248,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/01/Granting-Protection-Linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
-      <meta itemprop="name" content="Kik1">
-      <meta itemprop="description" content="Keep learning and sharing">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Kik1's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/07/01/Granting-Protection-Linux/" class="post-title-link" itemprop="url">Granting-Protection-Linux</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-07-01 11:53:30 / 修改时间：11:59:35" itemprop="dateCreated datePublished" datetime="2024-07-01T11:53:30+08:00">2024-07-01</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="0x00-账户信息"><a href="#0x00-账户信息" class="headerlink" title="0x00 账户信息"></a>0x00 账户信息</h1><blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">主机账号: root</span><br><span class="line">主机密码: dengbao123</span><br><span class="line">小皮账号: admin</span><br><span class="line">小皮密码: dengbao123</span><br><span class="line">备: 小皮登录地址:http:ip:9080/48D41A/</span><br><span class="line">MySQL账号: root  端口: 33060</span><br><span class="line">MySQL密码: dengbao123</span><br><span class="line">渗透WEB后台账号: admin</span><br><span class="line">渗透WEB后台密码: password</span><br><span class="line"></span><br><span class="line">系统版本: Ubuntu 22.04.4</span><br><span class="line">占用空间: 10G左右</span><br><span class="line">网络配置: NAT模式</span><br><span class="line">内存大小: 4G</span><br><span class="line">CPU个数: 4</span><br><span class="line">MYsql: 2个</span><br><span class="line">docker: 1个</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="主机测评"><a href="#主机测评" class="headerlink" title="主机测评"></a>主机测评</h1><h1 id="0X01-查看相应文件，账户xiaoming的密码设定多久过期"><a href="#0X01-查看相应文件，账户xiaoming的密码设定多久过期" class="headerlink" title="0X01  查看相应文件，账户xiaoming的密码设定多久过期"></a>0X01  查看相应文件，账户xiaoming的密码设定多久过期</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chage -l xiaoming</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701091429097.png" alt="image-20240701091429097"></p>
-<p>可也一查看文件</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/login.defs</span><br></pre></td></tr></table></figure>
-
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/whatday/article/details/105995339">linux 新建用户配置文件 &#x2F;etc&#x2F;login.defs 简介_login.defs作用-CSDN博客</a></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701093023387.png" alt="image-20240701093023387"></p>
-<p>或者是看shadow文件</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701092745488.png" alt="image-20240701092745488"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701092945313.png" alt="image-20240701092945313"></p>
-<blockquote>
-<p>7</p>
-</blockquote>
-<h1 id="0X02-查看相应文件，设置的密码到期规则是多少按照flag-提醒时间-最大时间-进行提交"><a href="#0X02-查看相应文件，设置的密码到期规则是多少按照flag-提醒时间-最大时间-进行提交" class="headerlink" title="0X02 查看相应文件，设置的密码到期规则是多少按照flag{提醒时间-最大时间}进行提交"></a>0X02 查看相应文件，设置的密码到期规则是多少按照flag{提醒时间-最大时间}进行提交</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701093127166.png" alt="image-20240701093127166"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;7-99999&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="0X03-已安装ssh，请提交当前SSH版本"><a href="#0X03-已安装ssh，请提交当前SSH版本" class="headerlink" title="0X03 已安装ssh，请提交当前SSH版本"></a>0X03 已安装ssh，请提交当前SSH版本</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701093246802.png" alt="image-20240701093246802"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;OpenSSH_8.9p1&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="0X04-对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644-true"><a href="#0X04-对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644-true" class="headerlink" title="0X04 对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644+true"></a>0X04 对passwd及shadow文件权限分配进行权限值提交并提交是否合规如：644+true</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094255688.png" alt="image-20240701094255688"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;755+flase&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094824834.png" alt="image-20240701094824834"></p>
-<h1 id="0x05-结合相关知识检查在系统中存在可疑用户，进行提交用户名-多个用户名以-号连接"><a href="#0x05-结合相关知识检查在系统中存在可疑用户，进行提交用户名-多个用户名以-号连接" class="headerlink" title="0x05 结合相关知识检查在系统中存在可疑用户，进行提交用户名,多个用户名以+号连接"></a>0x05 结合相关知识检查在系统中存在可疑用户，进行提交用户名,多个用户名以+号连接</h1><p>此处应急响应的时候也可以用到，主要查看在<strong>用户家目录</strong>，root家目录，以及<strong>passwd和shadow文件的可疑用户和字段</strong></p>
-<p>先看passwd目录可以登录的用户，发现了两个root用户</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/passwd | grep /bin/sh</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094516197.png" alt="image-20240701094516197"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701094457008.png" alt="image-20240701094457008"></p>
-<p>UID（User Identification）**中文用户ID,相当于身份证一样，在系统中是唯一的。</p>
-<p>一般来说：超级用户 UID&#x3D;0 root</p>
-<p>去root用户目录验证一下，发现没用两个用户的目录</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095021781.png" alt="image-20240701095021781"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;yunwei+wangwei&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="0x06-结合相关知识，对没有进行权限分离的用户进行提交"><a href="#0x06-结合相关知识，对没有进行权限分离的用户进行提交" class="headerlink" title="0x06 结合相关知识，对没有进行权限分离的用户进行提交"></a>0x06 结合相关知识，对没有进行权限分离的用户进行提交</h1><p>不太懂这个是什么意思？</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095234840.png" alt="image-20240701095234840"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095357106.png" alt="image-20240701095357106"></p>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gocuber/article/details/80418015">Linux下sudo命令及&#x2F;etc&#x2F;sudoers配置说明_sudo -s souer-CSDN博客</a></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701095502680.png" alt="image-20240701095502680"></p>
-<h1 id="0x07-结合相关知识，提交审计日志功能状态"><a href="#0x07-结合相关知识，提交审计日志功能状态" class="headerlink" title="0x07 结合相关知识，提交审计日志功能状态"></a>0x07 结合相关知识，提交审计日志功能状态</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701100914317.png" alt="image-20240701100914317"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701100931826.png" alt="image-20240701100931826"></p>
-<h1 id="0x08-审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag-Jun-23-00-39-52"><a href="#0x08-审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag-Jun-23-00-39-52" class="headerlink" title="0x08 审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag{Jun 23 00:39:52}"></a>0x08 审计相关日志，查看zhangsan用户尝试使用sudo但登录失败的日志，提交其时间，如flag{Jun 23 00:39:52}</h1><p>sudo的日志在auth.log下，发现有两个一个一个看就行</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701101722945.png" alt="image-20240701101722945"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat auth.log.1 | grep zhangsan</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701101542925.png" alt="image-20240701101542925"></p>
-<blockquote>
-<p>flag{Jun 23 01:38:20}</p>
-</blockquote>
-<h1 id="0x09-结合相关合规知识，提交相关系统内核版本"><a href="#0x09-结合相关合规知识，提交相关系统内核版本" class="headerlink" title="0x09 结合相关合规知识，提交相关系统内核版本"></a>0x09 结合相关合规知识，提交相关系统内核版本</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701101823988.png" alt="image-20240701101823988"></p>
-<blockquote>
-<p>flag{5.15.0-112-generic}</p>
-</blockquote>
-<p>是否存在漏洞自行搜集</p>
-<h1 id="0x10-对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交"><a href="#0x10-对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交" class="headerlink" title="0x10 对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交"></a>0x10 对开启的端口排查，结合应急响应知识，对开放的相关恶意端口进行提交</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
-
-<p>发现开启了nacos</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103247634.png" alt="image-20240701103247634"></p>
-<p>看到了入侵工具</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103259866.png" alt="image-20240701103259866"></p>
-<p>看到了后门文件</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103340167.png" alt="image-20240701103340167"></p>
-<p>开启了小皮面板</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701103745356.png" alt="image-20240701103745356"></p>
-<p>查看端口</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anptl</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701102656792.png" alt="image-20240701102656792"></p>
-<p>看到开启了redis端口，redis服务经常容易出问题看一下</p>
-<p>发现是弱密码可能会被利用，进入排查一下</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105231212.png" alt="image-20240701105231212"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -h 127.0.0.1 -p 6379 -a 123456</span><br></pre></td></tr></table></figure>
-
-<p>发现里面没有启用的键</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105401663.png" alt="image-20240701105401663"></p>
-<p>看一下历史命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /root/.rediscli_history</span><br></pre></td></tr></table></figure>
-
-<p>参考：<a target="_blank" rel="noopener" href="https://www.dbs724.com/335991.html">深入理解Redis查看历史命令（redis 查看历史命令）-数据运维技术 (dbs724.com)</a></p>
-<p>发现都是我自己输的，可以排除</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105530677.png" alt="image-20240701105530677"></p>
-<p>打开xp看一下，发现了恶意的网站</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105826866.png" alt="image-20240701105826866"></p>
-<p>发现后门</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105744944.png" alt="image-20240701105744944"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105836901.png" alt="image-20240701105836901"></p>
-<blockquote>
-<p>5566</p>
-</blockquote>
-<h1 id="0x11-已知相应的WEB恶意端口，提交其隐藏文件中flag"><a href="#0x11-已知相应的WEB恶意端口，提交其隐藏文件中flag" class="headerlink" title="0x11 已知相应的WEB恶意端口，提交其隐藏文件中flag"></a>0x11 已知相应的WEB恶意端口，提交其隐藏文件中flag</h1><p> <img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701110003424.png" alt="image-20240701110003424"></p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701105937384.png" alt="image-20240701105937384"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">asd</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="MySQL安全测评"><a href="#MySQL安全测评" class="headerlink" title="MySQL安全测评"></a><strong>MySQL安全测评</strong></h1><p>测评之前先查看mysql的信息</p>
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701112737899.png" alt="image-20240701112737899"></p>
-<p>参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzkzMDE5OTQyNQ==&mid=2247484756&idx=1&sn=cd4436a0f114fee55edee95c812936af&chksm=c27ca7baf50b2eacb4e16a292be7e1833c94a5011d1e07f4f9856aa983bfa36ba1433a489b79&scene=21#wechat_redirect">学习干货|等保测评2.0技术自查阶段(中) (qq.com)</a></p>
-<h1 id="0x12-结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已-连接"><a href="#0x12-结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已-连接" class="headerlink" title="0x12 结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已+连接"></a>0x12 结合相关知识，提交MySQL存在空口令风险的用户名，多个用户名已+连接</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select user,host FROM mysql.user;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113035440.png" alt="image-20240701113035440"></p>
-<p>通过上面的版本号我们知道了mysql是8.x以上的版本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">通过输入以下命令查看是否有账户存在空口令</span><br><span class="line">mysql 5.7以下输入</span><br><span class="line">select * from mysql.user where length(password)= 0 or password is null</span><br><span class="line">mysql 5.7以上输入</span><br><span class="line">select user,authentication_string from mysql.user</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113218278.png" alt="image-20240701113218278"></p>
-<blockquote>
-<p>yunwei</p>
-</blockquote>
-<h1 id="0x13-结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交"><a href="#0x13-结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交" class="headerlink" title="0x13 结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交"></a>0x13 结合相关知识，对MySQL密码复杂度查询到的最小长度进行提交</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mysql输入以下口令查看密码复杂度配置</span><br><span class="line">show variables like &#x27;validate%&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113457082.png" alt="image-20240701113457082"></p>
-<blockquote>
-<p>8</p>
-</blockquote>
-<p>上面的参数都是全局变量，想要修改</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set global validate_password.length = x;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113757511.png" alt="image-20240701113757511"></p>
-<h1 id="0x14-结合相关知识，对MySQL登录最大失败次数查询并提交"><a href="#0x14-结合相关知识，对MySQL登录最大失败次数查询并提交" class="headerlink" title="0x14 结合相关知识，对MySQL登录最大失败次数查询并提交"></a>0x14 结合相关知识，对MySQL登录最大失败次数查询并提交</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &#x27;%connection_control%&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701113843431.png" alt="image-20240701113843431"></p>
-<blockquote>
-<p>3</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">connection_control_failed_connections_threshold    登录失败次数</span><br><span class="line">connection_control_max_connection_delay            响应延迟最大时间</span><br><span class="line">connection_control_min_connection_delay            登录失败后延迟最小时间</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="0x15-结合相关知识，对MySQL超时返回最大时常进行提交-秒为单位"><a href="#0x15-结合相关知识，对MySQL超时返回最大时常进行提交-秒为单位" class="headerlink" title="0x15 结合相关知识，对MySQL超时返回最大时常进行提交(秒为单位)"></a>0x15 结合相关知识，对MySQL超时返回最大时常进行提交(秒为单位)</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show variables like &quot;%timeout%&quot;;</span><br><span class="line">其中wait_timeout字段默认为8小时</span><br><span class="line">意为连接空闲时间不操作8小时后端口，默认不符合</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114156418.png" alt="image-20240701114156418"></p>
-<blockquote>
-<p>28800</p>
-</blockquote>
-<h1 id="0x16-结合相关知识，对MySQL锁定用户数量进行提交"><a href="#0x16-结合相关知识，对MySQL锁定用户数量进行提交" class="headerlink" title="0x16 结合相关知识，对MySQL锁定用户数量进行提交"></a>0x16 结合相关知识，对MySQL锁定用户数量进行提交</h1><p><strong>删除或禁用多余、共享、过期、锁定账户</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">执行以下命令查看用户状态</span><br><span class="line">select user,account_locked from mysql.user;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114653752.png" alt="image-20240701114653752"></p>
-<blockquote>
-<p>3</p>
-</blockquote>
-<h1 id="0x17-提交MySQL全局日志状态-OFF或ON"><a href="#0x17-提交MySQL全局日志状态-OFF或ON" class="headerlink" title="0x17 提交MySQL全局日志状态 OFF或ON"></a>0x17 提交MySQL全局日志状态 OFF或ON</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show global variables like &#x27;%general%&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114802690.png" alt="image-20240701114802690"></p>
-<blockquote>
-<p>OFF</p>
-</blockquote>
-<h1 id="0x18-提交当前MySQL数据库版本"><a href="#0x18-提交当前MySQL数据库版本" class="headerlink" title="0x18 提交当前MySQL数据库版本"></a>0x18 提交当前MySQL数据库版本</h1><p><img src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240701114830322.png" alt="image-20240701114830322"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">8.0.27</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><ol>
-<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Q0x8cn1Apt68p7xX_oDjMw">学习干货|保姆式实战等保测评Linux镜像(邀请码+综合全流程+未公开漏洞) (qq.com)</a>****</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -3006,7 +3318,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
