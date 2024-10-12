@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="手机取证 分析手机检材，使用的导航APP名称是？(标准格式:高德地图）   1百度地图   分析手机检材，接上题，最后一次导航地址所在城市是?(标准格式：杭州）   1西安     分析手机检材，使用的虚拟币钱包地址第二个助记词是？(标准格式：wweqq)  看到虚拟钱包app  一般助记词都会放在笔记或者是相册里面，或者用加密软件进行加密  1alter   分析手机检材，虚拟币钱包应用中的ET">
+<meta property="og:type" content="article">
+<meta property="og:title" content="&#39;Forensics_LiJian_6&#39;">
+<meta property="og:url" content="http://example.com/2024/10/12/Forensics-LiJian-6/index.html">
+<meta property="og:site_name" content="Kik1&#39;s Blog">
+<meta property="og:description" content="手机取证 分析手机检材，使用的导航APP名称是？(标准格式:高德地图）   1百度地图   分析手机检材，接上题，最后一次导航地址所在城市是?(标准格式：杭州）   1西安     分析手机检材，使用的虚拟币钱包地址第二个助记词是？(标准格式：wweqq)  看到虚拟钱包app  一般助记词都会放在笔记或者是相册里面，或者用加密软件进行加密  1alter   分析手机检材，虚拟币钱包应用中的ET">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240918190122554.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919133228780.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919133305580.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919133418675.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919135528825.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919135609203.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240918194904058.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919135712861.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919135817045.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919135833403.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919140054050.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919140134756.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919140218756.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919140250707.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919140545859.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919143041182.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919145441425.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919150416597.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919150450721.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919150632410.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919153152967.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919153234267.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919153409930.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919153417918.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919150749163.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919150824792.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919153643773.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919153845835.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919154922356.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155011123.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155049161.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155121913.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155317933.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155500585.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240918192216425.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155753365.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155823349.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155928242.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240918203646220.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919155946778.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919160020175.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919201323311.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919160415551.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919164339321.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919164749480.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919165358539.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919165511515.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919165606537.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919165700454.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919201813644.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919201922853.png">
+<meta property="og:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240919202008335.png">
+<meta property="article:published_time" content="2024-10-12T13:54:22.000Z">
+<meta property="article:modified_time" content="2024-10-12T13:54:51.377Z">
+<meta property="article:author" content="Kik1">
+<meta property="article:tag" content="blog, web development, programming,PenTest,">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2024/10/12/Forensics-LiJian-6/image-20240918190122554.png">
+
+<link rel="canonical" href="http://example.com/2024/10/12/Forensics-LiJian-6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>'Forensics_LiJian_6' | Kik1's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Kik1's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-主页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>主页</a>
+
+  </li>
+        <li class="menu-item menu-item-归档">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/12/Forensics-LiJian-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+      <meta itemprop="name" content="Kik1">
+      <meta itemprop="description" content="Keep learning and sharing">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kik1's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          'Forensics_LiJian_6'
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-10-12 21:54:22 / 修改时间：21:54:51" itemprop="dateCreated datePublished" datetime="2024-10-12T21:54:22+08:00">2024-10-12</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="手机取证"><a href="#手机取证" class="headerlink" title="手机取证"></a>手机取证</h1><ol>
+<li>分析手机检材，使用的导航APP名称是？(标准格式:高德地图）</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240918190122554.png" alt="image-20240918190122554"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">百度地图</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>分析手机检材，接上题，最后一次导航地址所在城市是?(标准格式：杭州）</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919133228780.png" alt="image-20240919133228780"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">西安</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="4">
+<li>分析手机检材，使用的虚拟币钱包地址第二个助记词是？(标准格式：wweqq)</li>
+</ol>
+<p>看到虚拟钱包app</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919133305580.png" alt="image-20240919133305580"></p>
+<p>一般助记词都会放在笔记或者是相册里面，或者用加密软件进行加密</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919133418675.png" alt="image-20240919133418675"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>分析手机检材，虚拟币钱包应用中的ETH地址是?(标准格式:0x34342354546676768787867)</li>
+</ol>
+<p>解压手机文件夹，找到软件安装的目录</p>
+<p>一共解析出了两个imToken，一个有安装遗留的文件一个没有</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919135528825.png" alt="image-20240919135528825"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919135609203.png" alt="image-20240919135609203"></p>
+<p>ETH地址地址的开头是0X，直接搜</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240918194904058.png" alt="image-20240918194904058"></p>
+<p>获取去数据库文件夹看一下RKStorage这个数据库</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919135712861.png" alt="image-20240919135712861"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0x34598B08b28924Ba446a4219673d86A379FBa983</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>分析手机检材，手机中有一款APP能够隐藏应用和文件，请问该APP的包名是什么？(标准格式：eqweqw.com)*_</li>
+</ol>
+<p>直接google出来了，这个没有特别好的思路，基本就是自己一个一个尝试</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919135817045.png" alt="image-20240919135817045"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919135833403.png" alt="image-20240919135833403"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deltazero.amarok</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>分析手机检材，接上题，手机中有应用被隐藏了，请给出被隐藏的第二个应用包名是（从上往下排序）（标准格式：<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a>)*_</li>
+</ol>
+<p>找到安装的文件夹复制文件夹</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919140054050.png" alt="image-20240919140054050"></p>
+<p>在手机中安装apk，然后移动文件</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919140134756.png" alt="image-20240919140134756"></p>
+<p>使用MT管理器进行覆盖</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919140218756.png" alt="image-20240919140218756"></p>
+<p>打开apk，按照提示进入apk</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919140250707.png" alt="image-20240919140250707"></p>
+<p>发现需要应用锁</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919140545859.png" alt="image-20240919140545859"></p>
+<p>没壳直接反编译</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919143041182.png" alt="image-20240919143041182"></p>
+<p>找到入口的类</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919145441425.png" alt="image-20240919145441425"></p>
+<blockquote>
+<p><strong>AndroidManifest.xml 文件中定义了程序中所有Activity</strong></p>
+<p><code>action</code>节点中的 android.intent.action.MAIN 表明它所在的Activity是整个程序 <strong>开始运行时</strong> 的入口</p>
+<p>category中的 android.intent.category.LAUNCHER 意思是把这个Activityg归属到加载器类，即把这个Activity标注为自动会加载和启动的Activity，这样程序启动时候就先加载这个Activity了</p>
+</blockquote>
+<p>看了看没有什么用，搜一下应用锁</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919150416597.png" alt="image-20240919150416597"></p>
+<p>在搜索一下app_lock,看到了这个类</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919150450721.png" alt="image-20240919150450721"></p>
+<p>看到了有一个getAmarokPassword()方法</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919150632410.png" alt="image-20240919150632410"></p>
+<p>跟过去发现是在PrefMgr类下，搜一下这个类是干什么的</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919153152967.png" alt="image-20240919153152967"></p>
+<p>最开始应该就是读取存储的xml文件，后面的getxxx方法就是从中读取数据</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919153234267.png" alt="image-20240919153234267"></p>
+<p>去找一下这个文件</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919153409930.png" alt="image-20240919153409930"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919153417918.png" alt="image-20240919153417918"></p>
+<p>让我们输入的密码加密后的数值，还有隐藏的应用包名</p>
+<p>返回deltazero.amarok.ui.settings.PrivacyCategory往下找到了对我们输入的字符串进行加密</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919150749163.png" alt="image-20240919150749163"></p>
+<p>跟过去发现是MD5摘要算法</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919150824792.png" alt="image-20240919150824792"></p>
+<p>查一下得到密码，成功登录</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919153643773.png" alt="image-20240919153643773"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919153845835.png" alt="image-20240919153845835"></p>
+<p>分析结束，本题答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">com.jm.pindao</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="7">
+<li>分析手机检材，接上题，该应用设置的应用锁密码通过什么方式加密？(标准格式：aes)*_</li>
+</ol>
+<p>上面分析可知是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">md5</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="8">
+<li>分析手机检材，接上题，设置的应用锁密码是?(标准格式:3333)*_</li>
+</ol>
+<p>上面分析可知</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1111</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="9">
+<li>分析手机检材，接上题，实现应用锁密码加密的类和函数名称是？(标准格式：hheqeqw qeqweq)*_</li>
+</ol>
+<p>根据前面分析可知</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HashUtil calculateHash</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="10">
+<li>分析手机检材，接上题，该应用的telegram开发群组是(标准格式:@qrqwe_er)*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919154922356.png" alt="image-20240919154922356"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@amarok_dev</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="11">
+<li>分析手机检材，Ai伴侣疑似使用的卡密是？(标准格式:er33124ff)*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155011123.png" alt="image-20240919155011123"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fcf6c6765f   </span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="12">
+<li>分析手机检材，微信的微信ID(内部ID)号是？(标准格式：wxid_qeqwdas1)*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155049161.png" alt="image-20240919155049161"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wxid_6vkhgm0jv93l12</span><br></pre></td></tr></table></figure>
+
+<ol start="13">
+<li>分析手机检材，曾邀请打包APP的技术使用内部聊天工具，请问邀请链接是？(标准格式：<a target="_blank" rel="noopener" href="https://eqer.yu/#?qewqweqw">https://eqer.yu/#?qewqweqw</a>)*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155121913.png" alt="image-20240919155121913"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://matrix.to/#/@xuwencheng:matrix.migu123.xyz</span><br></pre></td></tr></table></figure>
+
+<h1 id="介质取证"><a href="#介质取证" class="headerlink" title="介质取证"></a>介质取证</h1><ol>
+<li>分析计算机检材，嫌疑人计算机中使用过代理，请问设置的代理地址端口号是？(标准格式：8912）*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155317933.png" alt="image-20240919155317933"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7890</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>分析计算机检材，该电脑曾经登录的qq号为？(标准格式:1231245)*_</li>
+</ol>
+<p>类似于微信在某一台电脑登录过会产生wxid，这里只要登陆过qq在这个文件夹就会有qq号对应的文件夹</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155500585.png" alt="image-20240919155500585"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1076423835</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="3">
+<li>分析计算机检材，免密登录服务器使用的私钥文件sha256值为？(标准格式:78qewewqwe33341dwqe41221321)*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240918192216425.png" alt="image-20240918192216425"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">463812811dbcbb3b4c10c5c321cfa4602b8ee55620ed1f8e5de2df972b2964c7</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<ol start="4">
+<li>分析计算机检材，SillyTavern中的设置的登录用户名为？(标准格式：admin)*_</li>
+</ol>
+<p>出题人忘了放bitlocker的密码了，SillyTavern在加密盘中</p>
+<p>找到启动脚本</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155753365.png" alt="image-20240919155753365"></p>
+<p>发现需要账户密码</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155823349.png" alt="image-20240919155823349"></p>
+<p>问了一下AI</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155928242.png" alt="image-20240919155928242"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240918203646220.png" alt="image-20240918203646220"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919155946778.png" alt="image-20240919155946778"></p>
+<p>登录webui</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="5">
+<li>分析计算机检材，SillyTavern中一共创建了多少个角色？(标准格式：8）*_</li>
+</ol>
+<p>登录webui</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919160020175.png" alt="image-20240919160020175"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="6">
+<li>分析计算机检材，webui启动界面的端口是？（标准格式:5000)*_</li>
+</ol>
+<p>看readme</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919201323311.png" alt="image-20240919201323311"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7860</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="7">
+<li>分析计算机检材，webui中模型WizardLM-7B-uncensored-GPTQ使用的transformers版本是？(标准格式：6.34.0)*_</li>
+</ol>
+<p>在这个路径下的config.json文件下</p>
+<blockquote>
+<p>D:\webui\text-generation-webui-main\models\WizardLM-7B-uncensored-GPTQ</p>
+</blockquote>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919160415551.png" alt="image-20240919160415551"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4.29.0</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>分析计算机检材，AIV5.7换脸软件中，嫌疑人产生的换脸照片的MD5值是？(标准格式:er4242455353456767g)*_</li>
+</ol>
+<p>看到了这一张图片</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919164339321.png" alt="image-20240919164339321"></p>
+<p>打开换脸软件的输出目录</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919164749480.png" alt="image-20240919164749480"></p>
+<blockquote>
+<p>E:\AIV5.7\Swap_Out</p>
+</blockquote>
+<p>发现了一个换脸之后的图片，其余都是换脸之后的视频</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919165358539.png" alt="image-20240919165358539"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919165511515.png" alt="image-20240919165511515"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">e8f902545b4b9c741d7a38906707127c</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>分析计算机检材，接上题，该换脸软件中，默认线程数是多少？(标准格式:8)*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919165606537.png" alt="image-20240919165606537"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919165700454.png" alt="image-20240919165700454"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">4</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>综合分析计算机检材，嫌疑人曾找人注册了一个空壳公司，该公司的统一社会信用代码为？(标准格式:353453131qwe)*_</li>
+</ol>
+<p>后来补发的检材，给了一个excel文件,直接无法打开</p>
+<p>搜一下文件头，进行修改然后打开</p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919201813644.png" alt="image-20240919201813644"></p>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919201922853.png" alt="image-20240919201922853"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">91420102MA7H8DKL3Q</span><br></pre></td></tr></table></figure>
+
+
+
+<ol start="11">
+<li>综合分析计算机检材，通过对公司注册资料元数据进行分析，该文件创建内容的年份为？（标准格式:2024)*_</li>
+</ol>
+<p><img src="/2024/10/12/Forensics-LiJian-6/image-20240919202008335.png" alt="image-20240919202008335"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2022</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/09/05/Forensics-LiJian-5/" rel="prev" title="Forensics_LiJian_5">
+      <i class="fa fa-chevron-left"></i> Forensics_LiJian_5
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%8B%E6%9C%BA%E5%8F%96%E8%AF%81"><span class="nav-number">1.</span> <span class="nav-text">手机取证</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8B%E8%B4%A8%E5%8F%96%E8%AF%81"><span class="nav-number">2.</span> <span class="nav-text">介质取证</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Kik1"
+      src="https://raw.githubusercontent.com/KIKI-flower/typora/main/img/image-20240714104212216.png">
+  <p class="site-author-name" itemprop="name">Kik1</p>
+  <div class="site-description" itemprop="description">Keep learning and sharing</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Kik1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
