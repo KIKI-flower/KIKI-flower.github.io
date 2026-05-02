@@ -1258,7 +1258,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #9fd785;
+  background: #fe83b0;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2708,7 +2708,6 @@ a:hover {
 }
 .header-inner {
   overflow: hidden;
-  position: relative;
 }
 .header-inner::before {
   background: linear-gradient(90deg, var(--kiki-accent), var(--kiki-warm), var(--kiki-danger));
@@ -2832,6 +2831,7 @@ pre {
 }
 .sidebar {
   color: var(--kiki-muted);
+  margin-top: 320px;
 }
 .sidebar-inner {
   backdrop-filter: blur(10px);
@@ -2875,6 +2875,9 @@ pre {
   background: linear-gradient(90deg, var(--kiki-accent), var(--kiki-warm));
 }
 @media (max-width: 991px) {
+  .sidebar {
+    margin-top: 0;
+  }
   .post-block {
     padding: 26px 22px;
   }
